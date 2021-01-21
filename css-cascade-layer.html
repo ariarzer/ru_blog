@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS mind blog</title>
+
+    <meta name="description" content="Каскад. Слои. Layer.">
+
+    <meta property="og:url" content="https://ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Пара слов о @layer">
+    <meta property="og:description"
+          content="Точно так же, как каскадные источники обеспечивают баланс между стилями пользователя и разработчика, каскадные слои обеспечивают способ организации структуры в рамках одного источника.">
+    <meta property="og:image" content="https://ariarzer.dev/img/css-cascade-layer-og-preview.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+</head>
+<body>
+
+<header>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</header>
+<article>
+    <h1 id="-layers-https-www-w3-org-tr-css-cascade-5-layering-">Пара слов о <a
+        href="https://www.w3.org/TR/css-cascade-5/#layering">@layer</a></h1>
+    <p>Дисклеймер: статья представляет собой неполный перевод одного из разделов спецификации c некоторыми
+        дополнениями.</p>
+    <p>Точно так же, как <a href="https://www.w3.org/TR/css-cascade-5/#origin">каскадные источники</a> обеспечивают
+        баланс
+        между стилями пользователя и разработчика, <strong>каскадные слои</strong> обеспечивают способ организации
+        структуры
+        в рамках одного источника. </p>
+    <p>Разработчики могут создавать слои для представления значений по умолчанию, тем, вложенных компонентов и других
+        аспектов стилизации, и могут переупорядочивать каскад слоев явным образом, без изменения селекторов внутри
+        каждого слоя.</p>
+    <p><strong>Например</strong>, следующий код создает явный слой <code>myLayer</code> с меньшим весом каскада, чем
+        любые
+        стили вне слоев:</p>
+    <pre><code data-lang="css">button {
+  color: red;
+}
+
+@layer myLayer {
+  button.class {
+    color: blue;
+  }
+}</code></pre>
+    <p>В таком случае кнопка <code>button.class</code> <strong>будет красной</strong>, даже не смотря на то что
+        декларация
+        внутри слоя имеют большую специфичность (<code>0,1,1</code> против <code>0,0,1</code>).</p>
+    <p>А в этом примере кнопка будет зеленой:</p>
+    <pre><code data-lang="css">@layer legacy, newStyle;
+
+@layer newStyle {
+  button.class {
+    color: green;
+  }
+}
+
+@layer legacy url(legacy.css);</code></pre>
+    <h2>Объявление каскадных слоев: правило <code>@layer</code></h2>
+    <p>Правило <code>@layer</code> определяет явный каскадный слой с возможностью назначать правила стиля либо как блок,
+        либо как импорт.</p>
+    <p><strong>Синтаксис импорта:</strong></p>
+    <pre><code data-lang="vds">@layer &lt;layer-ident>? &lt;url>;</code></pre>
+    <p>Такие правила импорта <code>@layer</code> имеют те же ограничения и обработку, что и <a
+        href="https://www.w3.org/TR/css-cascade-5/#at-import"><code>@import</code></a>, за исключением того, что
+        импортированные правила назначаются указанному слою.</p>
+    <p><strong>Синтаксис блока:</strong></p>
+    <pre><code class="lang-vds">@layer &lt;layer-ident>? {
+  &lt;stylesheet>
+}</code></pre>
+    <p>Такие правила блока <code>@layer</code> имеют те же ограничения и обработку, что и <a
+        href="https://www.w3.org/TR/css-cascade-5/#biblio-css-conditional-3">css-conditional</a> с истинным условием.
+    </p>
+    <p>В обоих случаях необязательный <code>&lt;layer-ident&gt;</code> - это идентификатор, который представляет имя
+        этого
+        слоя.
+        Новый слой <strong>создается</strong> если имя слоя <strong>не совпадает</strong> с именем другого слоя, уже
+        определенного в этом контексте, источнике и области действия (см. <a href="#">нестигиг слоёв</a>).
+        В противном случае или если <code>&lt;layer-ident&gt;</code> не указан, создается новый каскадный слой.</p>
+    <p>Идентификаторы слоя не являются обязательными, но позволяют применять несколько блоков стилей к одному слою:</p>
+    <pre><code data-lang="css">@layer myLayer url(headings.css);
+@layer myLayer url(links.css);
+
+@layer myLayer {
+  button.class {
+    color: blue;
+  }
+}</code></pre>
+    <p>Больший приоритет имеет слои, объявленный ближе к концу документа. То есть приоритет имеет отбратный порядок
+        относительно порядка создания. В этом примере <code>button</code>будет злененой:</p>
+    <pre><code data-lang="css">@layer common {
+  button {
+    color: red;
+  }
+}
+
+@layer theme url(theme.css);
+
+@layer components {
+  button {
+    color: green;
+  }
+}</code></pre>
+    <p>Есть возможность объявлять без наполнения, только по именам. Это позволяет более явно задавать приоритет слоёв.
+        То есть в этом примере кнопка <code>button</code> будет красной:</p>
+    <pre><code data-lang="css">@layer components;
+@layer common;
+@layer theme;
+
+/* или через запятую: */
+/* @layer components, default, theme;*/
+
+@layer common {
+  button {
+    color: red;
+  }
+}
+
+@layer theme url(theme.css);
+
+@layer components {
+  button {
+    color: green;
+  }
+}</code></pre>
+    <h2 id="-https-github-com-web-standards-ru-dictionary-blob-master-dictionary-md-nested-"><a
+        href="https://github.com/web-standards-ru/dictionary/blob/master/dictionary.md#nested">Нестинг</a> слоёв</h2>
+    <p>Когда правила <code>@layer</code> вложены, имена вложенных слоев привязаны к их родительскому слою.</p>
+    <p>Например:</p>
+    <pre><code data-lang="css">@layer common {
+  p { max-width: 70ch; }
+}
+
+@layer framework {
+  @layer common {
+    p { margin: 1em; }
+  }
+
+  @layer theme {
+    p { color: green; }
+  }
+}</code></pre>
+    <p>Полученные слои можно представить как вложенный список:</p>
+    <ul>
+        <li>common</li>
+        <li>framework
+            <ul>
+                <li>common</li>
+                <li>theme</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Или плоским списком:</p>
+    <ul>
+        <li>common</li>
+        <li>framework.common</li>
+        <li>framework.theme</li>
+    </ul>
+    <p>Вложенные слои не могут ссылаться на слои из внешней области, но внешние могут ссылаться на вложенные, комбинируя
+        идентификаторы с символом точки.</p>
+    <p>Например:</p>
+    <pre><code data-lang="css">@layer framework {
+  @layer common {
+     p { margin: 1em; }
+  }
+
+  @layer theme {
+    p { color: green; }
+  }
+}
+
+@layer framework.theme {
+  /* эти стили будут добавлены к <br>     слою theme внутри слоя layer */
+  button { color: red; }
+}</code></pre>
+    <h2>Зачем слои нужны на практике?</h2>
+    <ul>
+        <li><strong>Рефакторинг</strong>
+            Оборачиваем старые стили в слой <code>@layer legasy</code> и даем ему наименьший приоритет. Пишем новые
+            стили в слое с более высоким приоритетом или вне слоёв.
+        </li>
+        <li><p><strong>Темы</strong>
+            Пишем стили настраиваемых тем в слоях с более высоким приоритеом чем дефолтная. В этом случае без слоя стоит
+            оставить только стили вне тем. Традиционно это позиционирование, отступы и т.п.</p>
+        </li>
+        <li><p><strong>Организация кода</strong>
+            По приоритету: сначала сброс стилей браузера, потом базовые стили, стили компонентом и сверху стили темы.
+        </p>
+            <pre><code data-lang="css">@layer reset {}
+@layer base {}
+@layer components {}
+@layer theme {}</code></pre>
+        </li>
+        <li><strong>Сторонние библиотеки</strong>
+            Слои позволяют гибко управлять приоритетом стилей из сторонних библиотек.
+        </li>
+    </ul>
+    <h2>Источники</h2>
+    <ul>
+        <li><a href="https://www.w3.org/TR/css-cascade-5/#layering">Спецификация Сascade</a></li>
+        <li><a href="https://gist.github.com/mirisuzanne/4224caca74a0d4be33a2b565df34b9e7">Оригинальный пропозл
+            слоёв</a>
+        </li>
+    </ul>
+    <h2>Post Scriptum</h2>
+    <p>Вопросы и предложения пишите мне в телеграм <a href="https://twitter.com/SelenIT2">@ariarzer</a> :)</p>
+    <p>За помощь в написании и всём остальном спасибо <a href="https://twitter.com/SelenIT2">@SelenIT2</a> ❤️</p>
+
+</article>
+
+<footer>
+    <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+        href="https://t.me/ariarzer">telegram</a>.</p>
+    <p>Мой канал <a href="https://t.me/css_mind">CSS mind</a> в телеграм.</p>
+
+    <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+</footer>
+
+</body>
+</html>
