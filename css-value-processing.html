@@ -16,10 +16,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="color-scheme" content="dark light">
+
+    <link rel="stylesheet" id="style_link">
 </head>
 <body>
 
-<header>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</header>
+<header>
+    <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+    <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+        <button onclick="document.getElementById('style_link').href='style/common.css'">
+            подключить
+        </button> их.
+    </p>
+</header>
+
 <article>
     <h1 id="value-processing">CSS VALUE PROCESSING</h1>
     <p><em>Дисклеймер</em>: статья представляет собой неполный перевод одного из разделов спецификации c некоторыми

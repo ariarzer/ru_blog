@@ -15,14 +15,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="color-scheme" content="dark light">
+
+    <link rel="stylesheet" id="style_link">
 </head>
 <body>
 
-<header>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</header>
+<header>
+    <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+    <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+        <button onclick="document.getElementById('style_link').href='style/common.css'">
+            подключить
+        </button> их.
+    </p>
+</header>
 
 <h1 hidden>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</h1>
 
-<section>
+<section class="NoVisibleWithStyle">
     <h2>Почему без стилей?</h2>
     <p>Первая версия моего блога написана на чистом HTML.</p>
     <p>Может быть вторая будет такая же, я еще не решила.</p>
@@ -32,6 +41,11 @@
         <li>Потому что с мобильных устройств с маленьким экраном так и правда удобнее читать.</li>
         <li>Чтобы показать, что семантичная верстка даже без стилей выглядит неплохо.</li>
     </ul>
+    <p>Однако, если вам совсем плохо, вы можете
+        <button onclick="document.getElementById('style_link').href='style/common.css'" class="NoVisibleWithStyle">
+            подключить стили
+        </button>.
+    </p>
 </section>
 
 <main>
