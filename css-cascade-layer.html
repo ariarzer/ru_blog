@@ -67,30 +67,33 @@
   }
 }
 
-@layer legacy url(legacy.css);</code></pre>
+@import url(legacy.css) layer(legacy);</code></pre>
     <h2 id="layers-define">Объявление каскадных слоев: правило <code>@layer</code></h2>
-    <p>Правило <code>@layer</code> определяет явный каскадный слой с возможностью назначать правила стиля либо как блок,
-        либо как импорт.</p>
-    <p><strong>Синтаксис импорта:</strong></p>
-    <pre><code data-lang="vds">@layer &lt;layer-ident>? &lt;url>;</code></pre>
-    <p>Такие правила импорта <code>@layer</code> имеют те же ограничения и обработку, что и <a
-        href="https://www.w3.org/TR/css-cascade-5/#at-import"><code>@import</code></a>, за исключением того, что
-        импортированные правила назначаются указанному слою.</p>
-    <p><strong>Синтаксис блока:</strong></p>
-    <pre><code class="lang-vds">@layer &lt;layer-ident>? {
+    <p>Правило <code>@layer</code> определяет явный каскадный слой с возможностью назначать правила стиля.</p>
+    <p><strong>Синтаксис :</strong></p>
+    <pre><code data-lang="vds">@layer &lt;layer-ident>? {
   &lt;stylesheet>
 }</code></pre>
     <p>Такие правила блока <code>@layer</code> имеют те же ограничения и обработку, что и <a
         href="https://www.w3.org/TR/css-cascade-5/#biblio-css-conditional-3">css-conditional</a> с истинным условием.
     </p>
+    <p>Правило @layer также можно использовать для определения новых слоев без назначения каких-либо правил стиля, указав только имя слоя:</p>
+    <pre><code data-lang="vds">@layer &lt;layer-ident>#;</code></pre>
+    <p>Такие пустые @layer разрешены везде, где разрешены либо @import, либо другие правила @layer.</p>
+    <p><strong>Синтаксис импорта в слой:</strong></p>
+
+    <pre><code data-lang="vds">@import [ &lt;url> | &lt;string> ] layer | layer (&lt;layer-ident>)</code></pre>
+    <p>Такие правила импорта имеют те же ограничения и обработку, что и <a
+        href="https://www.w3.org/TR/css-cascade-5/#at-import"><code>@import</code></a>, за исключением того, что
+        импортированные правила назначаются указанному слою.</p>
+
     <p>В обоих случаях необязательный <code>&lt;layer-ident&gt;</code> - это идентификатор, который представляет имя
         этого слоя. Новый слой <strong>создается</strong> если имя слоя <strong>не совпадает</strong> с именем другого
         слоя, уже определенного в этом контексте, источнике и области действия (см. <a href="#layers-nesting">нестинг
         слоёв</a>). В противном случае или если <code>&lt;layer-ident&gt;</code> не указан, создается новый
         каскадный слой.</p>
     <p>Идентификаторы слоя не являются обязательными, но позволяют применять несколько блоков стилей к одному слою:</p>
-    <pre><code data-lang="css">@layer myLayer url(headings.css);
-@layer myLayer url(links.css);
+    <pre><code data-lang="css">@import url("links.css") layer(myLayer);
 
 @layer myLayer {
   button.class {
@@ -105,7 +108,7 @@
   }
 }
 
-@layer theme url(theme.css);
+@import url("theme.css") layer(theme);
 
 @layer components {
   button {
@@ -127,7 +130,7 @@
   }
 }
 
-@layer theme url(theme.css);
+@import url("theme.css") layer(theme);
 
 @layer components {
   button {
@@ -185,6 +188,42 @@
   /* эти стили будут добавлены к <br>     слою theme внутри слоя framework */
   button { color: red; }
 }</code></pre>
+
+    <h2 id="revert-layer">Ключевое слово <code>revert-layer</code></h2>
+    <p>Если cascaded value свойства является ключевое слово <code>revert-layer</code>, то оно откатывается до
+        уровня ниже, так что specified value вычисляется так, как если бы правила не были указаны в текущем слое для
+        этого свойства в этом элементе.</p>
+
+    <p>Если в том же каскадном источнике нет объявлений с более низким приоритетом, чем значение
+        <code>revert-layer</code>, каскадное значение вернется к предыдущему источнику, как и для ключевого слова
+        <code>revert.</code></p>
+    <p>Например, в этом примере кнопка будет красной:</p>
+    <pre><code data-lang="css">@layer common {
+  button { color: red; }
+}
+
+@layer components {
+  button {
+    color: blue;
+  }
+  button {
+    color: revert-layer;
+  }
+}</code></pre>
+    <p>А здесь синей:</p>
+    <pre><code data-lang="css">@layer common {
+  button { color: red; }
+}
+
+@layer components {
+  .class {
+    color: blue;
+  }
+  button {
+    color: revert-layer;
+  }
+}</code></pre>
+
     <h2 id="layers-practice">Зачем слои нужны на практике?</h2>
     <ul>
         <li><strong>Рефакторинг</strong>
@@ -206,6 +245,12 @@
         <li><strong>Сторонние библиотеки</strong>
             Слои позволяют гибко управлять приоритетом стилей из сторонних библиотек.
         </li>
+    </ul>
+    <h2>Обновления</h2>
+    <h3>21.03.2021 - <a href="https://www.w3.org/blog/CSS/2021/03/18/minutes-2021-03-17/">republish WD of Cascade 5</a></h3>
+    <ul>
+        <li>Изменен синтаксис импорта в слой <a href="https://github.com/w3c/csswg-drafts/issues/5681">5681</a></li>
+        <li>Добавлен раздел про ключевое слово <code>revert-layer</code> <a href="https://github.com/w3c/csswg-drafts/issues/5793">5793</a></li>
     </ul>
     <h2>Источники</h2>
     <ul>
