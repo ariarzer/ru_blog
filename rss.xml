@@ -5,6 +5,15 @@
         <description>Блог о тонкостях спецификации CSS</description>
         <link>https://ariarzer.dev/</link>
         <item>
+            <title>Нативная валидация ввода в CSS</title>
+            <link>https://ariarzer.dev/native-css-validation.html</link>
+            <guid>https://ariarzer.dev/native-css-validation.html</guid>
+            <pubDate>Wed, 2 Jun 2021 15:30:00 +0300</pubDate>
+            <description>Подробно о нативной валидации ввода с помощью CSS и HTML. Рассмотрим паттерны и специальные
+                ограничения ввода и как правильно сообщить пользователю об ошибке.</description>
+            <source url="https://ariarzer.dev/value-definition-syntax.html">Источник публикации</source>
+        </item>
+        <item>
             <title>Value Definition Syntax</title>
             <link>https://ariarzer.dev/value-definition-syntax.html</link>
             <guid>https://ariarzer.dev/value-definition-syntax.html</guid>
