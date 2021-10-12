@@ -69,3 +69,21 @@ table {
 .NoVisibleWithStyle {
     display: none;
 }
+
+@media print {
+    footer, header {
+        display: none;
+    }
+
+    :root {
+        font-size: initial;
+    }
+
+    body {
+        width: auto;
+    }
+
+    a {
+        color: CanvasText;
+    }
+}
