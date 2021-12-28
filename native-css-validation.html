@@ -41,7 +41,7 @@
     <h1>Нативная валидация ввода в CSS</h1>
     <h2>Паттерны ввода</h2>
     <h3>Обозначить паттерн</h3>
-    <p>В случае, если поле имеет определенный формат (например email), можно использовать аттрибут <a
+    <p>В случае, если поле имеет определенный формат (например email), можно использовать атрибут <a
         href="https://html.spec.whatwg.org/multipage/input.html#attr-input-pattern"><code>pattern</code></a>. Он
         принимает <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/RegExp">регулярное
             выражение</a>, которому должно соответствовать введенное значение. При этом, если поле пустое, то проверки
@@ -50,7 +50,7 @@
     <pre><code data-lang="html"> &lt;input pattern=&quot;[A-Z]+&quot;&gt;
 </code></pre>
     <p>В случае, если пользователь ввел туда что-то кроме них, форма не будет отправлена (по <code>button[type=&quot;submit&quot;]</code>),
-        пока он не поменяет значение на правильное. Исключение - если у формы проставлен аттрибут <a
+        пока он не поменяет значение на правильное. Исключение - если у формы проставлен атрибут <a
             href="https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-novalidate"><code>novalidate</code></a>.
     </p>
     <h3>Нативные паттерны</h3>
@@ -123,19 +123,19 @@ input:user-invalid {
         поддержкой сложной механикой взаимодействия пользователя с полями на момент написания статьи еще не написано.
     </p>
     <h2>Специальные ограничения</h2>
-    <h3><code>maxLength</code> &amp; <code>minLength</code></h3>
-    <p>Аттрибуты <a
-        href="https://html.spec.whatwg.org/multipage/input.html#the-maxlength-and-minlength-attributes"><code>maxLength</code>
+    <h3><code>maxlength</code> &amp; <code>minlength</code></h3>
+    <p>Атрибуты <a
+        href="https://html.spec.whatwg.org/multipage/input.html#the-maxlength-and-minlength-attributes"><code>maxlength</code>
         и <code>minLength</code></a> позволяют ограничить длину ввода с двух сторон для текстовых полей.
         Это поле будет не валидным (<code>:invalid</code>), если в нем <strong>меньше</strong> 4 символов:</p>
-    <pre><code data-lang="html">&lt;input minLenght=&quot;4&quot;&gt;
+    <pre><code data-lang="html">&lt;input minlenght=&quot;4&quot;&gt;
 </code></pre>
-    <p><code>maxLenght</code> работает по другому. В инпут с этим аттрибутом браузер не позволяет пользователю ввести
+    <p><code>maxlenght</code> работает по другому. В инпут с этим атрибутом браузер не позволяет пользователю ввести
         больше указанного количества символов <strong>с клавиатуры</strong>. Тем не менее, при автозаполнении или с
         помощью JS туда можно ввести сколько угодно символом, но <strong>невалидным</strong> (<code>:invalid</code>),
         это значение <strong>не будет</strong>, более того, оно будет валидным (<code>:valid</code>).</p>
     <h3><code>max</code> &amp; <code>min</code></h3>
-    <p>Для некоторых не текстовых полей можно ограничить максимальное и минимальное значение с помощью аттрибутов <a
+    <p>Для некоторых не текстовых полей можно ограничить максимальное и минимальное значение с помощью атрибутов <a
         href="https://html.spec.whatwg.org/multipage/input.html#the-min-and-max-attributes"><code>max</code> и
         <code>min</code></a>. Например:</p>
     <pre><code data-lang="html">&lt;input type=&quot;number&quot; min=&quot;1&quot;&gt;
