@@ -39,8 +39,8 @@
 
 <article>
     <h1>Нативная валидация ввода в CSS</h1>
-    <h2>Паттерны ввода</h2>
-    <h3>Обозначить паттерн</h3>
+    <h2 id="input_patterns"><a href="#input_patterns">$</a> Паттерны ввода</h2>
+    <h3> Обозначить паттерн</h3>
     <p>В случае, если поле имеет определенный формат (например email), можно использовать атрибут <a
         href="https://html.spec.whatwg.org/multipage/input.html#attr-input-pattern"><code>pattern</code></a>. Он
         принимает <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/RegExp">регулярное
@@ -66,7 +66,7 @@
   background-color: red;
 }
 </code></pre>
-    <h3>Показать пользователю, что он правильно ввел</h3>
+    <h3> Показать пользователю, что он правильно ввел</h3>
     <p>Поможет псевдокласс <a href="https://www.w3.org/TR/selectors-4/#validity-pseudos"><code>:valid</code></a>. Он
         соответствует полям, значение которых <strong>валидно</strong>, то есть соответствует заданному паттерну.
         Например, это <strong>правило</strong> подсветит зеленым такое поле:</p>
@@ -75,7 +75,7 @@
 }
 </code></pre>
     <p>По UX такой класс нужен довольно редко, но все же он есть.</p>
-    <h2>Обязательные поля</h2>
+    <h2 id="required_inputs"><a href="#required_inputs">$</a> Обязательные поля</h2>
     <h3>Обозначить, что поле обязательные</h3>
     <p>Добавление к инпуту (не важно какого типа) <strong>атрибута</strong> <a
         href="https://html.spec.whatwg.org/multipage/input.html#the-required-attribute"><code>required</code></a>
@@ -122,7 +122,7 @@ input:user-invalid {
         псевдоклассом <code>:invalid</code> прятать стили для невалидных полей. Полных полифиллов этого псевдокласса с
         поддержкой сложной механикой взаимодействия пользователя с полями на момент написания статьи еще не написано.
     </p>
-    <h2>Специальные ограничения</h2>
+    <h2 id="special_restrictions"><a href="#special_restrictions">$</a> Специальные ограничения</h2>
     <h3><code>maxlength</code> &amp; <code>minlength</code></h3>
     <p>Атрибуты <a
         href="https://html.spec.whatwg.org/multipage/input.html#the-maxlength-and-minlength-attributes"><code>maxlength</code>

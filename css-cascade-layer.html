@@ -70,7 +70,7 @@
 }
 
 @import url(legacy.css) layer(legacy);</code></pre>
-    <h2 id="layers-define">Объявление каскадных слоев: правило <code>@layer</code></h2>
+    <h2 id="layers-define"><a href="#layers-define"></a> Объявление каскадных слоев: правило <code>@layer</code></h2>
     <p>Правило <code>@layer</code> определяет явный каскадный слой с возможностью назначать правила стиля.</p>
     <p><strong>Синтаксис :</strong></p>
     <pre><code data-lang="vds">@layer &lt;layer-ident>? {
@@ -139,7 +139,7 @@
     color: green;
   }
 }</code></pre>
-    <h2 id="layers-nesting"><a
+    <h2 id="layers-nesting"><a href="#layers-nesting">$</a> <a
         href="https://github.com/web-standards-ru/dictionary/blob/master/dictionary.md#nested">Нестинг</a> слоёв</h2>
     <p>Когда правила <code>@layer</code> вложены, имена вложенных слоев привязаны к их родительскому слою.</p>
     <p>Например:</p>
@@ -191,7 +191,7 @@
   button { color: red; }
 }</code></pre>
 
-    <h2 id="revert-layer">Ключевое слово <code>revert-layer</code></h2>
+    <h2 id="revert-layer"><a href="#revert-layer">$</a> Ключевое слово <code>revert-layer</code></h2>
     <p>Если cascaded value свойства является ключевое слово <code>revert-layer</code>, то оно откатывается до
         уровня ниже, так что specified value вычисляется так, как если бы правила не были указаны в текущем слое для
         этого свойства в этом элементе.</p>
@@ -226,7 +226,7 @@
   }
 }</code></pre>
 
-    <h2 id="layers-practice">Зачем слои нужны на практике?</h2>
+    <h2 id="layers-practice"><a href="#layers-practice">$</a> Зачем слои нужны на практике?</h2>
     <ul>
         <li><strong>Рефакторинг</strong>
             Оборачиваем старые стили в слой <code>@layer legacy</code> и даем ему наименьший приоритет. Пишем новые
