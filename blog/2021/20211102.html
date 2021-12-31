@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Содержащий блок</title>
+
+    <meta name="description" content="Содержащий блок. Размеры и положение элемента">
+
+    <meta property="og:url" content="https://ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Содержащий блок.">
+    <meta property="og:description" content="Положение и размер боксов элемента вычисляются относительно определенного прямоугольника, который называется
+    содержащим блоком элемента. Подробно о том, как он определяется и зачем нужен.">
+    <meta property="og:image" content="https://ariarzer.dev/img/index_og_preview.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ariarzer.dev/rss.xml" />
+
+    <link rel="stylesheet" id="style_link">
+</head>
+</head>
+
+<body>
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='style/common.css'">
+                подключить
+            </button> их.
+        </p>
+    </header>
+
+    <article>
+        <p><time datetime="2021-11-02 21:26">2 ноября 2021 года</time>.</p>
+        <h1>Содержащий блок</h1>
+        <p>Положение и размер блоков элемента вычисляются относительно определенного прямоугольника, который называется
+            <strong>содержащим блоком</strong> элемента.</p>
+        <p>Например, в такой ситуации размеры блока будут считаться не относительно родителя и блок <code>.c</code>
+            будет иметь высоту 100px, тогда как его родитель <code>.b</code> имеет нулевую высоту:</p>
+        <pre><code>&lt;div class='a'&gt;
+  &lt;div class='b'&gt;
+    &lt;div class='c'&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;style&gt;
+  .a {position: relative; height: 200px}
+  .c {position: absolute; height: 50%;}
+&lt;/style&gt;
+</code></pre>
+        <p>Если прибегать к упрощенным определениям, можно сказать, что содержащий блок - это родитель элемента не по
+            DOM, а по потоку документа.</p>
+        <p>Содержащий блок элемента определяется следующим образом:</p>
+        <ol>
+            <li>
+                <p>Содержащий блок, в котором находится корневой (не имеющий родителей) элемент, представляет собой
+                    прямоугольник, который называется <strong>начальным содержащим блоком</strong>. Для веба и дргуих
+                    непрерывных (без страниц) носителей он имеет размеры области просмотра и закреплен в левом верхнем
+                    углу окна. Свойство <code>direction</code> начального содержащего блока такое же, как и для
+                    корневого элемента.</p>
+            </li>
+            <li>
+                <p>Для других элементов, если свойство <code>position</code> определено как <code>static</code> или
+                    <code>relative</code>, содержащий блок формируется краем содержимого блока ближайшего блока-предка.
+                </p>
+            </li>
+            <li>
+                <p>Если элемент имеет <code>position: fixed</code>, содержащий блок определяется областью просмотра.</p>
+            </li>
+            <li>
+                <p>Если элемент имеет <code>position: absolute</code>, содержащий блок устанавливается ближайшим
+                    предком, у которого значение свойства <code>position</code> уставновлено как <code>absolute</code>,
+                    <code>relative</code> или <code>fixed</code>, следующим образом:</p>
+                <ul>
+                    <li>
+                        <p>В случае, если предок является строчным элементом, содержащий блок является прямоугольником,
+                            охватывающим поля заполнения первого и последнего инлайн-блоков, созданных для этого
+                            элемента.</p>
+                    </li>
+                    <li>
+                        <p>В остальных случаях содержащий блок формируется краем padding-бокса предка. Если такого
+                            предка нет, содержащим блоком назначается начальнй содержащий блок.</p>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+        <p>Источник: <a href="https://drafts.csswg.org/css2/#containing-block-details">https://drafts.csswg.org/css2/#containing-block-details</a></p>
+    </article>
+
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+            href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+
+</html>

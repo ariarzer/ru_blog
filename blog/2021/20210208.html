@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Немного о calc()</title>
+
+    <meta name="description" content="Особенности наследования значений с calc().">
+
+    <meta property="og:url" content="https://ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Немного о calc().">
+    <meta property="og:description" content="Особенности наследования значений с calc(). Причины, почему принаследовании, calc() вычисляется не до конца.">
+    <meta property="og:image" content="https://ariarzer.dev/img/index_og_preview.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ariarzer.dev/rss.xml" />
+
+    <link rel="stylesheet" id="style_link">
+</head>
+</head>
+
+<body>
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='style/common.css'">
+                подключить
+            </button> их.
+        </p>
+    </header>
+
+    <article>
+        <time datetime="2021-02-08 21:26">8 февраля 2021 года</time>.</p>
+        <h1>Немного о calc()</h1>
+        <p>Рассмотрим пример:</p>
+        <pre><code>&lt;div&gt;&lt;/div&gt;
+        &lt;style&gt;
+div {
+  height: calc(-14px);
+}
+&lt;/style&gt;
+        </code></pre>
+        <p>Подробно поведение браузера можно посмотреть в <a href="https://codepen.io/ariarzer/pen/yLVOxgp">этом</a>
+            пэне. Здесь же ограничимся информацией о том, что эта декларации валидная и <a
+                href="https://ariarzer.dev/css-value-processing.html#used-value">Used value</a> высота для блока будет
+            <code>0px</code>.</p>
+        <p><strong>Почему отрицательное значение может быть валидно для высоты?</strong></p>
+        <p>Потому что <code>calc()</code> наследуется в вычисленном не до конца виде.</p>
+        <p><a href="https://ariarzer.dev/css-value-processing.html#computed-value">Computed value</a> - это значение,
+            которое вложенные блоки наследуют как <code>inherit</code>. На этом этапе значения в относительных единицах
+            (em, ex, vh, vw, но <strong>не проценты</strong>) приводятся к пикселям. Это утверждение относится и к
+            значениям, содержащим <code>calc()</code> или другие функции.</p>
+        <p>Например:</p>
+        <pre><code>height: calc(50% - 25px); /* =&gt; CV=calc(50% - 25px) */
+        
+height: calc(100px - 5em); /* =&gt; CV=calc(50px) */
+        </code></pre>
+        <p>Рассмотрим пример с вложенными блоками, объясняющий зачем это нужно:</p>
+        <pre><code>&lt;div class=&quot;a&quot;&gt; // 100px
+  &lt;div class=&quot;b&quot;&gt; // 60px
+    &lt;div class=&quot;c&quot;&gt; // 20px
+      &lt;div class=&quot;d&quot;&gt;&lt;/div&gt; //0px
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;style&gt;
+  .a { height: 100px; }
+  .b { height: calc(100% - 40px); } /* =&gt; CV=calc(100% - 50px) */
+  .c { height: inherit; } /* =&gt; CV=calc(100% - 50px) */
+  .d { height: inherit; } /* =&gt; CV=calc(100% - 50px) */
+&lt;/style&gt;
+        </code></pre>
+        <p>Для каждого блока выражение вычисляется заново и для блока <code>.d</code> вычисление наследованного
+            выражение дает отрицательное значение. НО! Во время вычисления <code>used value</code> для функий проводится
+            <a href="https://www.w3.org/TR/css-values-4/#calc-range"><strong><code>Range Checking</code></strong></a>.
+        </p>
+        <p>Проверка диапазона во время синтаксического анализа не выполняется для математических функциях, и поэтому
+            значения вне диапазона не приводят к тому, что декларация становится невалидной.
+            Однако значение свойства все же должно быть ограничено диапазоном, разрешенным в целевом контексте.</p>
+        <p><code>Range Checking</code> выполняется на этапе <code>computed value</code>, если это возможно (то есть если
+            выражение не содержит процентов и возможно вычисление для пикселей), и на этапе <code>used value</code> во
+            всех остальных случаях.</p>
+        <p>Проще говоря, если вычисленное значение не может быть применено в целевом контексте, то оно приводится к
+            ближайшей границе допустимого диапазона.</p>
+        <p>Источник: <a
+                href="https://www.w3.org/TR/css-values-4/#calc-range">https://www.w3.org/TR/css-values-4/#calc-range</a>
+        </p>
+    </article>
+
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+                href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a
+                href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+
+</html>

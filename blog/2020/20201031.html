@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>О тонкостях парсинга списка селекторов</title>
+
+    <meta name="description" content="Список селекторов. Особенности парсинга.">
+
+    <meta property="og:url" content="https://ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="О тонкостях парсинга списка селекторов.">
+    <meta property="og:description" content="Подробное объяснение, почему нельзя писать в список селектооры браузерно-специфичных псевдоэлементов.">
+    <meta property="og:image" content="https://ariarzer.dev/img/index_og_preview.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ariarzer.dev/rss.xml" />
+
+    <link rel="stylesheet" id="style_link">
+</head>
+</head>
+
+<body>
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='style/common.css'">
+                подключить
+            </button> их.
+        </p>
+    </header>
+
+    <article>
+        <p><time datetime="2020-10-31 21:26">31 октября 2020 года</time>.</p>
+        <h1>О тонкостях парсинга списка селекторов</h1>
+        <p>Список селекторов, разделенных запятыми, представляет собой объединение всех элементов, выбранных каждым из
+            отдельных селекторов этого списка. Например, когда несколько селекторов собержат одни и те же декларации,
+            они могут быть сгруппированы в список, разделенный запятыми. Перед запятой и/или после нее может быть пробел
+            или перенос строки.</p>
+        <pre><code>h1 { font-family: sans-serif }
+h2 { font-family: sans-serif }
+h3 { font-family: sans-serif }
+
+/* то же самое что: */
+
+h1, h2, h3 { font-family: sans-serif }
+</code></pre>
+        <p><strong>НО!</strong> Это работает только пока все селекторы в списке валидны. Как только один них ошибочен,
+            дропается весь список.</p>
+        <pre><code>h1 { font-family: sans-serif } /* работает */
+h2.. { font-family: sans-serif } /* НЕ работает */
+h3 { font-family: sans-serif } /* работает */
+
+/* НЕ то же самое что: */
+
+h1, h2.., h3 { font-family: sans-serif } /* НЕ работает*/
+</code></pre>
+        <p><strong>Зачем оно вообще надо?</strong></p>
+        <p>Например, это важно помнить при использовании браузеро-специфичных псевдоэлеметов. По неясным мне пока
+            причинам неизвестные псевдоэлементы браузер парсит как невалидные (если только они не <a
+                href="https://drafts.csswg.org/selectors-4/#compat">начинаются</a> с <code>-webkit</code>).</p>
+        <p>То есть, если написать такие селекторы по отдельности, первый распарситься и примернится в хроме, второй хром
+            проигнорирует как невалидный, а FF сделает ровно наоборот:</p>
+        <pre><code>input[type=range]::-webkit-slider-runnable-track {
+  background-color: orange;
+}
+
+input[type=range]::-moz-range-track {
+  background-color: orange;
+}
+</code></pre>
+        <p>Если же написать их с списке, то признав второй селектор невалидным хром дропнет весь список и декларации
+            внутри ни к чему не будут применены:</p>
+        <pre><code>input[type=range]::-webkit-slider-runnable-track,
+input[type=range]::-moz-range-track {
+  background-color: orange;
+}
+</code></pre>
+    </article>
+
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+                href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a
+                href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+
+</html>

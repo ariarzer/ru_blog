@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Относительный синтаксис цвета</title>
+
+    <meta name="description" content="Относительный синтаксис цвета. Прозрачность налету.">
+
+    <meta property="og:url" content="https://ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Относительный синтаксис цвета.">
+    <meta property="og:description" content="Многолетняя мечта верстальщиков делать цвет для состояния элемента модификацей его исходного цвета уже близка.">
+    <meta property="og:image" content="https://ariarzer.dev/img/index_og_preview.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ariarzer.dev/rss.xml" />
+
+    <link rel="stylesheet" id="style_link">
+</head>
+</head>
+
+<body>
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='style/common.css'">
+                подключить
+            </button> их.
+        </p>
+    </header>
+
+    <article>
+        <time datetime="2021-06-01 00:00">2 июля 2021 года</time>.</p>
+        <h1>Относительный синтаксис цвета</h1>
+        <p><em>Сегодня, 2021.06.01, вышла новая версия черновика спецификации <a
+                    href="https://www.w3.org/TR/2021/WD-css-color-5-20210601/">css-color-5</a>. поговорим об одном из
+                нововведений.</em></p>
+        <p>В предыдущих версиях спецификации css-color функции цвета могли определять цвета только напрямую задавая все
+            цветовые каналы. Новый относительный синтаксис цвета позволяет изменять существующие цвета с помощью функций
+            цвета: если указан исходный цвет, то каждый цветовой канал может быть либо напрямую указан заново, либо взят
+            из исходного цвета (и, возможно, изменен с помощью математических функций).</p>
+        <p>Точные детали изменений каждой функции для соответствия относительным цветам перечислены ниже, но все они
+            имеют общую структуру:</p>
+        <ol>
+            <li>Исходный цвет можно указать с помощью значения <code>from &lt;color&gt;</code> в начале функции.</li>
+            <li>Если указан исходный цвет, остальные аргументы могут быть либо указаны напрямую, как обычно, либо
+                указаны как <strong>ключевое слово канала</strong>, относящееся к одному из каналов исходного цвета.
+                Математические функции также могут использовать эти ключевые слова для динамического изменения каналов
+                исходного цвета.</li>
+            <li>Использование относительного синтаксиса цвета не изменяет то, является ли аргумент обязательным. Однако,
+                если значение прозрачности опущено, по умолчанию используется прозрачность исходного цвета (а не 100%,
+                как в абсолютном синтаксисе).</li>
+        </ol>
+        <p>Если исходный цвет был изначально задан с другой функцией цвета, он сначала преобразуется в выбранную функцию
+            цвета, чтобы он имел осмысленные значения для новых каналов.</p>
+        <h2>RGB</h2>
+        <p>Грамматика функции <code>rgb()</code>, помимо старых вариантов записи, теперь принимает еще и такую:</p>
+        <pre><code>rgb( [ from &lt;color&gt; ]? [ &lt;number&gt; | &lt;percentage&gt; ]{3} [ / &lt;alpha-value&gt; ]? )
+</code></pre>
+        <p>В этой функции цвета допустимыми <strong>ключевыми словами канала</strong> являются:</p>
+        <ol>
+            <li>
+                <p><code>r</code>, <code>g</code> и <code>b</code> - это проценты (<code>&lt;percentage&gt;</code>),
+                    которые соответствуют красному, зеленому и синему каналам исходного цвета после его преобразования в
+                    sRGB.</p>
+            </li>
+            <li>
+                <p><code>alpha</code> - это процент (<code>&lt;percentage&gt;</code>), который соответствует
+                    альфа-прозрачности исходного цвета.</p>
+            </li>
+        </ol>
+        <h2>Остальные пространства</h2>
+        <p>Изменения в остальных цветовых функция такие же как в <code>rgb()</code>.
+            Ключевые слова каналов у них иненуются так:</p>
+        <ol>
+            <li><strong><code> HSL</code></strong> - <code>h</code>, <code>s</code>, <code>l</code> и <code>alpha</code>
+            </li>
+            <li><strong><code> HWB</code></strong> - <code>h</code>, <code>w</code>, <code>b</code> и <code>alpha</code>
+            </li>
+            <li><strong><code> Lab</code></strong> - <code>l</code>, <code>a</code>, <code>b</code> и <code>alpha</code>
+            </li>
+            <li><strong><code> LCH</code></strong> - <code>l</code>, <code>c</code>, <code>h</code> и <code>alpha</code>
+            </li>
+        </ol>
+        <h2>Зачем это нужно?</h2>
+        <h3>Прозрачность налету</h3>
+        <pre><code>html { --bg-color: blue; }
+.overlay {
+  background: rgb(from var(--bg-color) r g b / 80%);
+}
+</code></pre>
+        <p>В этом примере каналы <code>r</code>, <code>g</code> и <code>b</code> исходного цвета не изменяются, что
+            указывается с помощью <strong>ключевых слов канала</strong>, извлекающих их из значения исходного цвета, но
+            прозрачность установлена на 80%, чтобы сделать его слегка прозрачным, независимо от какая была
+            непрозрачность исходного цвета.</p>
+        <p>Также, можно изменять прозрачность относительно исходной, например, сделать цвет чуть более прозрачным
+            <code>rgb(from var(--bg-color) r g b / calc(alpha * 80%))</code>.
+        </p>
+        <h3>Изменение именованных цветов</h3>
+        <pre><code>color: rgb(from  indianred 255 g b)
+</code></pre>
+        <p>Это выражение берет значение <code>indianred</code> в пространстве sRGB <code>(205 92 92)</code> и заменяет
+            красный канал на 255, чтобы получить <code>rgb(255 92 92)</code>.</p>
+        <h2>Дополнительно</h2>
+        <p>Safari TP 122 уже имплементировал эту фичу. Можно поиграться.</p>
+    </article>
+
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+                href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a
+                href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+
+</html>

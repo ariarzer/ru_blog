@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Не тыкать в пользователя ошибками, пока он ничего не сделал</title>
+
+    <meta name="description" content=":user-invalid Стилизация форм. Показать ошибку для пользотеля.">
+
+    <meta property="og:url" content="https://ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Не тыкать в пользователя ошибками, пока он ничего не сделал">
+    <meta property="og:description" content="Объяснение, как показывать пользователю ошибку только когда это дейтельно нужно. 
+    Не больщайтесь, поддержка плохая. Но надежда с нами.">
+    <meta property="og:image" content="https://ariarzer.dev/img/index_og_preview.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ariarzer.dev/rss.xml" />
+
+    <link rel="stylesheet" id="style_link">
+</head>
+</head>
+
+<body>
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='style/common.css'">
+                подключить
+            </button> их.
+        </p>
+    </header>
+
+    <article>
+        <time datetime="2021-01-14 21:26">14 января 2021 года</time>.</p>
+        <h1>Не тыкать в пользователя ошибками, пока он ничего не сделал</h1>
+        <p>Показать пользвателю ошибку позволяет псевдокласс <a
+                href="https://www.w3.org/TR/selectors-4/#validity-pseudos"><code>:invalid</code></a>. Он соответствует
+            инпустам, <strong>значение</strong> которых <strong>не валидно</strong>.</p>
+        <p>В этом примере инпут, если он пустой, будет иметь класный фон:</p>
+        <pre ><code>&lt;input required type=&quot;text&quot;&gt;
+&lt;style&gt;
+:invalid {
+  background-color: red;
+}
+&lt;/style&gt;
+</code></pre>
+        <p>Так при первом заходе пользователя на страницу поле будет <strong>уже подсвечено</strong> красным цветом. А
+            он даже не прочитал что надо вводить и вообще что это за сайт. <strong>Неприятно</strong>.</p>
+        <p><strong>Решение</strong>: в новом черновике спецификации селекторов описан класс <a
+                href="https://drafts.csswg.org/selectors-4/#user-pseudos"><code>:user-invalid</code></a>. Он
+            соответствует тем полям, с которыми пользователь <strong>провзаимодействовал</strong> + срабатывает также
+            после нажатия на <code>button[type=&quot;submin&quot;]</code> или
+            <code>input[type=&quot;submin&quot;]</code>.
+            В этом примере поле подсветится красным только когда пользователь что-то в него введет, удалит и уберет
+            фокус, или после нажания на кнопку отправки формы:</p>
+        <pre><code>&lt;form action=&quot;&quot;&gt;
+  &lt;label&gt;
+    Text
+    &lt;input required type=&quot;text&quot;&gt;     
+  &lt;/label&gt;
+  &lt;button type=&quot;submin&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+&lt;style&gt;
+input:user-invalid {
+  background-color: red;
+}
+&lt;/style&gt;
+</code></pre>
+        <p>Прежде чем вы попытались опробовать этот пример в деле: сейчас это так <strong>НЕ работает</strong>. Поддерки
+            селектора нет почти нигде. Только частично <strong>за префиксом</strong> в FireFox под другим именем.
+            Подробнее на <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:user-invalid">MDN про
+                :-moz-ui-invalid</a>.</p>
+    </article>
+
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+                href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a
+                href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+
+</html>

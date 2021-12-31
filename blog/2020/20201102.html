@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Дополнение к &quot;О тонкостях парсинга списка селекторов&quot;</title>
+
+    <meta name="description" content="Список селекторов. forgiving-selector-list">
+
+    <meta property="og:url" content="https://ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Дополнение к &quot;О тонкостях парсинга списка селекторов&quot;">
+    <meta property="og:description" content="Объяснение, как решена проблема парсинга нескольких браузерно-специфичных псевдоэлементав.">
+    <meta property="og:image" content="https://ariarzer.dev/img/index_og_preview.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ariarzer.dev/rss.xml" />
+
+    <link rel="stylesheet" id="style_link">
+</head>
+</head>
+
+<body>
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='style/common.css'">
+                подключить
+            </button> их.
+        </p>
+    </header>
+
+    <article>
+        <p><time datetime="2020-11-02 21:26">2 ноября 2020 года</time>.</p>
+        <h2>Дополнение к &quot;О тонкостях парсинга списка селекторов&quot;</h2>
+        <p>Пусть и запоздало, но о будущей обратной совместимости все-таки подумали.</p>
+        <p>Указаная <a href="https://t.me/css_mind/14">выше</a> особенность парсинга может представлять проблему для
+            появления новых псевдоэлементов (собственно и представляет, отсюда костыли для браузеро-специфичных
+            псевдоэлеметов).</p>
+        <p>Поэтому новые фукнциональные псевдоклассы используют не <code>&lt;selector-list&gt;</code>, который при
+            парсинге дропается если один из селекторов невалидный, а новую продукцию <a
+                href="https://drafts.csswg.org/selectors-4/#typedef-forgiving-selector-list">&lt;forgiving-selector-list&gt;</a>.
+        </p>
+        <p>Эта продукция анализирует каждый селектор в списке индивидуально, игнорируя те, которые не удалось
+            проанализировать. Синтаксически это эквивалентно <a
+                href="https://drafts.csswg.org/css-syntax-3/#typedef-any-value"><code>&lt;any-value&gt;?</code></a>.</p>
+    </article>
+
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+                href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a
+                href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+
+</html>

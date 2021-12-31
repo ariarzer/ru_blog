@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Псевдоэлементы</title>
+
+    <meta name="description" content="Псевдоэлементы не существуют независимо в дереве.">
+
+    <meta property="og:url" content="https://ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Псевдоэлементы.">
+    <meta property="og:description" content="Подобно тому, как псевдоклассы представляют дополнительную информацию о состоянии, не представленную
+    непосредственно в DOM, псевдоэлемент представляет элемент, не присутствующий непосредственно в DOM.">
+    <meta property="og:image" content="https://ariarzer.dev/img/index_og_preview.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ariarzer.dev/rss.xml" />
+
+    <link rel="stylesheet" id="style_link">
+</head>
+</head>
+
+<body>
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='style/common.css'">
+                подключить
+            </button> их.
+        </p>
+    </header>
+
+    <article>
+        <p><time datetime="2020-11-06 21:26">6 ноября 2020 года</time>.</p>
+        <h1>Псевдоэлементы</h1>
+        <p>Подобно тому, как псевдоклассы представляют дополнительную информацию о состоянии, не представленную
+            непосредственно в DOM, псевдоэлемент представляет элемент, не присутствующий непосредственно в DOM.</p>
+        <p><strong>Синтаксис псевдоэлемента</strong>: &quot;::&quot; (два символа U+003A COLON), за которым следует имя
+            псевдоэлемента в качестве <a href="https://drafts.csswg.org/css-syntax-3/#identifier">идентификатора</a>.
+            Имена псевдоэлементов не чувствительны к регистру. Запрещается использовать пробелы между двумя двоеточиями
+            или между двоеточиями и именем.</p>
+        <p>Поскольку CSS уровня 1 и уровня 2 объединяют псевдоэлементы и псевдоклассы, разрешая синтаксис с одним
+            двоеточием для обоих, юзер-агенты также должны принимать предыдущую нотацию с одним двоеточием для
+            псевдоэлементов уровней 1 и 2 (<code>::before</code> , <code>::after</code>, <code>::first-line</code>, и
+            <code>::first-letter</code>). Эта нотация не допускается ни для каких других псевдоэлементов и оставлена
+            только для обратной совместимости.</p>
+        <p><strong>Псевдоэлементы не существуют независимо в дереве</strong>: они всегда привязаны к другому элементу на
+            странице, называемому их исходным элементом. Синтаксически псевдоэлемент следует сразу за составным
+            селектором, представляющим его исходный элемент. Если этот составной селектор опущен, предполагается, что
+            это универсальный селектор *.</p>
+        <p>Например, в селекторе <code>div a::before</code> элементы <code>a</code>, соответствующие селектору, являются
+            исходными элементами для прикрепленных к ним псевдоэлементов <code>::before</code>.</p>
+        <p><strong>Когда псевдоэлемент встречается в селекторе</strong>, часть селектора перед псевдоэлементом выбирает
+            исходный элемент для псевдоэлемента; часть селектора после него, если таковая имеется, применяется к самому
+            псевдоэлементу.</p>
+    </article>
+
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+                href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a
+                href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+
+</html>

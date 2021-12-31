@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Функциональные псевдоклассы is() и where()</title>
+
+    <meta name="description" content="Функциональные псевдоклассы is() и where().">
+
+    <meta property="og:url" content="https://ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Функциональные псевдоклассы is() и where().">
+    <meta property="og:description" content="Псевдокласс match-any и псевдокласс регулировки специфичности. Как работают и зачем можно использовать.">
+    <meta property="og:image" content="https://ariarzer.dev/img/index_og_preview.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ariarzer.dev/rss.xml" />
+
+    <link rel="stylesheet" id="style_link">
+</head>
+</head>
+
+<body>
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='style/common.css'">
+                подключить
+            </button> их.
+        </p>
+    </header>
+
+    <article>
+        <p><time datetime="2020-11-04 21:26">4 ноября 2020 года</time>.</p>
+        <h1>Функциональные псевдоклассы <code>is()</code> и <code>where()</code></h1>
+        <p>Псевдокласс match-any <a
+                href="https://drafts.csswg.org/selectors-4/#matches"><strong><code>:is()</code></strong></a> - это
+            функциональный псевдокласс, принимающий <code>&lt;forgiving-selector-list&gt;</code> в качестве
+            единственного аргумента.</p>
+        <p>Он сопостовляется с любым селектором из переданного списка, но его <strong>специфичность равна наибольшей
+                среди элементов списка</strong>. Поясним на примере.</p>
+        <p>С первого взгляда можно подумать что это просто синтаксический сахар
+            <code>:is(.a, .b) .c === .a .c, .b .c</code>. Однако <code>:is(#id, .b) .c !== #id .c, .b .c</code>.</p>
+        <p>То есть вот в такой ситуации цвет будет красный:</p>
+        <pre><code>&lt;div class=&quot;a&quot;&gt;Lorem&lt;/div&gt;
+&lt;style&gt;
+  :is(#id, .a) {color: red;}
+  .a {color: blue;}
+&lt;/style&gt;
+</code></pre>
+        <p>Псевдокласс регулировки специфичности<a
+                href="https://drafts.csswg.org/selectors-4/#zero-matches"><strong><code>:where()</code></strong></a> -
+            это функциональный псевдокласс с тем же синтаксисом и функциональностью, что и <code>:is()</code>. НО, в
+            отличие от <code>:is()</code>, ни псевдокласс <code>:where ()</code>, ни какие-либо из его аргументов не
+            влияют на <strong>специфичность</strong> селектора - она <strong>всегда равна нулю</strong>.</p>
+        <p>Иллюстрируем тем же примером, цвет будет синий:</p>
+        <pre><code>&lt;div class=&quot;a&quot;&gt;Lorem&lt;/div&gt;
+&lt;style&gt;
+  :where(#id, .a) {color: red;}
+  .a {color: blue;}
+&lt;/style&gt;
+</code></pre>
+        <p>Оба псевдокласса поддерживаются в <strong>FireFox</strong> начиная c <strong>78</strong> версии и в
+            <strong>Safari</strong> c <strong>14</strong>.</p>
+    </article>
+
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+                href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a
+                href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+
+</html>
