@@ -5,7 +5,28 @@
         <description>Блог о тонкостях спецификации CSS</description>
         <link>https://ariarzer.dev/</link>
         <item>
-            <title>Нативная валидация ввода в CSS</title>
+            <title>Содержащий блок</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ariarzer.dev/notes/2021/20211102.html</link>
+            <guid>https://ariarzer.dev/notes/2021/20211102.html</guid>
+            <pubDate>Sat, 2 Nov 2021 15:30:00 +0300</pubDate>
+            <description>Положение и размер боксов элемента вычисляются относительно определенного прямоугольника, который называется
+    содержащим блоком элемента. Подробно о том, как он определяется и зачем нужен.</description>
+            <source url="https://ariarzer.dev/notes/2021/20211102.html">Источник публикации</source>
+        </item>
+        <item>
+            <title>Схемы позиционирования в CSS</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ariarzer.dev/notes/2021/20210702.html</link>
+            <guid>https://ariarzer.dev/notes/2021/20210702.html</guid>
+            <pubDate>Fri, 2 Jul 2021 15:30:00 +0300</pubDate>
+            <description>Свойство position определяет, какая из схем позиционирования используется для
+    вычисления положения бокса. Подробно о каждом значении этого свойства.</description>
+            <source url="https://ariarzer.dev/notes/2021/20210702.html">Источник публикации</source>
+        </item>
+        <item>
+            <title>[Статья] Нативная валидация ввода в CSS</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
             <link>https://ariarzer.dev/articles/2021/native-css-validation.html</link>
             <guid>https://ariarzer.dev/articles/2021/native-css-validation.html</guid>
             <pubDate>Wed, 2 Jun 2021 15:30:00 +0300</pubDate>
@@ -14,7 +35,18 @@
             <source url="https://ariarzer.dev/articles/2021/value-definition-syntax.html">Источник публикации</source>
         </item>
         <item>
-            <title>Value Definition Syntax</title>
+            <title>Относительный синтаксис цвета</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ariarzer.dev/notes/2021/20210601.html</link>
+            <guid>https://ariarzer.dev/notes/2021/20210601.html</guid>
+            <pubDate>Tue, 1 Jun 2021 15:30:00 +0300</pubDate>
+            <description>Многолетняя мечта верстальщиков делать цвет для состояния элемента путем модификации его 
+исходного цвета уже близка. Подробно о новом относительном синтаксисе цвета.</description>
+            <source url="https://ariarzer.dev/notes/2021/20210601.html">Источник публикации</source>
+        </item>
+        <item>
+            <title>[Статья] Value Definition Syntax</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
             <link>https://ariarzer.dev/articles/2021/value-definition-syntax.html</link>
             <guid>https://ariarzer.dev/articles/2021/value-definition-syntax.html</guid>
             <pubDate>Wed, 21 Apr 2021 10:30:00 +0300</pubDate>
@@ -23,7 +55,28 @@
             <source url="https://ariarzer.dev/articles/2021/value-definition-syntax.html">Источник публикации</source>
         </item>
         <item>
-            <title>Пара слов о @layer</title>
+            <title>О color-mix() на март 2021</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ariarzer.dev/notes/2021/20210309.html</link>
+            <guid>https://ariarzer.dev/notes/2021/20210309.html</guid>
+            <pubDate>Tue, 9 Mar 2021 10:30:00 +0300</pubDate>
+            <description>color-mix() - новая функция, которая позволяет смешивать цвета в заданной пропорции. 
+Объянение как она работает и зачем может быть нужна.</description>
+            <source url="https://ariarzer.dev/notes/2021/20210309.html">Источник публикации</source>
+        </item>
+        <item>
+            <title>Немного о calc()</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ariarzer.dev/notes/2021/20210208.html</link>
+            <guid>https://ariarzer.dev/notes/2021/20210208.html</guid>
+            <pubDate>Mon, 8 Feb 2021 10:30:00 +0300</pubDate>
+            <description>Особенности наследования значений с calc(). Причины, по которым при наследовании 
+calc() вычисляется не до конца.</description>
+            <source url="https://ariarzer.dev/notes/2021/20210208.html">Источник публикации</source>
+        </item>
+        <item>
+            <title>[Статья] Пара слов о @layer</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
             <link>https://ariarzer.dev/articles/2021/css-cascade-layer.html</link>
             <guid>https://ariarzer.dev/articles/2021/css-cascade-layer.html</guid>
             <pubDate>Thu, 21 Jan 2021 15:15:00 +0300</pubDate>
@@ -33,7 +86,18 @@
             <source url="https://ariarzer.dev/articles/2021/css-cascade-layer.html">Источник публикации</source>
         </item>
         <item>
-            <title>CSS VALUE PROCESSING</title>
+            <title>Не тыкать в пользователя ошибками, пока он ничего не сделал</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ariarzer.dev/notes/2021/20210114.html</link>
+            <guid>https://ariarzer.dev/notes/2021/20210114.html</guid>
+            <pubDate>Thu, 14 Jan 2021 15:15:00 +0300</pubDate>
+            <description>Объяснение, как показывать пользователю ошибку только когда это дейтельно нужно. 
+Не больщайтесь, поддержка плохая. Но надежда с нами.</description>
+            <source url="https://ariarzer.dev/notes/2021/20210114.html">Источник публикации</source>
+        </item>
+        <item>
+            <title>[Статья] CSS VALUE PROCESSING</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
             <link>https://ariarzer.dev/articles/2020/css-value-processing.html</link>
             <guid>https://ariarzer.dev/articles/2020/css-value-processing.html</guid>
             <pubDate>Fri, 11 Dec 2020 22:52:00 +0300</pubDate>

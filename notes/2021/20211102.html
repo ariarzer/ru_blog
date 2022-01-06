@@ -10,15 +10,15 @@
     <meta property="og:url" content="https://ariarzer.dev/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Содержащий блок.">
-    <meta property="og:description" content="Положение и размер боксов элемента вычисляются относительно определенного прямоугольника, который называется
-    содержащим блоком элемента. Подробно о том, как он определяется и зачем нужен.">
+    <meta property="og:description"
+        content="Положение и размер боксов элемента вычисляются относительно определенного прямоугольника, который называется содержащим блоком элемента. Подробно о том, как он определяется и зачем нужен.">
     <meta property="og:image" content="https://ariarzer.dev/img/index_og_preview.png">
 
     <meta name="twitter:creator" content="@ariarzer">
     <meta name="twitter:site" content="@ariarzer">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://ariarzer.dev/img/index_twitter_preview.png">
-    
+
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -47,7 +47,8 @@
         <p><time datetime="2021-11-02 21:26">2 ноября 2021 года</time>.</p>
         <h1>Содержащий блок</h1>
         <p>Положение и размер блоков элемента вычисляются относительно определенного прямоугольника, который называется
-            <strong>содержащим блоком</strong> элемента.</p>
+            <strong>содержащим блоком</strong> элемента.
+        </p>
         <p>Например, в такой ситуации размеры блока будут считаться не относительно родителя и блок <code>.c</code>
             будет иметь высоту 100px, тогда как его родитель <code>.b</code> имеет нулевую высоту:</p>
         <pre><code>&lt;div class='a'&gt;
@@ -82,7 +83,8 @@
             <li>
                 <p>Если элемент имеет <code>position: absolute</code>, содержащий блок устанавливается ближайшим
                     предком, у которого значение свойства <code>position</code> уставновлено как <code>absolute</code>,
-                    <code>relative</code> или <code>fixed</code>, следующим образом:</p>
+                    <code>relative</code> или <code>fixed</code>, следующим образом:
+                </p>
                 <ul>
                     <li>
                         <p>В случае, если предок является строчным элементом, содержащий блок является прямоугольником,
@@ -96,14 +98,17 @@
                 </ul>
             </li>
         </ol>
-        <p>Источник: <a href="https://drafts.csswg.org/css2/#containing-block-details">https://drafts.csswg.org/css2/#containing-block-details</a></p>
+        <p>Источник: <a
+                href="https://drafts.csswg.org/css2/#containing-block-details">https://drafts.csswg.org/css2/#containing-block-details</a>
+        </p>
     </article>
 
     <footer>
         <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
-            href="https://t.me/ariarzer">telegram</a>.</p>
+                href="https://t.me/ariarzer">telegram</a>.</p>
         <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
-        <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
+        <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a
+                href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
 
         <p><br>Нашли опечатку? Сообщите мне о ней.</p>
     </footer>
