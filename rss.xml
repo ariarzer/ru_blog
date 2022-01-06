@@ -6,42 +6,42 @@
         <link>https://ariarzer.dev/</link>
         <item>
             <title>Нативная валидация ввода в CSS</title>
-            <link>https://ariarzer.dev/native-css-validation.html</link>
-            <guid>https://ariarzer.dev/native-css-validation.html</guid>
+            <link>https://ariarzer.dev/articles/2021/native-css-validation.html</link>
+            <guid>https://ariarzer.dev/articles/2021/native-css-validation.html</guid>
             <pubDate>Wed, 2 Jun 2021 15:30:00 +0300</pubDate>
             <description>Подробно о нативной валидации ввода с помощью CSS и HTML. Рассмотрим паттерны и специальные
                 ограничения ввода и как правильно сообщить пользователю об ошибке.</description>
-            <source url="https://ariarzer.dev/value-definition-syntax.html">Источник публикации</source>
+            <source url="https://ariarzer.dev/articles/2021/value-definition-syntax.html">Источник публикации</source>
         </item>
         <item>
             <title>Value Definition Syntax</title>
-            <link>https://ariarzer.dev/value-definition-syntax.html</link>
-            <guid>https://ariarzer.dev/value-definition-syntax.html</guid>
+            <link>https://ariarzer.dev/articles/2021/value-definition-syntax.html</link>
+            <guid>https://ariarzer.dev/articles/2021/value-definition-syntax.html</guid>
             <pubDate>Wed, 21 Apr 2021 10:30:00 +0300</pubDate>
             <description>Используемая в большинстве языков для описания их формальной грамматики нотация Бекуса-Наура
                 не подходит для CSS. Рассмотрим причины и решение этой проблемы.</description>
-            <source url="https://ariarzer.dev/value-definition-syntax.html">Источник публикации</source>
+            <source url="https://ariarzer.dev/articles/2021/value-definition-syntax.html">Источник публикации</source>
         </item>
         <item>
             <title>Пара слов о @layer</title>
-            <link>https://ariarzer.dev/css-cascade-layer.html</link>
-            <guid>https://ariarzer.dev/css-cascade-layer.html</guid>
+            <link>https://ariarzer.dev/articles/2021/css-cascade-layer.html</link>
+            <guid>https://ariarzer.dev/articles/2021/css-cascade-layer.html</guid>
             <pubDate>Thu, 21 Jan 2021 15:15:00 +0300</pubDate>
             <description>Точно так же, как каскадные источники обеспечивают баланс между стилями пользователя и
                 разработчика, каскадные слои обеспечивают способ организации структуры в рамках одного источника.
                 Рассмотрим причины их создания, тонкости работы и способы использования на практике.</description>
-            <source url="https://ariarzer.dev/css-cascade-layer.html">Источник публикации</source>
+            <source url="https://ariarzer.dev/articles/2021/css-cascade-layer.html">Источник публикации</source>
         </item>
         <item>
             <title>CSS VALUE PROCESSING</title>
-            <link>https://ariarzer.dev/css-value-processing.html</link>
-            <guid>https://ariarzer.dev/css-value-processing.html</guid>
+            <link>https://ariarzer.dev/articles/2020/css-value-processing.html</link>
+            <guid>https://ariarzer.dev/articles/2020/css-value-processing.html</guid>
             <pubDate>Fri, 11 Dec 2020 22:52:00 +0300</pubDate>
             <description>После того, как user agent проанализировал документ и построил DOM, он должен назначить
                 каждому элементу в дереве и, соответственно, каждому блоку в структуре форматирования значение для
                 каждого свойства. Для этого он последовательно вычисляет шесть значений каждого свойства. Рассмотрим
                 зачем и как это просиходит.</description>
-            <source url="https://ariarzer.dev/css-value-processing.html">Источник публикации</source>
+            <source url="https://ariarzer.dev/articles/2020/css-value-processing.html">Источник публикации</source>
         </item>
     </channel>
 </rss>
