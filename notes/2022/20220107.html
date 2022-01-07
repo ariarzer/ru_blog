@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Незамещаемый блок в нормальном потоке</title>
+
+    <meta name="description" content="Незамещаемый блок в нормальном потоке.">
+
+    <meta property="og:url" content="https://ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Незамещаемый блок в нормальном потоке.">
+    <meta property="og:description"
+        content="Незамещаемый блочный элемент в нормальном потоке имеет такую ширину, чтобы сумма его компонентов блочной модели по горизонтали была равна ширине его содержащего блока.">
+    <meta property="og:image" content="https://ariarzer.dev/img/index_og_preview.png">
+
+    <meta name="twitter:creator" content="@ariarzer">
+    <meta name="twitter:site" content="@ariarzer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://ariarzer.dev/img/index_twitter_preview.png">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ariarzer.dev/rss.xml" />
+
+    <link rel="stylesheet" id="style_link">
+</head>
+</head>
+
+<body>
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='/style/common.css'">
+                подключить
+            </button> их.
+        </p>
+    </header>
+
+    <article>
+        <p><time datetime="2021-11-02 21:26">2 ноября 2021 года</time>.</p>
+        <h1>Незамещаемый блок в нормальном потоке</h1>
+        <p>Незамещаемый блочный элемент в нормальном потоке имеет такую ширину, чтобы сумма его компонентов блочной
+            модели по горизонтали была равна ширине его содержащего блока.</p>
+        <p>То есть, он растягивается на всю предоставленную ширину.</p>
+        <p>То есть, если у вас прямо в <code>body</code> вложен одинокий <code>div</code>, он будет нулевой высоты и
+            ширины как <code>body</code>.</p>
+        <h2>Далее рассмотрим граничные случаи.</h2>
+        <p>Если <code>width</code> не равно <code>auto</code> и <code>border-left-width</code> +
+            <code>padding-left</code> + <code>width</code> + <code>padding-right</code> +
+            <code>border-right-width</code> (плюс любой из <code>margin-left</code> или <code>margin-right</code>,
+            который не являются <code>auto</code>) больше ширины содержащего блока, то любые значения <code>auto</code>
+            для <code>margin-left</code> или <code>margin-right</code> для следующих правил рассматриваются как нуль.
+        </p>
+        <p>То есть, если обнуление одного или обоих <code>margin</code>-ов, значение которых вы указали как
+            <code>auto</code>, позволит впихнуть этот блок в содержащий, обнуление будет сделано.</p>
+        <p>Если все вышеперечисленные горизонтальные компоненты блочной модели имеют <a
+                href="https://ariarzer.dev/css-value-processing.html#computed-value">вычисленное значение</a>, отличное
+            от <code>auto</code>, значения считаются «чрезмерно ограниченными» (&quot;over-constrained&quot;), и одно из
+            <a href="https://ariarzer.dev/css-value-processing.html#actual-value">используемых значений</a> будет
+            отличаться от вычисленного. Если свойство <code>direction</code> содержащего блока имеет значение
+            <code>ltr</code>, <a href="https://ariarzer.dev/css-value-processing.html#declared-value">указанное
+                значение</a> <code>margin-right</code> игнорируется и значение вычисляется так, чтобы равенство выше (на
+            картинке) было истинным. Если значение <code>direction</code> равно <code>rtl</code>, вместо этого
+            игнориуется <code>margin-left</code>.</p>
+        <p>Если ровно одно свойство в равенстве указано как «auto», его используемое значение следует из равенства (как
+            уравнение с одной неизвестной).</p>
+        <p>Если оба параметра <code>margin-left</code> и <code>margin-right</code> имеют значение <code>auto</code>, их
+            используемые значения равны. Это горизонтально центрирует элемент относительно краев содержащего блока.</p>
+        <p>Если для <code>width</code> задано значение <code>auto</code>, любые другие значения <code>auto</code> для
+            свойств из равенства становятся равными <code>0</code>, а значение <code>width</code> следует из
+            результирующего равенства.
+            Именно поэтому трюк с <code>margin: auto</code> не работает для центрирования блоков с не заданной шириной.
+            Она должна быть определена не как <code>auto</code>, а это ее <a
+                href="https://www.w3.org/TR/css-cascade-3/#initial-value">Initial value</a>.</p>
+        <p>Источник - <a
+                href="https://www.w3.org/TR/CSS2/visudet.html#blockwidth">https://www.w3.org/TR/CSS2/visudet.html#blockwidth</a>
+        </p>
+    </article>
+
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+                href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a
+                href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+
+</html>
