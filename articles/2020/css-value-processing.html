@@ -60,7 +60,7 @@
         <li><code>Used value</code> - проведение всех оставшихся операций.</li>
         <li><code>Actual value</code> - преобразование значение на основе ограничений среды отображения.</li>
     </ol>
-    <h2 id="declared-value"><a href="declared-value">$</a> Declared value</h2>
+    <h2 id="declared-value"><a href="#declared-value">$</a> Declared value</h2>
     <p>Сбор всех деклараций свойства, применимых к элементу. При отборе значений учитывается:</p>
     <ol>
         <li>подходят ли они по типу данных для этого свойства</li>
@@ -104,7 +104,7 @@
         <li>декларация в селекторе <code>.class</code>, строчка такая-то, документ такой-то</li>
     </ol>
     <p>... потому что <code>@media</code>-выражение не будет выполняться.</p>
-    <h2 id="cascaded-value"><a href="cascaded-value">$</a> Cascaded value</h2>
+    <h2 id="cascaded-value"><a href="#cascaded-value">$</a> Cascaded value</h2>
     <p>Задача каскада - из всех потенциально возможных значений выбрать одно. Он принимает неупорядоченный список
         объявленных свойств, сортирует их как определено ниже, и выводит одно.</p>
     <h3>Уровни объявления</h3>
@@ -278,13 +278,13 @@
 &lt;!-- текст в блоках будет фиолетовый --></code></pre>
         </li>
     </ul>
-    <h2 id="specified-value"><a href="specified-value">$</a> Specified value</h2>
+    <h2 id="specified-value"><a href="#specified-value">$</a> Specified value</h2>
     <p>Промежуточный итог после каскада: если список на входе был не пустой - то отдается Cascaded value, а если нет,
         то для наследуемых свойств - Computed value родителя (если есть), или <a
             href="https://www.w3.org/TR/css-cascade-3/#initial-value">Initial value</a> по спеке в остальных
         случаях.
     </p>
-    <h2 id="computed-value">Computed value</h2>
+    <h2 id="computed-value"><a href="#computed-value">$</a>Computed value</h2>
     <p>Как правило, Computed value разрешает значение, насколько это возможно, без раскладки документа или выполнения
         других дорогостоящих или трудно распараллеливаемых операций, таких как сетевые запросы или получение значений,
         отличных от элемента и его родителя. Computed value - значение, которое <strong>наследуют вложенные блоки как
@@ -312,7 +312,7 @@ font-wigth: extra bold; /* CV = 800 */</code></pre>
   height: 50%; /* CV = 50px */
     height: inherit; /* CV = 25px */
 /* три вложенных блока */</code></pre>
-    <h2 id="used-value"><a href="used-value">$</a> Used value</h2>
+    <h2 id="used-value"><a href="#used-value">$</a> Used value</h2>
     <p>Used value является результатом взятия Computed value и завершения любых оставшихся вычислений, чтобы сделать его
         абсолютным теоретическим значением, используемым в макете документа. Например вычисление calc или вычисление
         процентов. Если свойство не применяется к этому элементу, то элемент не имеет used value для этого свойства.</p>
@@ -322,7 +322,7 @@ font-wigth: extra bold; /* CV = 800 */</code></pre>
             <pre><code data-lang="css">height: 13%; /* CV = 13% => UV = 9.1px */</code></pre>
         </li>
     </ul>
-    <h2 id="actual-value"><a href="actual-value">$</a> Actual value</h2>
+    <h2 id="actual-value"><a href="#actual-value">$</a> Actual value</h2>
     <p>Значение преобразуется на основе ограничений среды отображения. Например:</p>
     <ul>
         <li>округление пикселей до целых (по необходимости экрана)
@@ -330,7 +330,7 @@ font-wigth: extra bold; /* CV = 800 */</code></pre>
         </li>
         <li>кроп и масштабирование картинок</li>
     </ul>
-    <h2 id="sources">Источники</h2>
+    <h2>Источники</h2>
     <ul>
         <li><a href="https://drafts.csswg.org/css-cascade-4/#value-stages">Спецификация Value Processing</a></li>
     </ul>
