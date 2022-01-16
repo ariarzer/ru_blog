@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Строчные замещаемые элементы</title>
+
+    <meta name="description" content="Строчные замещаемые элементы.">
+
+    <meta property="og:url" content="https://ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Строчные замещаемые элементы.">
+    <meta property="og:description"
+          content="Строчные замещаемые элементы в нормальном потоке.">
+    <meta property="og:image" content="https://ariarzer.dev/img/index_og_preview.png">
+
+    <meta name="twitter:creator" content="@ariarzer">
+    <meta name="twitter:site" content="@ariarzer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://ariarzer.dev/img/index_twitter_preview.png">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ariarzer.dev/rss.xml" />
+
+    <link rel="stylesheet" id="style_link">
+</head>
+
+<body>
+<header>
+    <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+    <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+        <button onclick="document.getElementById('style_link').href='/style/common.css'">
+            подключить
+        </button> их.
+    </p>
+</header>
+
+<article>
+    <p><time datetime="2022-01-16 21:26">16 января 2022 года</time>.</p>
+    <h1>Строчные замещаемые элементы</h1>
+    <p>Если <a href="https://ariarzer.dev/articles/2020/css-value-processing.html#computed-value">вычисленное значение
+        </a> <code>margin-left</code> или <code>margin-right</code> равно <code>auto</code>, то их
+        <a href="https://ariarzer.dev/articles/2020/css-value-processing.html#used-value">используемое значение
+        </a> становится равным 0.</p>
+    <p>Если <code>height</code> и <code>width</code> имеют вычисленные значения <code>auto</code> и элемент также
+        имеет <a href="https://github.com/web-standards-ru/dictionary/blob/main/dictionary.md#intrinsic-dimensions">
+            собственную (intrinsic) ширину</a>, тогда эта ширина является используемым значением width.</p>
+    <p>Если и <code>height</code>, и <code>width</code> имеют вычисленные значения <code>auto</code>, а элемент не
+        имеет собственной ширины, но имеет собственную высоту и собственное соотношение, или если ширина имеет
+        вычисленное значение <code>auto</code>, а высота нет, и элемент имеет собственное соотношение,
+        тогда ширина вычисляется как:</p>
+    <p><code>(used height) * (intrinsic ratio);</code></p>
+    <p>Если для высоты и ширины вычисленные значения <code>auto</code>, и элемент имеет собственное соотношение, но
+        не имеет внутренней высоты или ширины, то используемое значение ширины не определено в CSS 2.
+        Однако предполагается, что, если ширина содержащего блока не зависит от ширины замещаемого элемента, то
+        есть используемое значение ширины вычисляется из уравнения ограничения, используемого для незамещенных
+        блочных элементов в нормальном потоке.</p>
+    <p>Если ширина имеет вычисленное значение <code>auto</code>, и элемент имеет собтвенную ширину, тогда эта
+        собственная ширина является используемым значением ширины.</p>
+    <p>Если ширина имеет вычисленное значение <code>auto</code>, но ни одно из вышеперечисленных условий не
+        выполняется, то используемое значение ширины становится <code>300</code> пикселей. Если <code>300</code>
+        пикселей слишком широкие для устройства, UA должны использовать ширину самого большого прямоугольника,
+        который имеет соотношение 2: 1 и подходит для устройства.</p>
+    <p>Источник - <a
+        href="https://www.w3.org/TR/CSS2/visudet.html#inline-replaced-width">
+        https://www.w3.org/TR/CSS2/visudet.html#inline-replaced-width</a>
+    </p>
+</article>
+
+<footer>
+    <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+        href="https://t.me/ariarzer">telegram</a>.</p>
+    <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+    <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a
+        href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
+
+    <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+</footer>
+
+</body>
+
+</html>
