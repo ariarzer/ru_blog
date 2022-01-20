@@ -87,3 +87,7 @@ table {
         color: CanvasText;
     }
 }
+
+iframe {
+    width: 100%;
+}

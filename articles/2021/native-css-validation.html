@@ -48,78 +48,82 @@
     <h3> Обозначить паттерн</h3>
     <p>В случае, если поле имеет определенный формат (например email), можно использовать атрибут <a
         href="https://html.spec.whatwg.org/multipage/input.html#attr-input-pattern"><code>pattern</code></a>. Он
-        принимает <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/RegExp">регулярное
-            выражение</a>, которому должно соответствовать введенное значение. При этом, если поле пустое, то проверки
-        не производится, какая бы регулярка не была указана.
-        Например, такой инпут принимает только заглавные английские буквы в любом количестве:</p>
+        принимает <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/RegExp">
+            регулярное выражение</a>, которому должно соответствовать введенное значение. При этом, если поле пустое,
+        то проверки не производится, какая бы регулярка не была указана. Например, такой инпут принимает только
+        заглавные английские буквы в любом количестве.</p>
+    <p>В случае, если пользователь ввел туда что-то кроме них, форма не будет отправлена (по <code>button
+        [type=&quot;submit&quot;]</code>), пока он не поменяет значение на правильное.
+    </p>
     <pre><code data-lang="html"> &lt;input pattern=&quot;[A-Z]+&quot;&gt;
 </code></pre>
-    <p>В случае, если пользователь ввел туда что-то кроме них, форма не будет отправлена (по <code>button[type=&quot;submit&quot;]</code>),
-        пока он не поменяет значение на правильное. Исключение - если у формы проставлен атрибут <a
-            href="https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-novalidate"><code>novalidate</code></a>.
-    </p>
+    <iframe src="demo/native-css-validation/demo1.html" title="демка инпута, в который можно ввести только заглавный английские буквы"></iframe>
+    <p>Исключение - если у формы проставлен атрибут <a
+        href="https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-novalidate">
+        <code>novalidate</code></a>.</p>
+    <iframe src="demo/native-css-validation/demo2.html" title="демка формы с атрибутом novalidate"></iframe>
     <h3>Нативные паттерны</h3>
     <p>Некоторые типы инпутов добавляют свои паттерны ввода. Например, <code>input[type=&quot;email&quot;]</code>
         требует ввести значение, содержащее символ <code>@</code>, а <code>input[type=&quot;number&quot;]</code>
         принимает только числа.</p>
     <h3>Показать пользователю ошибку</h3>
     <p>Поможет псевдокласс <a href="https://www.w3.org/TR/selectors-4/#validity-pseudos"><code>:invalid</code></a>. Он
-        соответствует полям, <strong>значение</strong> которых <strong>не валидно</strong>, то есть не соответствует
-        заданному паттерну (или это пустое обязательно поле, смотри дальше).
-        Например, это <strong>правило</strong> подсветит красным такое поле:</p>
+        соответствует элементам, <strong>значение</strong> которых <strong>не валидно</strong>, то есть не соответствует
+        <strong>"семантики валидности данных"</strong>. На практике этот термин обозначает не только инпуты, значения
+        которых не соответствуют заданному паттерну ввода (или это пустое обязательно поле, смотри дальше), но и
+        формы, внутри которых этот инпут находится. Например, это <strong>правило</strong> подсветит красным и форму,
+        и инпут:</p>
     <pre><code data-lang="css">:invalid {
   background-color: red;
 }
 </code></pre>
-    <h3> Показать пользователю, что он правильно ввел</h3>
+    <iframe src="demo/native-css-validation/demo3.html" title="демка, где форма и инпут становятся красными, если вести в инпут невалидное значение"></iframe>
+    <p>Если вам нужно, чтобы селектор применился только к инпутам, обязательно пропишите нужный тег:
+        <code>input:invalid</code>.</p>
+    <iframe src="demo/native-css-validation/demo4.html" title="демка, где только инпут становится красными, если вести в него невалидное значение"></iframe>
+    <h3>Показать пользователю, что он правильно ввел</h3>
     <p>Поможет псевдокласс <a href="https://www.w3.org/TR/selectors-4/#validity-pseudos"><code>:valid</code></a>. Он
-        соответствует полям, значение которых <strong>валидно</strong>, то есть соответствует заданному паттерну.
+        соответствует элементам, значение которых <strong>валидно</strong>.
         Например, это <strong>правило</strong> подсветит зеленым такое поле:</p>
     <pre><code data-lang="css">:valid {
   background-color: green;
 }
 </code></pre>
+    <iframe src="demo/native-css-validation/demo5.html" title="демка, где инпут становится зеленый, если ввести в него правильное значение"></iframe>
     <p>По UX такой класс нужен довольно редко, но все же он есть.</p>
     <h2 id="required_inputs"><a href="#required_inputs">$</a> Обязательные поля</h2>
     <h3>Обозначить, что поле обязательные</h3>
-    <p>Добавление к инпуту (не важно какого типа) <strong>атрибута</strong> <a
+    <p>Добавление к инпуту (неважно какого типа) <strong>атрибута</strong> <a
         href="https://html.spec.whatwg.org/multipage/input.html#the-required-attribute"><code>required</code></a>
         показывает системе, что это поле обязательно для ввода. То есть при отправке формы его значение должно быть не
-        пустое.</p>
+        пустое. Иначе отправка не сработает.</p>
     <pre><code data-lang="html">&lt;input required type=&quot;text&quot;&gt;
 </code></pre>
+    <iframe src="demo/native-css-validation/demo6.html" title="демка, где в инпут обязательно нужно что-то ввести"></iframe>
     <h3>Показать ошибку</h3>
     <p>Поможет псевдокласс <a href="https://www.w3.org/TR/selectors-4/#validity-pseudos"><code>:invalid</code></a>. Как
-        уже было сказано выше, он соответствует инпутам, <strong>значение</strong> которых <strong>невалидно</strong>. В
-        данном случае не соответствует заданному паттерну &quot;быть не пустым&quot;.
-        Например, такое <strong>правило</strong> поможет подсветить красным поля, в которые пользователь ничего не ввел,
-        но должен.</p>
+        уже было сказано выше, он соответствует элементам, <strong>значение</strong> которых <strong>невалидно</strong>.
+        В данном случае не соответствует заданному паттерну &quot;быть не пустым&quot;. Например, такое <strong>правило</strong>
+        поможет подсветить красным поля, в которые пользователь ничего не ввел, но должен.</p>
     <pre><code data-lang="css">:invalid {
   background-color: red;
 }
 </code></pre>
+    <iframe src="demo/native-css-validation/demo7.html" title="демка, где в инпут обязательно нужно что-то ввести, иначе он будет красным"></iframe>
     <h3>Не тыкать в пользователя ошибками, пока он ничего не сделал</h3>
     <p>В коде примера выше при первом заходе пользователя на страницу поле будет <strong>уже подсвечено</strong> красным
-        цветом. А он даже не прочитал, что надо вводить и вообще что это за сайт. <strong>Неприятно</strong>.
+        цветом. Значение уже невалидно, и станет правильным только когда пользователь что-то введет в это поле.
+        А он даже не прочитал, что надо вводить и вообще что это за сайт. <strong>Неприятно</strong>.
         <strong>Решение</strong>: в новом черновике спецификации селекторов описан класс <a
             href="https://drafts.csswg.org/selectors-4/#user-pseudos"><code>:user-invalid</code></a>. Он соответствует
         тем полям, с которыми пользователь <strong>провзаимодействовал</strong> + срабатывает также после нажатия на
         <code>button[type=&quot;submit&quot;]</code> или <code>input[type=&quot;submit&quot;]</code>.
         В этом примере поле подсветится красным, только когда пользователь что-то в него введет, удалит и уберет фокус,
         или после нажатия на кнопку отправки формы:</p>
-    <pre><code data-lang="html">&lt;form action=&quot;&quot;&gt;
-  &lt;label&gt;
-    Text
-    &lt;input required type=&quot;text&quot;&gt;
-  &lt;/label&gt;
-  &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
-&lt;/form&gt;
-&lt;style&gt;
-input:user-invalid {
+    <pre><code data-lang="css">input:user-invalid {
   background-color: red;
-}
-&lt;/style&gt;
-</code></pre>
+}</code></pre>
+    <iframe src="demo/native-css-validation/demo8.html" title="демка, где инпут становиться красным только после взаимодействия с пользователем"></iframe>
     <p>Прежде чем вы попытались опробовать этот пример в деле: сейчас это так <strong>НЕ работает</strong>. Поддержки
         селектора нет почти нигде. Только частично <strong>за префиксом</strong> в Firefox под другим именем. Подробнее
         на <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:user-invalid">MDN про :-moz-ui-invalid</a>.
@@ -133,19 +137,22 @@ input:user-invalid {
         href="https://html.spec.whatwg.org/multipage/input.html#the-maxlength-and-minlength-attributes"><code>maxlength</code>
         и <code>minLength</code></a> позволяют ограничить длину ввода с двух сторон для текстовых полей.
         Это поле будет не валидным (<code>:invalid</code>), если в нем <strong>меньше</strong> 4 символов:</p>
-    <pre><code data-lang="html">&lt;input minlenght=&quot;4&quot;&gt;
+    <pre><code data-lang="html">&lt;input minlength=&quot;4&quot;&gt;
 </code></pre>
-    <p><code>maxlenght</code> работает по другому. В инпут с этим атрибутом браузер не позволяет пользователю ввести
+    <iframe src="demo/native-css-validation/demo9.html" title="демка, где в инпут нужно ввести больше четырех символов"></iframe>
+    <p><code>maxlength</code> работает по другому. В инпут с этим атрибутом браузер не позволяет пользователю ввести
         больше указанного количества символов <strong>с клавиатуры</strong>. Тем не менее, при автозаполнении или с
         помощью JS туда можно ввести сколько угодно символом, но <strong>невалидным</strong> (<code>:invalid</code>),
         это значение <strong>не будет</strong>, более того, оно будет валидным (<code>:valid</code>).</p>
+    <iframe src="demo/native-css-validation/demo10.html" title="демка, где в инпут нельзя ввести больше четырех символов"></iframe>
     <h3><code>max</code> &amp; <code>min</code></h3>
     <p>Для некоторых не текстовых полей можно ограничить максимальное и минимальное значение с помощью атрибутов <a
         href="https://html.spec.whatwg.org/multipage/input.html#the-min-and-max-attributes"><code>max</code> и
         <code>min</code></a>. Например:</p>
-    <pre><code data-lang="html">&lt;input type=&quot;number&quot; min=&quot;1&quot;&gt;
+    <pre><code data-lang="html">&lt;input type=&quot;number&quot; min=&quot;11&quot;&gt;
 &lt;input type=&quot;time&quot; min=&quot;21:00&quot; max=&quot;06:00&quot; step=&quot;60&quot;&gt;
 </code></pre>
+    <iframe src="demo/native-css-validation/demo11.html" title="демка, где для инпутов установлены минимальные и максимальные значения"></iframe>
     <p>Для контроля значения относительно заданных лимитов существуют <a
         href="%60ttps://drafts.csswg.org/selectors-4/#range-pseudos">псевдоклассы</a> <code>:in-range</code> и <code>:out-of-range</code>.
         Эти псевдоклассы применяются только к элементам с заданным диапазоном ограничений. При отсутствии такого
@@ -154,13 +161,14 @@ input:user-invalid {
         остальных случаях (в том числе при пустом значении) он будет зеленым:</p>
     <pre><code data-lang="html">&lt;input type=&quot;number&quot; min=&quot;10&quot; max=&quot;20&quot;&gt;
 &lt;style&gt;
-:out-of-range {
-  background-color: red;
-}
-:in-range {
-  background-color: green;
-}
+  :out-of-range {
+    background-color: red;
+  }
+  :in-range {
+    background-color: green;
+  }
 &lt;/style&gt;</code></pre>
+    <iframe src="demo/native-css-validation/demo12.html" title="демка, где инпут показывает цветом, когда его значение находится вне разрешенного диапазона"></iframe>
     <p><strong>Но!</strong> Чтобы <strong>не тыкать в пользователя сообщениями о правильности заполнения формы, пока он
         ничего не сделал</strong>, стили для <code>:in-range</code> почти никогда не пишут.</p>
 
