@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Замещаемые элементы и где они обитают</title>
+
+    <meta name="description" content="Замещаемые элементы и где они обитают.">
+
+    <meta property="og:url" content="https://ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Замещаемые элементы и где они обитают.">
+    <meta property="og:description"
+          content="Какие элементы можно назвать замещаемыми и почему это важно для верстальщика.">
+    <meta property="og:image" content="https://ariarzer.dev/img/index_og_preview.png">
+
+    <meta name="twitter:creator" content="@ariarzer">
+    <meta name="twitter:site" content="@ariarzer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://ariarzer.dev/img/index_twitter_preview.png">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ariarzer.dev/rss.xml"/>
+
+    <link rel="stylesheet" id="style_link">
+</head>
+
+<body>
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='/style/common.css'">
+                подключить
+            </button>
+            их.
+        </p>
+    </header>
+
+    <article>
+        <p><time datetime="2022-02-05 21:26">05 февраля 2022 года</time>.</p>
+        <h1>Замещаемые элементы и где они обитают</h1>
+        <p>Принято говорить, что <strong>замещаемые элементы</strong> - это те элементы, на отображение которых мы не
+            можем влиять из css.</p>
+        <p>В спецификации html написано, что:</p>
+        <blockquote>
+            <p>Следующие элементы могут быть замещаемыми: <code>audio</code>, <code>canvas</code>, <code>embed</code>,
+                <code>iframe</code>, <code>img</code>, <code>input</code>, <code>object</code>, и <code>video</code>.
+            </p>
+        </blockquote>
+        <p>В спецификации css чуть более развернуто:</p>
+        <blockquote>
+            <p>Элемент, содержимое которого выходит за рамки модели форматирования CSS, например изображение или
+                <code>iframe</code>. Так, содержимое <code>img</code> заменяется изображением, которое обозначает его
+                атрибут<code>src</code>.</p>
+        </blockquote>
+        <p>Замещаемые элементы имеют собственные размеры (natural dimensions). Например, растровое изображение имеет
+            собственную ширину и собственную высоту, указанные в абсолютных единицах (из которых, очевидно, можно
+            определить собственное соотношение (ratio)).</p>
+        <p>Также, замещаемый элемент может и не иметь одного или нескольких, или всех собственных размеров.</p>
+        <p>Объекты, добавляемые с помощью CSS-свойства content являются <strong>анонимными замещаемыми
+            элементами</strong>. Анонимным в css называется то, к чему нельзя напрямую обратится.</p>
+        <p>Важно знать, что элемент замещаемый и какие именно собственные размеры у него есть, чтобы понять, как он
+            будет отображаться. В разделе про расчёт <a
+                href="https://www.w3.org/TR/CSS2/visudet.html#Computing_widths_and_margins">ширины и отступов</a>,
+            который я постепенно перевожу (см. предыдущие посты), замещаемые элементы рассматриваются отдельно.</p>
+
+    </article>
+
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+            href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a
+            href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+
+</html>

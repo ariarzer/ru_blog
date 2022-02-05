@@ -5,13 +5,43 @@
         <description>Блог о тонкостях спецификации CSS</description>
         <link>https://ariarzer.dev/</link>
         <item>
+            <title>Замещаемые элементы и где они обитают</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ariarzer.dev/notes/2022/20220205.html</link>
+            <guid>https://ariarzer.dev/notes/2022/20220205.html</guid>
+            <pubDate>Sat, 5 Feb 2022 15:30:00 +0300</pubDate>
+            <description>Какие элементы можно назвать замещаемыми и почему это важно для верстальщика.</description>
+            <source url="https://ariarzer.dev/notes/2022/20220205.html">Источник публикации</source>
+        </item>
+        <item>
+            <title>Строчные замещаемые элементы</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ariarzer.dev/notes/2022/20220116.html</link>
+            <guid>https://ariarzer.dev/notes/2022/20220116.html</guid>
+            <pubDate>Sat, 15 Jan 2022 15:30:00 +0300</pubDate>
+            <description>Как рассчитываются размеры и положение строчных замещаемых элементов в нормальном
+                потоке.</description>
+            <source url="https://ariarzer.dev/notes/2022/20220116.html">Источник публикации</source>
+        </item>
+        <item>
+            <title>Незамещаемый блок в нормальном потоке</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ariarzer.dev/notes/2022/20220107.html</link>
+            <guid>https://ariarzer.dev/notes/2022/20220107.html</guid>
+            <pubDate>Sat, 7 Jan 2022 15:30:00 +0300</pubDate>
+            <description>Незамещаемый блочный элемент в нормальном потоке имеет такую ширину, чтобы сумма его
+                компонентов блочной модели по горизонтали была равна ширине его содержащего блока.</description>
+            <source url="https://ariarzer.dev/notes/2022/20220107.html">Источник публикации</source>
+        </item>
+        <item>
             <title>Содержащий блок</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
             <link>https://ariarzer.dev/notes/2021/20211102.html</link>
             <guid>https://ariarzer.dev/notes/2021/20211102.html</guid>
             <pubDate>Sat, 2 Nov 2021 15:30:00 +0300</pubDate>
-            <description>Положение и размер боксов элемента вычисляются относительно определенного прямоугольника, который называется
-    содержащим блоком элемента. Подробно о том, как он определяется и зачем нужен.</description>
+            <description>Положение и размер боксов элемента вычисляются относительно определенного прямоугольника,
+                который называется содержащим блоком элемента. Подробно о том, как он определяется и зачем
+                нужен.</description>
             <source url="https://ariarzer.dev/notes/2021/20211102.html">Источник публикации</source>
         </item>
         <item>
