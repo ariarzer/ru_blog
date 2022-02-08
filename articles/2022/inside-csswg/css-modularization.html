@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS mind blog</title>
+
+    <meta name="description" content="Модуляризация CSS">
+
+    <meta property="og:url" content="https://ariarzer.dev/native-css-validation.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Модуляризация CSS">
+    <meta property="og:description"
+          content="CSS Level 2 потребовалось 9 лет (2002-2011), чтобы получить статус рекомендации. Чтобы ускорить стандартизацию беспроблемных частей, рабочая группа CSS в приняла Пекинскую доктрину, разделивщую CSS на модули.">
+    <meta property="og:image" content="https://ariarzer.dev/img/index_og_preview.png">
+
+    <meta name="twitter:creator" content="@ariarzer">
+    <meta name="twitter:site" content="@ariarzer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://ariarzer.dev/img/index_twitter_preview.png">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ariarzer.dev/rss.xml"/>
+
+    <link rel="stylesheet" id="style_link">
+</head>
+<body>
+
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='/style/common.css'">
+                подключить
+            </button>
+            их.
+        </p>
+    </header>
+
+    <article>
+
+        <h1>Модуляризация CSS</h1>
+        <h2>Перевод статьи <a href="https://fantasai.inkedblade.net/weblog/2011/inside-csswg/modules">CSS
+            Modularization</a> , написанной <a href="https://twitter.com/fantasai">@fantasai</a>
+            <time datetime="2011-11-01 21:26"> 2 ноября 2011 года</time>. С
+            <a href="https://twitter.com/fantasai/status/1490750610928553989">разрешения</a> автора.</h2>
+        <p>Когда CSS Level 3 только <a href="http://www.w3.org/TR/2000/WD-css3-roadmap-20000414">создавался</a>, он
+            задумывался как взаимосвязанный набор модульных спецификаций, воссоздающих CSS Level 2 и добавляющих более
+            сложные функции и новые системы раскладки. Каждая глава в <a href="https://www.w3.org/TR/CSS2/">CSS2</a>
+            была выделена в отдельный «модуль», и созданы дополнительные модули для построения новой системы,
+            называемой CSS3. В отличие от монолитного CSS2, каждый компонент CSS3, таким образом, представлял собой
+            отдельную спецификацию, которую можно было писать независимо, и чье взаимодействие с другими модулями
+            (в отличие от запутанных глав CSS2) можно было четко сформулировать и понять.</p>
+        <p>Однако для того, чтобы реализовать систему CSS3 как единое целое, надо было соединить ссылками каждый модуль
+            со всеми другими связанными модулями. Как следствие такой структуры, функциональные модули не могли
+            развиваться, пока не продвинулись основные модули, а основные модули не могли быть завершены, пока не были
+            завершены все функциональные модули. Ничто не могло двигаться вперед, пока все не двигалось вперед. Это был
+            новый вид ада зависимостей.</p>
+        <p>Поэтому рабочая группа CSS начала отделять модули CSS3 друг от друга и развивать их, каждый модуль
+            индивидуально, относительно версии <a href="http://www.w3.org/TR/CSS21/">CSS2.1</a>. Это был пересмотр
+            несколько нереалистичной и изобилующей ошибками спецификации
+            <a href="http://www.w3.org/TR/2008/REC-CSS2-20080411/">CSS2.0</a>. В конце концов было решено, что модули
+            CSS3 будут зависеть только от CSS2.1 и, возможно, от других завершенных модулей. Кроме того,
+            рабочая группа CSS установила принцип, согласно которому уровень каждого модуля должен обновляться
+            независимо. Мы начали активно откладывать нестабильные функции из тех модулей CSS3, которые содержали более
+            стабильные, готовые к реализации части, чтобы довести эти спецификации до CR (candidate recommendation),
+            зная, что вскоре может выйти 4-й уровень, даже если другие модули 3 уровня еще не готовы. Эта доктрина
+            модульности была описана в <a
+                href="http://www.w3.org/TR/css-beijing">Snapshot 2007 (Пекин)</a>, который положил начало новой серии
+            документов <a href="http://www.w3.org/TR/CSS">CSS Snapshot</a>,
+            предназначенных для объединения всех завершенных модулей, формирующих современное состояние CSS.</p>
+        <p>С публикацией <a href="http://www.w3.org/TR/2011/REC-CSS2-20110607/">CSS2.1 Recommendation</a> рабочая группа
+            CSS
+            смогла опубликовать <a href="http://www.w3.org/TR/css3-color/">CSS Color Level 3</a>, <a
+                href="http://www.w3.org/TR/css3-selectors/">Selectors Level 3</a>, и <a
+                href="http://www.w3.org/TR/css3-namespace/">CSS Namespaces</a>. В настоящее время <a
+                href="http://www.w3.org/TR/css3-mediaqueries/">Media Queries</a>, <a
+                href="http://www.w3.org/TR/css3-background/">CSS Backgrounds and Borders Level 3</a>, <a
+                href="http://www.w3.org/TR/css3-multicol/">CSS Multi-column Layout</a> являются кандидатами в
+            рекомендации W3C, в то время как различные другие проекты стабилизируются в рамках подготовки
+            к переходу на CR. Поскольку эти модули 3-го уровня заблокированы, мы продвигаем ранние черновики <a
+                href="https://fantasai.inkedblade.net/weblog/2011/inside-csswg/modules">Selectors Level 4</a> и
+            запускаем несколько других модулей 4-го уровня на этапах мозгового штурма, готовых принять запросы на
+            новые функции.
+        </p>
+        <p>В конце концов, поскольку существующие старые модули CSS3 разделяются, реорганизуются, обновляются и
+            проходят через процесс, принятый в W3C, каждый модуль CSS может существовать в нескольких этапах: как
+            завершенная рекомендация, как потенциальная рекомендация (этап тестирования) и как рабочий черновик. Эта
+            модель похожа на популярные в разработке программного обеспечения подходы, в которых часто существует
+            несколько ветвей с разным уровнем стабильности.</p>
+        <p>Модуляризация CSS в соответствии с этой <strong>«Пекинской доктриной»</strong> позволяет рабочей группе CSS
+            доводить фичи до конца в рамках процесса, принятого в W3C, поддерживать стабильные спецификации и
+            параллельно разрабатывать новые, разделять сложные технологии на управляемые части - не только для
+            редакторов, но и для рецензентов, пользователей и разработчиков браузеров, эффективно распределять работу
+            между несколькими редакторами спецификаций, четко сообщать о стабильности функций CSS разработчикам, другим
+            группам стандартов и общественности и пользоваться преимуществами следования процессу W3C, который поощряет
+            широкое участие, обзор и тестирование в реальных условиях.
+        </p>
+
+    </article>
+
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+            href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a href="https://t.me/csswg_weekly">csswg_weekly</a>
+            в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+</html>
