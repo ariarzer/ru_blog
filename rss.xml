@@ -5,6 +5,18 @@
         <description>Блог о тонкостях спецификации CSS</description>
         <link>https://ariarzer.dev/</link>
         <item>
+            <title>Модуляризация CSS</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ariarzer.dev/articles/2022/inside-csswg/css-modularization.html</link>
+            <guid>https://ariarzer.dev/articles/2022/inside-csswg/css-modularization.html</guid>
+            <pubDate>Tue, 8 Feb 2022 15:30:00 +0300</pubDate>
+            <description>CSS Level 2 потребовалось 9 лет (2002-2011), чтобы получить статус рекомендации. Чтобы
+                ускорить стандартизацию беспроблемных частей, рабочая группа CSS приняла Пекинскую доктрину,
+                разделившую спецификацию CSS на модули. Более подробно о причинах и процессах разделения
+                читайте в статье. </description>
+            <source url="https://ariarzer.dev/articles/2022/inside-csswg/css-modularization.html">Источник публикации</source>
+        </item>
+        <item>
             <title>Замещаемые элементы и где они обитают</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
             <link>https://ariarzer.dev/notes/2022/20220205.html</link>
