@@ -3,151 +3,151 @@
     <channel>
         <title>CSS mind</title>
         <description>Блог о тонкостях спецификации CSS</description>
-        <link>https://ariarzer.dev/</link>
+        <link>https://ru.ariarzer.dev/</link>
         <item>
             <title>Модуляризация CSS</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
-            <link>https://ariarzer.dev/articles/2022/inside-csswg/css-modularization.html</link>
-            <guid>https://ariarzer.dev/articles/2022/inside-csswg/css-modularization.html</guid>
+            <link>https://ru.ariarzer.dev/articles/2022/inside-csswg/css-modularization.html</link>
+            <guid>https://ru.ariarzer.dev/articles/2022/inside-csswg/css-modularization.html</guid>
             <pubDate>Tue, 8 Feb 2022 15:30:00 +0300</pubDate>
             <description>CSS Level 2 потребовалось 9 лет (2002-2011), чтобы получить статус рекомендации. Чтобы
                 ускорить стандартизацию беспроблемных частей, рабочая группа CSS приняла Пекинскую доктрину,
                 разделившую спецификацию CSS на модули. Более подробно о причинах и процессах разделения
                 читайте в статье. </description>
-            <source url="https://ariarzer.dev/articles/2022/inside-csswg/css-modularization.html">Источник публикации</source>
+            <source url="https://ru.ariarzer.dev/articles/2022/inside-csswg/css-modularization.html">Источник публикации</source>
         </item>
         <item>
             <title>Замещаемые элементы и где они обитают</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
-            <link>https://ariarzer.dev/notes/2022/20220205.html</link>
-            <guid>https://ariarzer.dev/notes/2022/20220205.html</guid>
+            <link>https://ru.ariarzer.dev/notes/2022/20220205.html</link>
+            <guid>https://ru.ariarzer.dev/notes/2022/20220205.html</guid>
             <pubDate>Sat, 5 Feb 2022 15:30:00 +0300</pubDate>
             <description>Какие элементы можно назвать замещаемыми и почему это важно для верстальщика.</description>
-            <source url="https://ariarzer.dev/notes/2022/20220205.html">Источник публикации</source>
+            <source url="https://ru.ariarzer.dev/notes/2022/20220205.html">Источник публикации</source>
         </item>
         <item>
             <title>Строчные замещаемые элементы</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
-            <link>https://ariarzer.dev/notes/2022/20220116.html</link>
-            <guid>https://ariarzer.dev/notes/2022/20220116.html</guid>
+            <link>https://ru.ariarzer.dev/notes/2022/20220116.html</link>
+            <guid>https://ru.ariarzer.dev/notes/2022/20220116.html</guid>
             <pubDate>Sat, 15 Jan 2022 15:30:00 +0300</pubDate>
             <description>Как рассчитываются размеры и положение строчных замещаемых элементов в нормальном
                 потоке.</description>
-            <source url="https://ariarzer.dev/notes/2022/20220116.html">Источник публикации</source>
+            <source url="https://ru.ariarzer.dev/notes/2022/20220116.html">Источник публикации</source>
         </item>
         <item>
             <title>Незамещаемый блок в нормальном потоке</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
-            <link>https://ariarzer.dev/notes/2022/20220107.html</link>
-            <guid>https://ariarzer.dev/notes/2022/20220107.html</guid>
+            <link>https://ru.ariarzer.dev/notes/2022/20220107.html</link>
+            <guid>https://ru.ariarzer.dev/notes/2022/20220107.html</guid>
             <pubDate>Sat, 7 Jan 2022 15:30:00 +0300</pubDate>
             <description>Незамещаемый блочный элемент в нормальном потоке имеет такую ширину, чтобы сумма его
                 компонентов блочной модели по горизонтали была равна ширине его содержащего блока.</description>
-            <source url="https://ariarzer.dev/notes/2022/20220107.html">Источник публикации</source>
+            <source url="https://ru.ariarzer.dev/notes/2022/20220107.html">Источник публикации</source>
         </item>
         <item>
             <title>Содержащий блок</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
-            <link>https://ariarzer.dev/notes/2021/20211102.html</link>
-            <guid>https://ariarzer.dev/notes/2021/20211102.html</guid>
+            <link>https://ru.ariarzer.dev/notes/2021/20211102.html</link>
+            <guid>https://ru.ariarzer.dev/notes/2021/20211102.html</guid>
             <pubDate>Sat, 2 Nov 2021 15:30:00 +0300</pubDate>
             <description>Положение и размер боксов элемента вычисляются относительно определенного прямоугольника,
                 который называется содержащим блоком элемента. Подробно о том, как он определяется и зачем
                 нужен.</description>
-            <source url="https://ariarzer.dev/notes/2021/20211102.html">Источник публикации</source>
+            <source url="https://ru.ariarzer.dev/notes/2021/20211102.html">Источник публикации</source>
         </item>
         <item>
             <title>Схемы позиционирования в CSS</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
-            <link>https://ariarzer.dev/notes/2021/20210702.html</link>
-            <guid>https://ariarzer.dev/notes/2021/20210702.html</guid>
+            <link>https://ru.ariarzer.dev/notes/2021/20210702.html</link>
+            <guid>https://ru.ariarzer.dev/notes/2021/20210702.html</guid>
             <pubDate>Fri, 2 Jul 2021 15:30:00 +0300</pubDate>
             <description>Свойство position определяет, какая из схем позиционирования используется для
     вычисления положения бокса. Подробно о каждом значении этого свойства.</description>
-            <source url="https://ariarzer.dev/notes/2021/20210702.html">Источник публикации</source>
+            <source url="https://ru.ariarzer.dev/notes/2021/20210702.html">Источник публикации</source>
         </item>
         <item>
             <title>[Статья] Нативная валидация ввода в CSS</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
-            <link>https://ariarzer.dev/articles/2021/native-css-validation.html</link>
-            <guid>https://ariarzer.dev/articles/2021/native-css-validation.html</guid>
+            <link>https://ru.ariarzer.dev/articles/2021/native-css-validation.html</link>
+            <guid>https://ru.ariarzer.dev/articles/2021/native-css-validation.html</guid>
             <pubDate>Wed, 2 Jun 2021 15:30:00 +0300</pubDate>
             <description>Подробно о нативной валидации ввода с помощью CSS и HTML. Рассмотрим паттерны и специальные
                 ограничения ввода и как правильно сообщить пользователю об ошибке.</description>
-            <source url="https://ariarzer.dev/articles/2021/value-definition-syntax.html">Источник публикации</source>
+            <source url="https://ru.ariarzer.dev/articles/2021/value-definition-syntax.html">Источник публикации</source>
         </item>
         <item>
             <title>Относительный синтаксис цвета</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
-            <link>https://ariarzer.dev/notes/2021/20210601.html</link>
-            <guid>https://ariarzer.dev/notes/2021/20210601.html</guid>
+            <link>https://ru.ariarzer.dev/notes/2021/20210601.html</link>
+            <guid>https://ru.ariarzer.dev/notes/2021/20210601.html</guid>
             <pubDate>Tue, 1 Jun 2021 15:30:00 +0300</pubDate>
             <description>Многолетняя мечта верстальщиков делать цвет для состояния элемента путем модификации его 
 исходного цвета уже близка. Подробно о новом относительном синтаксисе цвета.</description>
-            <source url="https://ariarzer.dev/notes/2021/20210601.html">Источник публикации</source>
+            <source url="https://ru.ariarzer.dev/notes/2021/20210601.html">Источник публикации</source>
         </item>
         <item>
             <title>[Статья] Value Definition Syntax</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
-            <link>https://ariarzer.dev/articles/2021/value-definition-syntax.html</link>
-            <guid>https://ariarzer.dev/articles/2021/value-definition-syntax.html</guid>
+            <link>https://ru.ariarzer.dev/articles/2021/value-definition-syntax.html</link>
+            <guid>https://ru.ariarzer.dev/articles/2021/value-definition-syntax.html</guid>
             <pubDate>Wed, 21 Apr 2021 10:30:00 +0300</pubDate>
             <description>Используемая в большинстве языков для описания их формальной грамматики нотация Бекуса-Наура
                 не подходит для CSS. Рассмотрим причины и решение этой проблемы.</description>
-            <source url="https://ariarzer.dev/articles/2021/value-definition-syntax.html">Источник публикации</source>
+            <source url="https://ru.ariarzer.dev/articles/2021/value-definition-syntax.html">Источник публикации</source>
         </item>
         <item>
             <title>О color-mix() на март 2021</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
-            <link>https://ariarzer.dev/notes/2021/20210309.html</link>
-            <guid>https://ariarzer.dev/notes/2021/20210309.html</guid>
+            <link>https://ru.ariarzer.dev/notes/2021/20210309.html</link>
+            <guid>https://ru.ariarzer.dev/notes/2021/20210309.html</guid>
             <pubDate>Tue, 9 Mar 2021 10:30:00 +0300</pubDate>
             <description>color-mix() - новая функция, которая позволяет смешивать цвета в заданной пропорции. 
-Объянение как она работает и зачем может быть нужна.</description>
-            <source url="https://ariarzer.dev/notes/2021/20210309.html">Источник публикации</source>
+Объяснение как она работает и зачем может быть нужна.</description>
+            <source url="https://ru.ariarzer.dev/notes/2021/20210309.html">Источник публикации</source>
         </item>
         <item>
             <title>Немного о calc()</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
-            <link>https://ariarzer.dev/notes/2021/20210208.html</link>
-            <guid>https://ariarzer.dev/notes/2021/20210208.html</guid>
+            <link>https://ru.ariarzer.dev/notes/2021/20210208.html</link>
+            <guid>https://ru.ariarzer.dev/notes/2021/20210208.html</guid>
             <pubDate>Mon, 8 Feb 2021 10:30:00 +0300</pubDate>
             <description>Особенности наследования значений с calc(). Причины, по которым при наследовании 
 calc() вычисляется не до конца.</description>
-            <source url="https://ariarzer.dev/notes/2021/20210208.html">Источник публикации</source>
+            <source url="https://ru.ariarzer.dev/notes/2021/20210208.html">Источник публикации</source>
         </item>
         <item>
             <title>[Статья] Пара слов о @layer</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
-            <link>https://ariarzer.dev/articles/2021/css-cascade-layer.html</link>
-            <guid>https://ariarzer.dev/articles/2021/css-cascade-layer.html</guid>
+            <link>https://ru.ariarzer.dev/articles/2021/css-cascade-layer.html</link>
+            <guid>https://ru.ariarzer.dev/articles/2021/css-cascade-layer.html</guid>
             <pubDate>Thu, 21 Jan 2021 15:15:00 +0300</pubDate>
             <description>Точно так же, как каскадные источники обеспечивают баланс между стилями пользователя и
                 разработчика, каскадные слои обеспечивают способ организации структуры в рамках одного источника.
                 Рассмотрим причины их создания, тонкости работы и способы использования на практике.</description>
-            <source url="https://ariarzer.dev/articles/2021/css-cascade-layer.html">Источник публикации</source>
+            <source url="https://ru.ariarzer.dev/articles/2021/css-cascade-layer.html">Источник публикации</source>
         </item>
         <item>
             <title>Не тыкать в пользователя ошибками, пока он ничего не сделал</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
-            <link>https://ariarzer.dev/notes/2021/20210114.html</link>
-            <guid>https://ariarzer.dev/notes/2021/20210114.html</guid>
+            <link>https://ru.ariarzer.dev/notes/2021/20210114.html</link>
+            <guid>https://ru.ariarzer.dev/notes/2021/20210114.html</guid>
             <pubDate>Thu, 14 Jan 2021 15:15:00 +0300</pubDate>
-            <description>Объяснение, как показывать пользователю ошибку только когда это дейтельно нужно. 
-Не больщайтесь, поддержка плохая. Но надежда с нами.</description>
-            <source url="https://ariarzer.dev/notes/2021/20210114.html">Источник публикации</source>
+            <description>Объяснение, как показывать пользователю ошибку только когда это действительно нужно.
+Не обольщайтесь, поддержка плохая. Но надежда с нами.</description>
+            <source url="https://ru.ariarzer.dev/notes/2021/20210114.html">Источник публикации</source>
         </item>
         <item>
             <title>[Статья] CSS VALUE PROCESSING</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
-            <link>https://ariarzer.dev/articles/2020/css-value-processing.html</link>
-            <guid>https://ariarzer.dev/articles/2020/css-value-processing.html</guid>
+            <link>https://ru.ariarzer.dev/articles/2020/css-value-processing.html</link>
+            <guid>https://ru.ariarzer.dev/articles/2020/css-value-processing.html</guid>
             <pubDate>Fri, 11 Dec 2020 22:52:00 +0300</pubDate>
             <description>После того, как user agent проанализировал документ и построил DOM, он должен назначить
                 каждому элементу в дереве и, соответственно, каждому блоку в структуре форматирования значение для
                 каждого свойства. Для этого он последовательно вычисляет шесть значений каждого свойства. Рассмотрим
-                зачем и как это просиходит.</description>
-            <source url="https://ariarzer.dev/articles/2020/css-value-processing.html">Источник публикации</source>
+                зачем и как это происходит.</description>
+            <source url="https://ru.ariarzer.dev/articles/2020/css-value-processing.html">Источник публикации</source>
         </item>
     </channel>
 </rss>
