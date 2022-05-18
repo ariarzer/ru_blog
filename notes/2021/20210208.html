@@ -7,16 +7,16 @@
 
     <meta name="description" content="Особенности наследования значений с calc().">
 
-    <meta property="og:url" content="https://ariarzer.dev/">
+    <meta property="og:url" content="https://ru.ariarzer.dev/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Немного о calc().">
     <meta property="og:description" content="Особенности наследования значений с calc(). Причины, по которым при наследовании calc() вычисляется не до конца.">
-    <meta property="og:image" content="https://ariarzer.dev/img/index_og_preview.png">
+    <meta property="og:image" content="https://ru.ariarzer.dev/img/index_og_preview.png">
 
     <meta name="twitter:creator" content="@ariarzer">
     <meta name="twitter:site" content="@ariarzer">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://ariarzer.dev/img/index_twitter_preview.png">
+    <meta name="twitter:image" content="https://ru.ariarzer.dev/img/index_twitter_preview.png">
     
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -26,7 +26,7 @@
 
     <meta name="color-scheme" content="dark light">
 
-    <link rel="alternate" type="application/rss+xml" href="https://ariarzer.dev/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml" />
 
     <link rel="stylesheet" id="style_link">
 </head>
@@ -54,11 +54,11 @@ div {
         </code></pre>
         <p>Подробно поведение браузера можно посмотреть в <a href="https://codepen.io/ariarzer/pen/yLVOxgp">этом</a>
             пэне. Здесь же ограничимся информацией о том, что эта декларации валидная и <a
-                href="https://ariarzer.dev/css-value-processing.html#used-value">Used value</a> высота для блока будет
+                href="https://ru.ariarzer.dev/css-value-processing.html#used-value">Used value</a> высота для блока будет
             <code>0px</code>.</p>
         <p><strong>Почему отрицательное значение может быть валидно для высоты?</strong></p>
         <p>Потому что <code>calc()</code> наследуется в вычисленном не до конца виде.</p>
-        <p><a href="https://ariarzer.dev/css-value-processing.html#computed-value">Computed value</a> - это значение,
+        <p><a href="https://ru.ariarzer.dev/css-value-processing.html#computed-value">Computed value</a> - это значение,
             которое вложенные блоки наследуют как <code>inherit</code>. На этом этапе значения в относительных единицах
             (em, ex, vh, vw, но <strong>не проценты</strong>) приводятся к пикселям. Это утверждение относится и к
             значениям, содержащим <code>calc()</code> или другие функции.</p>
