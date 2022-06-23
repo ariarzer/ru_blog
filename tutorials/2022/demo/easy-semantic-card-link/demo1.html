@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark light">
+    <title>demo</title>
+</head>
+<body>
+    <main>
+        <article>
+            <h3><a href="/item">Item header</a></h3>
+            <p>Item looong description. Item looong description. Item looong description.</p>
+            <img src="/item_img.png"/>
+        </article>
+    </main>
+    <style>
+        /* functional styles */
+
+        article {
+            position: relative;
+            z-index: 0;
+            font-size: initial;
+        }
+
+        h3 > a::before{
+            position: absolute;
+            content: '';
+            inset: 0;
+            z-index: -1;
+        }
+
+        p, img {
+            pointer-events: none;
+        }
+
+        /* decorative styles */
+
+        body {
+            margin: 0;
+        }
+
+        :root {
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+            font-size: 2em;
+        }
+
+        article {
+            display: grid;
+            grid-template-rows: min-content 1fr min-content;
+            grid-template-columns: 1fr 1fr;
+            grid-auto-flow: column;
+            height: 100px;
+            width: 300px;
+        }
+
+        p, h3 {
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: green;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+            background-image: linear-gradient(45deg, red, rebeccapurple);
+
+            grid-row: span 5;
+        }
+    </style>
+</body>
+</html>
