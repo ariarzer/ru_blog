@@ -5,6 +5,15 @@
         <description>Блог о тонкостях спецификации CSS</description>
         <link>https://ru.ariarzer.dev/</link>
         <item>
+            <title>Простая семантичная карточка-ссылка</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ru.ariarzer.dev/tutorials/2022/easy-semantic-card-link.html</link>
+            <guid>https://ru.ariarzer.dev/tutorials/2022/easy-semantic-card-link.html</guid>
+            <pubDate>Fri, 24 Jun 2022 16:30:00 +0300</pubDate>
+            <description>Карточка товара, карточка поста в блоге. Карточка-ссылка. Как сделать её правильно?</description>
+            <source url="https://ru.ariarzer.dev/tutorials/2022/easy-semantic-card-link.html">Источник публикации</source>
+        </item>
+        <item>
             <title>Модуляризация CSS</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
             <link>https://ru.ariarzer.dev/articles/2022/inside-csswg/css-modularization.html</link>
