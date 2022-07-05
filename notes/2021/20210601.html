@@ -10,14 +10,15 @@
     <meta property="og:url" content="https://ru.ariarzer.dev/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Относительный синтаксис цвета.">
-    <meta property="og:description" content="Многолетняя мечта верстальщиков делать цвет для состояния элемента путем модификации его исходного цвета уже близка. Подробно о новом относительном синтаксисе цвета.">
+    <meta property="og:description"
+          content="Многолетняя мечта верстальщиков делать цвет для состояния элемента путем модификации его исходного цвета уже близка. Подробно о новом относительном синтаксисе цвета.">
     <meta property="og:image" content="https://ru.ariarzer.dev/img/index_og_preview.png">
 
     <meta name="twitter:creator" content="@ariarzer">
     <meta name="twitter:site" content="@ariarzer">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://ru.ariarzer.dev/img/index_twitter_preview.png">
-    
+
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -26,7 +27,7 @@
 
     <meta name="color-scheme" content="dark light">
 
-    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml"/>
 
     <link rel="stylesheet" id="style_link">
 </head>
@@ -37,16 +38,18 @@
         <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
             <button onclick="document.getElementById('style_link').href='/style/common.css'">
                 подключить
-            </button> их.
+            </button>
+            их.
         </p>
     </header>
 
     <article>
-        <time datetime="2021-06-01 00:00">1 июня 2021 года</time>.</p>
+        <time datetime="2021-06-01 00:00">1 июня 2021 года</time>
+        .</p>
         <h1>Относительный синтаксис цвета</h1>
         <p><em>Сегодня, 2021.06.01, вышла новая версия черновика спецификации <a
-                    href="https://www.w3.org/TR/2021/WD-css-color-5-20210601/">css-color-5</a>. поговорим об одном из
-                нововведений.</em></p>
+            href="https://www.w3.org/TR/2021/WD-css-color-5-20210601/">css-color-5</a>. поговорим об одном из
+            нововведений.</em></p>
         <p>В предыдущих версиях спецификации css-color функции цвета могли определять цвета только напрямую задавая все
             цветовые каналы. Новый относительный синтаксис цвета позволяет изменять существующие цвета с помощью функций
             цвета: если указан исходный цвет, то каждый цветовой канал может быть либо напрямую указан заново, либо взят
@@ -58,10 +61,12 @@
             <li>Если указан исходный цвет, остальные аргументы могут быть либо указаны напрямую, как обычно, либо
                 указаны как <strong>ключевое слово канала</strong>, относящееся к одному из каналов исходного цвета.
                 Математические функции также могут использовать эти ключевые слова для динамического изменения каналов
-                исходного цвета.</li>
+                исходного цвета.
+            </li>
             <li>Использование относительного синтаксиса цвета не изменяет то, является ли аргумент обязательным. Однако,
                 если значение прозрачности опущено, по умолчанию используется прозрачность исходного цвета (а не 100%,
-                как в абсолютном синтаксисе).</li>
+                как в абсолютном синтаксисе).
+            </li>
         </ol>
         <p>Если исходный цвет был изначально задан с другой функцией цвета, он сначала преобразуется в выбранную функцию
             цвета, чтобы он имел осмысленные значения для новых каналов.</p>
@@ -119,10 +124,10 @@
 
     <footer>
         <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
-                href="https://t.me/ariarzer">telegram</a>.</p>
+            href="https://t.me/ariarzer">telegram</a>.</p>
         <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
         <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a
-                href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
+            href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
 
         <p><br>Нашли опечатку? Сообщите мне о ней.</p>
     </footer>

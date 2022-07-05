@@ -10,14 +10,15 @@
     <meta property="og:url" content="https://ru.ariarzer.dev/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="О color-mix() на март 2021">
-    <meta property="og:description" content="color-mix() - новая функция, которая позволяет смешивать цвета в заданной пропорции. Объянение как она работает и зачем может быть нужна.">
+    <meta property="og:description"
+          content="color-mix() - новая функция, которая позволяет смешивать цвета в заданной пропорции. Объянение как она работает и зачем может быть нужна.">
     <meta property="og:image" content="https://ru.ariarzer.dev/img/index_og_preview.png">
 
     <meta name="twitter:creator" content="@ariarzer">
     <meta name="twitter:site" content="@ariarzer">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://ru.ariarzer.dev/img/index_twitter_preview.png">
-    
+
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -26,7 +27,7 @@
 
     <meta name="color-scheme" content="dark light">
 
-    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml"/>
 
     <link rel="stylesheet" id="style_link">
 </head>
@@ -37,18 +38,20 @@
         <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
             <button onclick="document.getElementById('style_link').href='/style/common.css'">
                 подключить
-            </button> их.
+            </button>
+            их.
         </p>
     </header>
 
     <article>
-        <time datetime="2021-03-09 00:00">9 марта 2021 года</time>.</p>
+        <time datetime="2021-03-09 00:00">9 марта 2021 года</time>
+        .</p>
         <h1>О <code>color-mix()</code> на март 2021</h1>
         <p>На прошлой неделе CSSWG <a href="https://t.me/csswg_weekly/7">рассмотрела</a> <a
-                href="https://t.me/csswg_weekly/8">несколько</a> <a href="https://t.me/csswg_weekly/9">ишью</a> о
+            href="https://t.me/csswg_weekly/8">несколько</a> <a href="https://t.me/csswg_weekly/9">ишью</a> о
             функции <code>color-mix()</code>, поэтому считаю нужным написать о ней подробнее.</p>
         <p>Эта функция принимает <strong>два значения</strong> <code>&lt;color&gt;</code> и возвращает <strong>результат
-                их смешивания</strong> в заданной пропорции в заданном цветовом пространстве.</p>
+            их смешивания</strong> в заданной пропорции в заданном цветовом пространстве.</p>
         <p>Грамматика функции, указанная в спецификации:</p>
         <pre><code>color-mix() = color-mix( in &lt;colorspace&gt; , [ &lt;color&gt; &amp;&amp; &lt;percentage&gt;? ]#{2})
         </code></pre>
@@ -71,15 +74,18 @@ color: color-mix(in var(--colorspace), var(--color1) var(-p1),  var(--color2) va
             <li>Если сумма процентов равна нулю <em>поведение пока не определено</em></li>
             <li>Если оба знаечние опредоставлены, но не дают в сумме 100%, они масштабируются соответствующим образом,
                 чтобы они в сумме составляли 100%. Это означает, что <code>p1 = p1 / (p1 + p2)</code>, а
-                <code>p2 = p2 / (p1 + p2)</code>.</li>
+                <code>p2 = p2 / (p1 + p2)</code>.
+            </li>
         </ol>
         <p>После нормализации обоих значений <strong>результат получается по следующему алгоритму</strong>:</p>
         <ol>
             <li>Оба цвета преобразуются в указанное цветовое пространство. Если заданное цветовое пространство имеет
                 меньшую гамму, чем та, в которой задан цвет, который должен быть настроен, будет выполнено отображение
-                гаммы.</li>
+                гаммы.
+            </li>
             <li>Затем цвета интерполируются в указанном цветовом пространстве. Результатом смешивания является указанное
-                процентное соотношение цвета по мере перехода от второго цвета к первому.</li>
+                процентное соотношение цвета по мере перехода от второго цвета к первому.
+            </li>
         </ol>
         <p>Для больше наглядности <strong>разберем пример</strong>:</p>
         <pre><code>color-mix(in lch, peru 40%, lightgoldenrod)
@@ -93,15 +99,16 @@ color: color-mix(in var(--colorspace), var(--color1) var(-p1),  var(--color2) va
             <li><strong>результат</strong>: <code>lch(79.7256% 40.4534 84.7634)</code></li>
         </ol>
         <p>Источник:
-             <a href="https://drafts.csswg.org/css-color-5/#color-mix">https://drafts.csswg.org/css-color-5/#color-mix</a></p>
+            <a href="https://drafts.csswg.org/css-color-5/#color-mix">https://drafts.csswg.org/css-color-5/#color-mix</a>
+        </p>
     </article>
 
     <footer>
         <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
-                href="https://t.me/ariarzer">telegram</a>.</p>
+            href="https://t.me/ariarzer">telegram</a>.</p>
         <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
         <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a
-                href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
+            href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
 
         <p><br>Нашли опечатку? Сообщите мне о ней.</p>
     </footer>

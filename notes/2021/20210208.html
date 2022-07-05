@@ -10,14 +10,15 @@
     <meta property="og:url" content="https://ru.ariarzer.dev/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Немного о calc().">
-    <meta property="og:description" content="Особенности наследования значений с calc(). Причины, по которым при наследовании calc() вычисляется не до конца.">
+    <meta property="og:description"
+          content="Особенности наследования значений с calc(). Причины, по которым при наследовании calc() вычисляется не до конца.">
     <meta property="og:image" content="https://ru.ariarzer.dev/img/index_og_preview.png">
 
     <meta name="twitter:creator" content="@ariarzer">
     <meta name="twitter:site" content="@ariarzer">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://ru.ariarzer.dev/img/index_twitter_preview.png">
-    
+
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -26,7 +27,7 @@
 
     <meta name="color-scheme" content="dark light">
 
-    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml"/>
 
     <link rel="stylesheet" id="style_link">
 </head>
@@ -37,12 +38,14 @@
         <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
             <button onclick="document.getElementById('style_link').href='/style/common.css'">
                 подключить
-            </button> их.
+            </button>
+            их.
         </p>
     </header>
 
     <article>
-        <time datetime="2021-02-08 21:26">8 февраля 2021 года</time>.</p>
+        <time datetime="2021-02-08 21:26">8 февраля 2021 года</time>
+        .</p>
         <h1>Немного о calc()</h1>
         <p>Рассмотрим пример:</p>
         <pre><code>&lt;div&gt;&lt;/div&gt;
@@ -54,7 +57,8 @@ div {
         </code></pre>
         <p>Подробно поведение браузера можно посмотреть в <a href="https://codepen.io/ariarzer/pen/yLVOxgp">этом</a>
             пэне. Здесь же ограничимся информацией о том, что эта декларации валидная и <a
-                href="https://ru.ariarzer.dev/css-value-processing.html#used-value">Used value</a> высота для блока будет
+                href="https://ru.ariarzer.dev/css-value-processing.html#used-value">Used value</a> высота для блока
+            будет
             <code>0px</code>.</p>
         <p><strong>Почему отрицательное значение может быть валидно для высоты?</strong></p>
         <p>Потому что <code>calc()</code> наследуется в вычисленном не до конца виде.</p>
@@ -95,16 +99,16 @@ height: calc(100px - 5em); /* =&gt; CV=calc(50px) */
         <p>Проще говоря, если вычисленное значение не может быть применено в целевом контексте, то оно приводится к
             ближайшей границе допустимого диапазона.</p>
         <p>Источник: <a
-                href="https://www.w3.org/TR/css-values-4/#calc-range">https://www.w3.org/TR/css-values-4/#calc-range</a>
+            href="https://www.w3.org/TR/css-values-4/#calc-range">https://www.w3.org/TR/css-values-4/#calc-range</a>
         </p>
     </article>
 
     <footer>
         <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
-                href="https://t.me/ariarzer">telegram</a>.</p>
+            href="https://t.me/ariarzer">telegram</a>.</p>
         <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
         <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a
-                href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
+            href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
 
         <p><br>Нашли опечатку? Сообщите мне о ней.</p>
     </footer>

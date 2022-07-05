@@ -17,7 +17,7 @@
     <meta name="twitter:site" content="@ariarzer">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://ru.ariarzer.dev/img/index_twitter_preview.png">
-    
+
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -26,50 +26,53 @@
 
     <meta name="color-scheme" content="dark light">
 
-    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml"/>
 
     <link rel="stylesheet" id="style_link">
 </head>
 <body>
 
-<header>
-    <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
-    <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
-        <button onclick="document.getElementById('style_link').href='/style/common.css'">
-            подключить
-        </button> их.
-    </p>
-</header>
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='/style/common.css'">
+                подключить
+            </button>
+            их.
+        </p>
+    </header>
 
-<article>
-    <h1 id="value-processing">CSS VALUE PROCESSING</h1>
-    <p><em>Дисклеймер</em>: статья представляет собой неполный перевод одного из разделов спецификации c некоторыми
-        дополнениями.</p>
-    <p>После того, как user agent проанализировал документ и построил DOM, он должен назначить каждому элементу в дереве
-        и, соответственно, каждому блоку в структуре форматирования значение для каждого свойства.</p>
-    <p>Итоговым значением каждого css-свойства является результат последовательного вычисления шести других
-        значений:</p>
-    <ol>
-        <li><code>Declared value</code> - сбор в список всех деклараций свойства, применимых к элементу.</li>
-        <li><code>Cascaded value</code> - этап сортировки списка по заданным правилам.</li>
-        <li><code>Specified value</code> - этап для определения единственного значения свойства.</li>
-        <li><code>Computed value</code> - проведение всех возможных операций над значением, которые не нарушают
-            корректность
-            его наследования.
-        </li>
-        <li><code>Used value</code> - проведение всех оставшихся операций.</li>
-        <li><code>Actual value</code> - преобразование значение на основе ограничений среды отображения.</li>
-    </ol>
-    <h2 id="declared-value"><a href="#declared-value">$</a> Declared value</h2>
-    <p>Сбор всех деклараций свойства, применимых к элементу. При отборе значений учитывается:</p>
-    <ol>
-        <li>подходят ли они по типу данных для этого свойства</li>
-        <li>находятся ли они внутри подходящего <code>css condition</code> (<code>@media</code>, <code>@supports</code>
-            ,…)
-        </li>
-    </ol>
-    <p><strong>Например:</strong></p>
-    <pre><code data-lang="css">@media (max-width: 756px) {
+    <article>
+        <h1 id="value-processing">CSS VALUE PROCESSING</h1>
+        <p><em>Дисклеймер</em>: статья представляет собой неполный перевод одного из разделов спецификации c некоторыми
+            дополнениями.</p>
+        <p>После того, как user agent проанализировал документ и построил DOM, он должен назначить каждому элементу в
+            дереве
+            и, соответственно, каждому блоку в структуре форматирования значение для каждого свойства.</p>
+        <p>Итоговым значением каждого css-свойства является результат последовательного вычисления шести других
+            значений:</p>
+        <ol>
+            <li><code>Declared value</code> - сбор в список всех деклараций свойства, применимых к элементу.</li>
+            <li><code>Cascaded value</code> - этап сортировки списка по заданным правилам.</li>
+            <li><code>Specified value</code> - этап для определения единственного значения свойства.</li>
+            <li><code>Computed value</code> - проведение всех возможных операций над значением, которые не нарушают
+                корректность
+                его наследования.
+            </li>
+            <li><code>Used value</code> - проведение всех оставшихся операций.</li>
+            <li><code>Actual value</code> - преобразование значение на основе ограничений среды отображения.</li>
+        </ol>
+        <h2 id="declared-value"><a href="#declared-value">$</a> Declared value</h2>
+        <p>Сбор всех деклараций свойства, применимых к элементу. При отборе значений учитывается:</p>
+        <ol>
+            <li>подходят ли они по типу данных для этого свойства</li>
+            <li>находятся ли они внутри подходящего <code>css condition</code> (<code>@media</code>,
+                <code>@supports</code>
+                ,…)
+            </li>
+        </ol>
+        <p><strong>Например:</strong></p>
+        <pre><code data-lang="css">@media (max-width: 756px) {
   .class {
     width: 100%;
   }
@@ -86,41 +89,44 @@
 .class2 {
   width: 500em;
 }</code></pre>
-    <p>Declared value для такого кода для свойства <code>width</code> для элемента <code>&lt;div class=&quot;class&quot;&gt;&lt;/div&gt;</code>
-        для планшетов будет выглядеть примерно как:</p>
-    <ol>
-        <li>декларация в селекторе <code>.class</code>, строчка такая-то, документ такой-то (или атрибут
-            <code>style</code>, или
-            инлайновые стили, в общем место объявления)
-        </li>
-        <li>декларация в селекторе <code>.class</code>, строчка такая-то, документ такой-то</li>
-    </ol>
-    <p>Объявление ширины в микросекундах не будет включено в Declared value, потому что не валидно по типу, здесь должен
-        быть <a href="https://www.w3.org/TR/css-values-4/#length-value">distance unit</a>. Объявление из селектора
-        <code>.class2</code>
-        не пройдет потому что селектор не подходит блоку.</p>
-    <p>А на широком экране будет просто:</p>
-    <ol>
-        <li>декларация в селекторе <code>.class</code>, строчка такая-то, документ такой-то</li>
-    </ol>
-    <p>... потому что <code>@media</code>-выражение не будет выполняться.</p>
-    <h2 id="cascaded-value"><a href="#cascaded-value">$</a> Cascaded value</h2>
-    <p>Задача каскада - отсортировать список всех возможных значений по четко заданным правилам, чтобы на следующем
-        этапе из них можно было бы выбрать одно. Обратите внимание, что входящий в этот этап список может быть пустой!</p>
-    <h3>Уровни объявления</h3>
-    <p>Существует восемь возможных уровней, где можно объявить значение свойства. Их приоритет в порядке убывания:</p>
-    <ol>
-        <li>Декларации из <code>Transition</code></li>
-        <li><code>!important</code> декларации user-агента</li>
-        <li><code>!important</code> декларации пользователя</li>
-        <li><code>!important</code> декларации автора (то есть разработчика)</li>
-        <li>Animation декларации</li>
-        <li>Декларации автора (то есть разработчика)</li>
-        <li>Декларации пользователя</li>
-        <li>Декларации user-агента</li>
-    </ol>
-    <p><strong>Например:</strong></p>
-    <pre><code data-lang="html">&lt;div class="blue" id="red"> CSS &lt;/div>
+        <p>Declared value для такого кода для свойства <code>width</code> для элемента <code>&lt;div class=&quot;class&quot;&gt;&lt;/div&gt;</code>
+            для планшетов будет выглядеть примерно как:</p>
+        <ol>
+            <li>декларация в селекторе <code>.class</code>, строчка такая-то, документ такой-то (или атрибут
+                <code>style</code>, или
+                инлайновые стили, в общем место объявления)
+            </li>
+            <li>декларация в селекторе <code>.class</code>, строчка такая-то, документ такой-то</li>
+        </ol>
+        <p>Объявление ширины в микросекундах не будет включено в Declared value, потому что не валидно по типу, здесь
+            должен
+            быть <a href="https://www.w3.org/TR/css-values-4/#length-value">distance unit</a>. Объявление из селектора
+            <code>.class2</code>
+            не пройдет потому что селектор не подходит блоку.</p>
+        <p>А на широком экране будет просто:</p>
+        <ol>
+            <li>декларация в селекторе <code>.class</code>, строчка такая-то, документ такой-то</li>
+        </ol>
+        <p>... потому что <code>@media</code>-выражение не будет выполняться.</p>
+        <h2 id="cascaded-value"><a href="#cascaded-value">$</a> Cascaded value</h2>
+        <p>Задача каскада - отсортировать список всех возможных значений по четко заданным правилам, чтобы на следующем
+            этапе из них можно было бы выбрать одно. Обратите внимание, что входящий в этот этап список может быть
+            пустой!</p>
+        <h3>Уровни объявления</h3>
+        <p>Существует восемь возможных уровней, где можно объявить значение свойства. Их приоритет в порядке
+            убывания:</p>
+        <ol>
+            <li>Декларации из <code>Transition</code></li>
+            <li><code>!important</code> декларации user-агента</li>
+            <li><code>!important</code> декларации пользователя</li>
+            <li><code>!important</code> декларации автора (то есть разработчика)</li>
+            <li>Animation декларации</li>
+            <li>Декларации автора (то есть разработчика)</li>
+            <li>Декларации пользователя</li>
+            <li>Декларации user-агента</li>
+        </ol>
+        <p><strong>Например:</strong></p>
+        <pre><code data-lang="html">&lt;div class="blue" id="red"> CSS &lt;/div>
 &lt;style>
   .blue {
       color: blue !important;
@@ -130,10 +136,11 @@
       color: red;
   }
 &lt;/style></code></pre>
-    <p>Текст в блоке будет синего цвета, потому что уровень объявления <code>!important декларации автора</code> выше
-        чем просто <code>декларации автора</code>.</p>
-    <p><strong>Еще пример:</strong></p>
-    <pre><code data-lang="html">&lt;div class="blue"> CSS &lt;/div>
+        <p>Текст в блоке будет синего цвета, потому что уровень объявления <code>!important декларации автора</code>
+            выше
+            чем просто <code>декларации автора</code>.</p>
+        <p><strong>Еще пример:</strong></p>
+        <pre><code data-lang="html">&lt;div class="blue"> CSS &lt;/div>
 &lt;style>
   .blue {
     color: blue !important;
@@ -143,102 +150,109 @@
      50% {color: green;}
    }
 &lt;/style></code></pre>
-    <p>Не смотря на наличие анимации цвета, ее не будет видно, потому что декларация цвета внутри директивы <code>@keyframe</code>
-        находятся на уровне определения <code>Animation декларации</code>, который ниже чем <code>!important декларации
-            автора</code>.</p>
-    <h3>Специфичность селекторов</h3>
-    <p>Каждая декларация имеет ту же специфичность, что и селектор, в котором она объявлена. На этом шаге
-        декларации, которые объявлены вне селекторов (например, содержимое атрибута стиля), считаются более
-        специфичными, чем любые другие. Декларация с самой высокой специфичностью будет сверху списка.</p>
-    <h4>Как считается коэффициент специфичности?</h4>
-    <p>Селекторы делятся на три уровня:</p>
-    <ol>
-        <li>по идентификатору</li>
-        <li>по классу, по псевдоклассу и по атрибуту</li>
-        <li>по псевдоэлементу и по тегу</li>
-    </ol>
-    <p>Каждый из этих уровней при расчете специфичности конкретного селектора можно рассматривать образом, похожим на <a
-        href="https://semver.org/lang/ru/">семантическое версионирование</a>. Старшая, мажорная версия - количество
-        селекторов первого уровня, минорная - селекторов второго уровня, патч - третьего.</p>
-    <table>
-        <thead>
-        <tr>
-            <th>selectors</th>
-            <th>major</th>
-            <th>minor</th>
-            <th>patch</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>#id</td>
-            <td>+ 1</td>
-            <td>0</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>.class, :hover, [name=&quot;value&quot;]</td>
-            <td>0</td>
-            <td>+ 1</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>::before, div</td>
-            <td>0</td>
-            <td>0</td>
-            <td>+ 1</td>
-        </tr>
-        </tbody>
-    </table>
-    <p>Говорят что один селектор <strong>специфичнее</strong> другого, когда &quot;версия&quot; первого больше &quot;версии&quot;
-        второго.</p>
-    <p><strong>Например:</strong></p>
-    <table>
-        <thead>
-        <tr>
-            <th>selector</th>
-            <th>major</th>
-            <th>minor</th>
-            <th>patch</th>
-            <th>total</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>span</td>
-            <td>0</td>
-            <td>0</td>
-            <td>1</td>
-            <td>0.0.1</td>
-        </tr>
-        <tr>
-            <td>.class #id</td>
-            <td>1</td>
-            <td>1</td>
-            <td>0</td>
-            <td>1.1.0</td>
-        </tr>
-        <tr>
-            <td>.class #id:hover::before</td>
-            <td><strong>1</strong></td>
-            <td><strong>2</strong></td>
-            <td><strong>1</strong></td>
-            <td><strong>1.2.1</strong></td>
-        </tr>
-        <tr>
-            <td>#id [name=&quot;value&quot;]</td>
-            <td>1</td>
-            <td>1</td>
-            <td>0</td>
-            <td>1.1.0</td>
-        </tr>
-        </tbody>
-    </table>
-    <p>Третий селектор имеет больший вес, так как его аналог в семвере был бы самой старшей версией из имеющихся.</p>
-    <p>Дополнительно следует сказать что в такой системе гарантируется, что <code>.a.b.c.d.e.f.e.r.g.t.h = 0.11.0</code>
-        не будет иметь больший коэффициент специфичности чем <code>#id = 1.0.0</code>.</p>
-    <p>На практике все сказанное выше означает, что в такой ситуации текст будет красным даже при наведении мыши:</p>
-    <pre><code data-lang="html">&lt;div class="class" id="id" attr="attr"> CSS &lt;/div>
+        <p>Не смотря на наличие анимации цвета, ее не будет видно, потому что декларация цвета внутри директивы <code>@keyframe</code>
+            находятся на уровне определения <code>Animation декларации</code>, который ниже чем <code>!important
+                декларации
+                автора</code>.</p>
+        <h3>Специфичность селекторов</h3>
+        <p>Каждая декларация имеет ту же специфичность, что и селектор, в котором она объявлена. На этом шаге
+            декларации, которые объявлены вне селекторов (например, содержимое атрибута стиля), считаются более
+            специфичными, чем любые другие. Декларация с самой высокой специфичностью будет сверху списка.</p>
+        <h4>Как считается коэффициент специфичности?</h4>
+        <p>Селекторы делятся на три уровня:</p>
+        <ol>
+            <li>по идентификатору</li>
+            <li>по классу, по псевдоклассу и по атрибуту</li>
+            <li>по псевдоэлементу и по тегу</li>
+        </ol>
+        <p>Каждый из этих уровней при расчете специфичности конкретного селектора можно рассматривать образом, похожим
+            на <a
+                href="https://semver.org/lang/ru/">семантическое версионирование</a>. Старшая, мажорная версия -
+            количество
+            селекторов первого уровня, минорная - селекторов второго уровня, патч - третьего.</p>
+        <table>
+            <thead>
+            <tr>
+                <th>selectors</th>
+                <th>major</th>
+                <th>minor</th>
+                <th>patch</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>#id</td>
+                <td>+ 1</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>.class, :hover, [name=&quot;value&quot;]</td>
+                <td>0</td>
+                <td>+ 1</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>::before, div</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+ 1</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>Говорят что один селектор <strong>специфичнее</strong> другого, когда &quot;версия&quot; первого больше
+            &quot;версии&quot;
+            второго.</p>
+        <p><strong>Например:</strong></p>
+        <table>
+            <thead>
+            <tr>
+                <th>selector</th>
+                <th>major</th>
+                <th>minor</th>
+                <th>patch</th>
+                <th>total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>span</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+                <td>0.0.1</td>
+            </tr>
+            <tr>
+                <td>.class #id</td>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+                <td>1.1.0</td>
+            </tr>
+            <tr>
+                <td>.class #id:hover::before</td>
+                <td><strong>1</strong></td>
+                <td><strong>2</strong></td>
+                <td><strong>1</strong></td>
+                <td><strong>1.2.1</strong></td>
+            </tr>
+            <tr>
+                <td>#id [name=&quot;value&quot;]</td>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+                <td>1.1.0</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>Третий селектор имеет больший вес, так как его аналог в семвере был бы самой старшей версией из
+            имеющихся.</p>
+        <p>Дополнительно следует сказать что в такой системе гарантируется, что <code>.a.b.c.d.e.f.e.r.g.t.h =
+            0.11.0</code>
+            не будет иметь больший коэффициент специфичности чем <code>#id = 1.0.0</code>.</p>
+        <p>На практике все сказанное выше означает, что в такой ситуации текст будет красным даже при наведении
+            мыши:</p>
+        <pre><code data-lang="html">&lt;div class="class" id="id" attr="attr"> CSS &lt;/div>
 &lt;style>
   div.class[attr="attr"]:hover {
     color: green; /* 0.3.1 */
@@ -248,105 +262,114 @@
     color: red; /* 1.0.0 */
   }
 &lt;/style></code></pre>
-    <h3>Порядок объявления</h3>
-    <p>Последняя декларация в порядке документа выигрывает. Для этого:</p>
-    <ul>
-        <li>декларации из импортированных таблиц стилей упорядочены так, как будто их таблицы стилей были вставлены
-            вместо правила import
-            <pre><code data-lang="css">@import "style.css"; /* div { color: red; } */
+        <h3>Порядок объявления</h3>
+        <p>Последняя декларация в порядке документа выигрывает. Для этого:</p>
+        <ul>
+            <li>декларации из импортированных таблиц стилей упорядочены так, как будто их таблицы стилей были вставлены
+                вместо правила import
+                <pre><code data-lang="css">@import "style.css"; /* div { color: red; } */
 @import "style2.css"; /* div { color: blue; } */
 /* текст в блоках будет синий */</code></pre>
-        </li>
-        <li><p>декларации из таблиц стилей, подключенных к документу, обрабатываются так, как если бы они были
-            объединены в
-            порядке подключения, как это определено языком основного документа</p>
-            <pre><code data-lang="html">&lt;link rel="stylesheet" type="text/css" href="/css/style1.css">
+            </li>
+            <li><p>декларации из таблиц стилей, подключенных к документу, обрабатываются так, как если бы они были
+                объединены в
+                порядке подключения, как это определено языком основного документа</p>
+                <pre><code data-lang="html">&lt;link rel="stylesheet" type="text/css" href="/css/style1.css">
 &lt;!--  div { color: red; }  -->
 &lt;link rel="stylesheet" type="text/css" href="/css/style2.css">
 &lt;!--  div { color: green; }  -->
 &lt;!-- текст в блоках будет зелёный --></code></pre>
-        </li>
-        <li>декларации из атрибута <code>style</code> упорядочиваются в соответствии с порядком документа, в котором
-            отображаются, и все размещаются после любых таблиц стилей (поэтому и считается условно, что они имеют
-            наибольшую специфичность)
-            <pre><code data-lang="html">&lt;div style="color: red; color: violet">CSS&lt;/div>
+            </li>
+            <li>декларации из атрибута <code>style</code> упорядочиваются в соответствии с порядком документа, в котором
+                отображаются, и все размещаются после любых таблиц стилей (поэтому и считается условно, что они имеют
+                наибольшую специфичность)
+                <pre><code data-lang="html">&lt;div style="color: red; color: violet">CSS&lt;/div>
 &lt;style>
   div {
     color: green;
   }
 &lt;/style>
 &lt;!-- текст в блоках будет фиолетовый --></code></pre>
-        </li>
-    </ul>
-    <h2 id="specified-value"><a href="#specified-value">$</a> Specified value</h2>
-    <p>Промежуточный итог после каскада: если список на входе был не пустой - то отдается первое значение из списка Cascaded value, а если нет,
-        то для наследуемых свойств - Computed value родителя (если есть), или <a
-            href="https://www.w3.org/TR/css-cascade-3/#initial-value">Initial value</a> по спеке в остальных
-        случаях.
-    </p>
-    <h2 id="computed-value"><a href="#computed-value">$</a>Computed value</h2>
-    <p>Как правило, Computed value разрешает значение, насколько это возможно, без раскладки документа или выполнения
-        других дорогостоящих или трудно распараллеливаемых операций, таких как сетевые запросы или получение значений,
-        отличных от элемента и его родителя. Computed value - значение, которое <strong>наследуют вложенные блоки как
-            <code>inherit</code></strong>. Computed value существует, даже если свойство не применяется непосредственно
-        в элементу. Однако некоторые свойства могут изменить способ определения вычисленного значения в зависимости от
-        того, применяется ли свойство к элементу.
-    </p>
-    <p><strong>Примеры</strong> вычисления Computed value:</p>
-    <ul>
-        <li>значения с относительными единицами (em, ex, vh, vw) приводятся к пикселям
-            <pre><code data-lang="css">height: 10vh; /* CV = 100px */
+            </li>
+        </ul>
+        <h2 id="specified-value"><a href="#specified-value">$</a> Specified value</h2>
+        <p>Промежуточный итог после каскада: если список на входе был не пустой - то отдается первое значение из списка
+            Cascaded value, а если нет,
+            то для наследуемых свойств - Computed value родителя (если есть), или <a
+                href="https://www.w3.org/TR/css-cascade-3/#initial-value">Initial value</a> по спеке в остальных
+            случаях.
+        </p>
+        <h2 id="computed-value"><a href="#computed-value">$</a>Computed value</h2>
+        <p>Как правило, Computed value разрешает значение, насколько это возможно, без раскладки документа или
+            выполнения
+            других дорогостоящих или трудно распараллеливаемых операций, таких как сетевые запросы или получение
+            значений,
+            отличных от элемента и его родителя. Computed value - значение, которое <strong>наследуют вложенные блоки
+                как
+                <code>inherit</code></strong>. Computed value существует, даже если свойство не применяется
+            непосредственно
+            в элементу. Однако некоторые свойства могут изменить способ определения вычисленного значения в зависимости
+            от
+            того, применяется ли свойство к элементу.
+        </p>
+        <p><strong>Примеры</strong> вычисления Computed value:</p>
+        <ul>
+            <li>значения с относительными единицами (em, ex, vh, vw) приводятся к пикселям
+                <pre><code data-lang="css">height: 10vh; /* CV = 100px */
 height: 5em; /* CV = 50px */</code></pre>
-        </li>
-        <li>некоторые ключевые слова заменяются в соответствии с их определениями
-            <pre><code data-lang="css">height: inherit; /* CV = 25px */
+            </li>
+            <li>некоторые ключевые слова заменяются в соответствии с их определениями
+                <pre><code data-lang="css">height: inherit; /* CV = 25px */
 font-wigth: extra bold; /* CV = 800 */</code></pre>
-        </li>
-        <li>разрешение относительных url-ов
-            <pre><code data-lang="css">background-image: url("./pinkish.gif");
+            </li>
+            <li>разрешение относительных url-ов
+                <pre><code data-lang="css">background-image: url("./pinkish.gif");
 /* CV = "http://www.example.com/pinkish.gif" */</code></pre>
-        </li>
-    </ul>
-    <p><strong>Общий пример:</strong></p>
-    <pre><code data-lang="css">height: 10wh; /* CV = 100px */
+            </li>
+        </ul>
+        <p><strong>Общий пример:</strong></p>
+        <pre><code data-lang="css">height: 10wh; /* CV = 100px */
   height: 50%; /* CV = 50px */
     height: inherit; /* CV = 25px */
 /* три вложенных блока */</code></pre>
-    <h2 id="used-value"><a href="#used-value">$</a> Used value</h2>
-    <p>Used value является результатом взятия Computed value и завершения любых оставшихся вычислений, чтобы сделать его
-        абсолютным теоретическим значением, используемым в макете документа. Например вычисление calc или вычисление
-        процентов. Если свойство не применяется к этому элементу, то элемент не имеет used value для этого свойства.</p>
-    <ul>
-        <li>подгрузка картинок</li>
-        <li>вычисление всех оставшихся относительных единиц до пикселей
-            <pre><code data-lang="css">height: 13%; /* CV = 13% => UV = 9.1px */</code></pre>
-        </li>
-    </ul>
-    <h2 id="actual-value"><a href="#actual-value">$</a> Actual value</h2>
-    <p>Значение преобразуется на основе ограничений среды отображения. Например:</p>
-    <ul>
-        <li>округление пикселей до целых (по необходимости экрана)
-            <pre><code data-lang="css">height: 13%; /* CV = 13% => UV = 9.1px  => AV = 9px */</code></pre>
-        </li>
-        <li>кроп и масштабирование картинок</li>
-    </ul>
-    <h2>Источники</h2>
-    <ul>
-        <li><a href="https://drafts.csswg.org/css-cascade-4/#value-stages">Спецификация Value Processing</a></li>
-    </ul>
-    <h2>Post Scriptum</h2>
-    <p>Вопросы и предложения пишите мне в телеграм <a href="http://t.me/ariarzer">@ariarzer</a> :)</p>
-    <p>За помощь в написании и всём остальном спасибо <a href="https://twitter.com/SelenIT2">@SelenIT2</a> ❤️</p>
-</article>
+        <h2 id="used-value"><a href="#used-value">$</a> Used value</h2>
+        <p>Used value является результатом взятия Computed value и завершения любых оставшихся вычислений, чтобы сделать
+            его
+            абсолютным теоретическим значением, используемым в макете документа. Например вычисление calc или вычисление
+            процентов. Если свойство не применяется к этому элементу, то элемент не имеет used value для этого
+            свойства.</p>
+        <ul>
+            <li>подгрузка картинок</li>
+            <li>вычисление всех оставшихся относительных единиц до пикселей
+                <pre><code data-lang="css">height: 13%; /* CV = 13% => UV = 9.1px */</code></pre>
+            </li>
+        </ul>
+        <h2 id="actual-value"><a href="#actual-value">$</a> Actual value</h2>
+        <p>Значение преобразуется на основе ограничений среды отображения. Например:</p>
+        <ul>
+            <li>округление пикселей до целых (по необходимости экрана)
+                <pre><code data-lang="css">height: 13%; /* CV = 13% => UV = 9.1px  => AV = 9px */</code></pre>
+            </li>
+            <li>кроп и масштабирование картинок</li>
+        </ul>
+        <h2>Источники</h2>
+        <ul>
+            <li><a href="https://drafts.csswg.org/css-cascade-4/#value-stages">Спецификация Value Processing</a></li>
+        </ul>
+        <h2>Post Scriptum</h2>
+        <p>Вопросы и предложения пишите мне в телеграм <a href="http://t.me/ariarzer">@ariarzer</a> :)</p>
+        <p>За помощь в написании и всём остальном спасибо <a href="https://twitter.com/SelenIT2">@SelenIT2</a> ❤️</p>
+    </article>
 
-<footer>
-    <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
-        href="https://t.me/ariarzer">telegram</a>.</p>
-    <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
-    <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+            href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a href="https://t.me/csswg_weekly">csswg_weekly</a>
+            в телеграм.</p>
 
-    <p><br>Нашли опечатку? Сообщите мне о ней.</p>
-</footer>
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
 
 </body>
 </html>

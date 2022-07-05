@@ -10,15 +10,15 @@
     <meta property="og:url" content="https://ru.ariarzer.dev/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Не тыкать в пользователя ошибками, пока он ничего не сделал">
-    <meta property="og:description" 
-        content="Объяснение, как показывать пользователю ошибку только когда это дейтельно нужно. Не больщайтесь, поддержка плохая. Но надежда с нами.">
+    <meta property="og:description"
+          content="Объяснение, как показывать пользователю ошибку только когда это дейтельно нужно. Не больщайтесь, поддержка плохая. Но надежда с нами.">
     <meta property="og:image" content="https://ru.ariarzer.dev/img/index_og_preview.png">
 
     <meta name="twitter:creator" content="@ariarzer">
     <meta name="twitter:site" content="@ariarzer">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://ru.ariarzer.dev/img/index_twitter_preview.png">
-    
+
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -27,7 +27,7 @@
 
     <meta name="color-scheme" content="dark light">
 
-    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml"/>
 
     <link rel="stylesheet" id="style_link">
 </head>
@@ -38,18 +38,20 @@
         <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
             <button onclick="document.getElementById('style_link').href='/style/common.css'">
                 подключить
-            </button> их.
+            </button>
+            их.
         </p>
     </header>
 
     <article>
-        <time datetime="2021-01-14 21:26">14 января 2021 года</time>.</p>
+        <time datetime="2021-01-14 21:26">14 января 2021 года</time>
+        .</p>
         <h1>Не тыкать в пользователя ошибками, пока он ничего не сделал</h1>
         <p>Показать пользвателю ошибку позволяет псевдокласс <a
-                href="https://www.w3.org/TR/selectors-4/#validity-pseudos"><code>:invalid</code></a>. Он соответствует
+            href="https://www.w3.org/TR/selectors-4/#validity-pseudos"><code>:invalid</code></a>. Он соответствует
             инпустам, <strong>значение</strong> которых <strong>не валидно</strong>.</p>
         <p>В этом примере инпут, если он пустой, будет иметь класный фон:</p>
-        <pre ><code>&lt;input required type=&quot;text&quot;&gt;
+        <pre><code>&lt;input required type=&quot;text&quot;&gt;
 &lt;style&gt;
 :invalid {
   background-color: red;
@@ -59,7 +61,7 @@
         <p>Так при первом заходе пользователя на страницу поле будет <strong>уже подсвечено</strong> красным цветом. А
             он даже не прочитал что надо вводить и вообще что это за сайт. <strong>Неприятно</strong>.</p>
         <p><strong>Решение</strong>: в новом черновике спецификации селекторов описан класс <a
-                href="https://drafts.csswg.org/selectors-4/#user-pseudos"><code>:user-invalid</code></a>. Он
+            href="https://drafts.csswg.org/selectors-4/#user-pseudos"><code>:user-invalid</code></a>. Он
             соответствует тем полям, с которыми пользователь <strong>провзаимодействовал</strong> + срабатывает также
             после нажатия на <code>button[type=&quot;submin&quot;]</code> или
             <code>input[type=&quot;submin&quot;]</code>.
@@ -86,10 +88,10 @@ input:user-invalid {
 
     <footer>
         <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
-                href="https://t.me/ariarzer">telegram</a>.</p>
+            href="https://t.me/ariarzer">telegram</a>.</p>
         <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
         <p>Мои каналы о CSS <a href="https://t.me/css_mind">css_mind</a> и <a
-                href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
+            href="https://t.me/csswg_weekly">csswg_weekly</a> в телеграм.</p>
 
         <p><br>Нашли опечатку? Сообщите мне о ней.</p>
     </footer>
