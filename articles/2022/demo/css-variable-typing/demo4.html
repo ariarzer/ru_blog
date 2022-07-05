@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark light">
+    <title>demo</title>
+</head>
+<body>
+    <div id="el"></div>
+    <style>
+        /* functional styles */
+        #el {
+            background-image: linear-gradient(red, blue);
+            transition: background-image 1s;
+        }
+        #el:hover {
+            background-image: linear-gradient(green, blue);
+        }
+
+        /* decorative styles */
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</body>
+</html>
