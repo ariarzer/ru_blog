@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS mind blog</title>
+
+    <meta name="description" content="custom units. Пользовательские юниты. Базовый размер. Будущее CSS">
+
+    <meta property="og:url" content="https://ru.ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Вы уже слышали о пользовательских юнитах?">
+    <meta property="og:description"
+          content="Синтаксических сахар для создания своих единиц измерения на основе существующих. Удобно, практично, интересно, пока недоступно.">
+    <meta property="og:image" content="https://ru.ariarzer.dev/img/index_og_preview.png">
+
+    <meta name="twitter:creator" content="@ariarzer">
+    <meta name="twitter:site" content="@ariarzer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://ru.ariarzer.dev/img/index_twitter_preview.png">
+
+    <meta name="vk:image" content="https://ru.ariarzer.dev/img/index_vk_preview.png">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml"/>
+
+    <link rel="stylesheet" id="style_link">
+</head>
+
+<body>
+
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='/style/common.css'">
+                подключить
+            </button>
+            их.
+        </p>
+    </header>
+
+    <article>
+        <h1>Вы уже слышали о пользовательских юнитах?</h1>
+        <p>Недавно рабочая группа CSS начала работать над новой версий спецификации css-variables. Пользовательские
+            юниты должно стать первым большим нововведением.</p>
+        <p>История началась с <a href="https://twitter.com/jon_neal/status/1537421277882896385">твита</a> Джонатана
+            Нила, где он предложил дать разработчикам возможность создавать свои единицы измерения на основе
+            css-переменных. Это работает примерно так:</p>
+        <pre><code>:root {
+  --size: 4px;
+  /* переменная объявлена в корне документа */
+}
+
+.elem {
+  width: calc(4 * (var(--size)));
+  /* примерно так она может использоваться в коде */
+}
+
+.elem2 {
+  width: 4--size;
+  /* а так может выглядеть ее использование в виде пользовательского юнита */
+}
+
+.elem3 {
+  width: var(--size);
+  /* в то же время, это все еще просто переменная! */  
+}
+</code></pre>
+        <p>То есть, по сути, добавляет синтаксического сахара. Проще писать, проще читать.</p>
+        <h2>Возможные примеры использования</h2>
+        <h3>Базовые размеры</h3>
+        <p>Подход с базовыми размерами распространен в дизайн-системах и это будет удобной возможностью.</p>
+        <h3>Переопределение базовых размеров</h3>
+        <p>Поскольку это просто переменная, ее также можно переопределять, и единица измерения тоже изменится:</p>
+        <pre><code>:root {
+  --bs: 4px; /* base size */
+}
+
+.module {
+  margin-block: 1.5--bs;
+  border-block: .5--bs;
+  /* задаем границы и отступы блоку */
+}
+
+.sidebar .module {
+  --bs: 6px;
+  /* делаем границы и отступы чуть поменьше в сайдбаре */
+}
+</code></pre>
+        <h2>Удобное указание размера шрифта</h2>
+        <p>Наверняка многие из вас знают популярный адаптивный способ записи размера шрифта с помощью функции <code>clamp()</code>
+            :</p>
+        <pre><code>.fluid-type {
+  font-size: clamp(10px, 1vw + 1vh, 1rem);
+}
+</code></pre>
+        <p>Здесь указывается минимальный, максимальный и промежуточный меняющийся размер. <a
+            href="https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/">Подробнее</a>
+            на CSS TRICKS.</p>
+        <p>Теперь мы можем создать юнит, равный этому значению и удобно использовать его в коде:</p>
+        <pre><code>:root {
+  --fem: clamp(10px, 1vw + 1vh, 1rem);
+}
+
+.fluid-type {
+  font-size: 1.2--fem;
+}
+</code></pre>
+        <h2>Юниты лучше типизировать</h2>
+        <p>В отличии от функции <code>var()</code> в случае использования переменной как пользовательского юнита вы не
+            можете указать резервное значение. Поэтому, если переменная не определена или определена как единица длины,
+            все значение юнита будет невалидным. Это логично, ведь <strong>пользовательские юниты - это просто
+                синтаксических сахар над <code>calc()</code></strong>.</p>
+        <p>Например:</p>
+        <pre><code>.elem2 {
+  width: 4--bs;
+  /* переменная не объявлена в документе и указанное значение будет невалидным. */
+  /* то есть значение ширины для этого элемента возьмется ниже из каскада */
+}
+
+</code></pre>
+        <p>Или так:</p>
+        <pre><code>:root {
+  --bs: red;
+}
+.elem3 {
+  width: 4--bs;
+  /* тип переменной не соответствует типу свойства и ситуация будет аналогичной */  
+}
+</code></pre>
+        <p>Поэтому, лучше всего <strong>типизировать ваши переменные</strong>. Это гарантирует, что у переменной всегда
+            будет резервное значение. Например:</p>
+        <pre><code>@property --fem { /* типизировали переменную */
+  syntax: &quot;&lt;length&gt;&quot;;
+  initial: clamp(10px, 1vw + 1vh, 1rem);
+  /* задали начальное значение */
+  inherits: true;
+}
+
+:root {
+  --fem: red;
+  /* ошиблись и записали в это переменную цвет */
+}
+
+.fluid-type {
+  font-size: 1.2--fem; /* выражение все равно будет корректно работать */
+}
+</code></pre>
+        <p>Подробнее о типизации переменных можно прочитать <a
+            href="https://ru.ariarzer.dev/articles/2022/css-variables-typing.html">здесь</a>.</p>
+        <p>А если делать это через js, а не через директиву <code>@property</code>, то вы точно <a
+            href="https://codepen.io/ariarzer/pen/dymMWRP">увидите ошибку</a>.</p>
+        <h2>Источники</h2>
+        <ol>
+            <li><a href="https://drafts.csswg.org/css-variables-2/#variable-units">Черновик</a> новой версии
+                спецификации.
+            </li>
+            <li>Недавняя <a
+                href="https://www.bram.us/2022/07/08/the-future-of-css-variable-units-powered-by-custom-properties/">статья</a>
+                от Bramus.
+            </li>
+            <li><a href="https://github.com/w3c/csswg-drafts/issues/7379">Обсуждение</a> на гитхабе от Таба Аткинса.
+            </li>
+        </ol>
+    </article>
+
+    <aside>
+        <h1 id="citation">Цитирования</h1>
+        <ul>
+        </ul>
+        <p>Если вы видите ссылку на эту статью в источнике, который не упомянут здесь,
+            <a href="https://t.me/ariarzer">сообщите мне</a>, пожалуйста.</p>
+    </aside>
+
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+            href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мой каналы о CSS <a href="https://t.me/css_mind">css_mind</a> в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+</html>
