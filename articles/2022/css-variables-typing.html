@@ -175,7 +175,7 @@
         <h2>Анимированные градиенты</h2>
         <p>Попытаемся поменять градиент на фоне блока. Используем свойство <code>transition</code> чтобы это произошло
             плавно:</p>
-        <pre><code>#el {
+        <pre><code data-lang="css">#el {
   background-image: linear-gradient(red, blue);
   transition: background-image 1s;
 }
@@ -191,7 +191,7 @@
             двумя цвета, эти цвета были целиком значениями свойств. Теперь, он пытается построить переход не между
             цветами в
             градиенте, а <strong>между двумя градиентами</strong>. То есть, теоретически мы можем написать вот так:</p>
-        <pre><code>#el {
+        <pre><code data-lang="css">#el {
   background-image: linear-gradient(white, black);
   transition: background-image 1s;
 }
@@ -205,7 +205,7 @@
             анимированное свойство. В нем могут быть даже не только градиенты, но и картинки. И не только.</p>
         <p><strong>Что же делать?</strong> В прошлом разделе был описан способ создания плавных переходов и мы можем
             применить его здесь тоже:</p>
-        <pre><code>@property --gradient-start {
+        <pre><code data-lang="css">@property --gradient-start {
   syntax: &quot;&lt;color&gt;&quot;;
   initial-value: red;
   inherits: false;
