@@ -5,6 +5,15 @@
         <description>Блог о тонкостях спецификации CSS</description>
         <link>https://ru.ariarzer.dev/</link>
         <item>
+            <title>Вы уже слышали о вариативных юнитах?</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ru.ariarzer.dev/articles/2022/css-variable-units.html</link>
+            <guid>https://ru.ariarzer.dev/articles/2022/css-variable-units.html</guid>
+            <pubDate>Thu, 14 Jul 2022 17:30:00 +0300</pubDate>
+            <description>Синтаксических сахар для создания своих единиц измерения на основе существующих. Удобно, практично, интересно, пока недоступно.</description>
+            <source url="https://ru.ariarzer.dev/articles/2022/css-variable-units.html">Источник публикации</source>
+        </item>
+        <item>
             <title>Как и зачем типизировать CSS-переменные?</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
             <link>https://ru.ariarzer.dev/articles/2022/css-variables-typing.html</link>
@@ -15,7 +24,8 @@
             P.S. Добавила в статьи раздел "Цитирования". Если вы видите ссылки на мои статьи в
                 источнике, который еще не указан в этом разделе, сообщите мне, пожалуйста.</description>
             <source url="https://ru.ariarzer.dev/articles/2022/css-variables-typing.html">Источник публикации</source>
-        </item><item>
+        </item>
+        <item>
             <title>Простая семантичная карточка-ссылка</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
             <link>https://ru.ariarzer.dev/tutorials/2022/easy-semantic-card-link.html</link>
