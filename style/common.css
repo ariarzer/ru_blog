@@ -96,3 +96,9 @@ table {
 iframe {
     width: 100%;
 }
+
+img {
+    width: 100%;
+    height: initial;
+    border: 1px solid;
+}

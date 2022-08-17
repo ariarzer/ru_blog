@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS mind blog</title>
+
+    <meta name="description" content="Variable units. Вариативные юниты. Базовый размер. Будущее CSS">
+
+    <meta property="og:url" content="https://ru.ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="О система координат в CSS">
+    <meta property="og:description"
+          content="Привычная нам физическая система координат - не самая удобная для текстового контента. Рассказываю, какие есть еще и чем они лучше.">
+    <meta property="og:image" content="https://ru.ariarzer.dev/img/index_og_preview.png">
+
+    <meta name="twitter:creator" content="@ariarzer">
+    <meta name="twitter:site" content="@ariarzer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://ru.ariarzer.dev/img/index_twitter_preview.png">
+
+    <meta name="vk:image" content="https://ru.ariarzer.dev/img/index_vk_preview.png">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml"/>
+
+    <link rel="stylesheet" id="style_link">
+</head>
+
+<body>
+
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='/style/common.css'">
+                подключить
+            </button>
+            их.
+        </p>
+    </header>
+
+    <article>
+
+        <h1>О системах координат в CSS</h1>
+        <p><em>Дисклеймер</em>: статья не затрагивает применение новых систем координат в жизни и их влияние на
+            вёрстку. Пример отступов и границ для арабского текста приведён, чтобы подчеркнуть актуальность проблемы.</p>
+        <h2>Физическая</h2>
+        <p>Самая интуитивная система: лево, право, верх, низ. Или стандартные направления осей X и Y, которые
+            используются, например, в свойстве <code>background-position</code>.</p>
+        <p>Отсюда появились свойства <code>margin-left</code> и <code>margin-right</code>, <code>border-left</code> и
+            <code>border-right</code> и другие, зависимые от физического отображения документа.</p>
+        <h2>Почему это не идеально?</h2>
+        <p>Потому что не все языки и культуры придерживаются написания текста слева на право, как русский или
+            европейские языки.</p>
+        <p>Если у блока с английским текстом должны быть отступ и граница слева, то на самом деле они должны быть с той стороны,
+            куда прижимается текст. То есть когда текст будет на арабским, отступ должен быть справа.</p>
+        <iframe src="demo/css-coordinate-system/demo1.html"></iframe>
+        <p>Сделать это можно с помощью специального псевдо-класса:</p>
+        <pre><code data-lang="css">p:dir(ltr) {
+    padding-left: 1em;
+    border-left: 2px solid;
+}
+p:dir(rtl) {
+    padding-right: 1em;
+    border-right: 2px solid;
+}
+</code></pre>
+        <p>Или, так как <a href="https://caniuse.com/?search=dir()">поддержка</a> этого псевдо-класса оставляет
+            желать лучшего, можно использовать селектор по атрибуту:</p>
+        <pre><code data-lang="css">p[dir=ltr] {
+    padding-left: 1em;
+    border-left: 2px solid;
+}
+p[dir=rtl] {
+    padding-right: 1em;
+    border-right: 2px solid;
+}
+</code></pre>
+        <p>Сделав это, можно понять, что для оформления контента (преимущественно текста) физические координаты не
+            очень хорошо подходят. И попытаться создать новые.</p>
+        <h2>Основные метрики</h2>
+        <p>Чтобы описать режим письма в одном конкретном документе, нужно знать три параметра:</p>
+        <ul>
+            <li><strong>Куда направлена строка</strong>.</li>
+            <li><strong>Куда будет переноситься строка</strong>, если в одну строку текст не влезет. Это направление
+                совпадает с потомком блоков.
+            </li>
+            <li><strong>Куда ориентированы буквы в строке</strong>. Например, если мы пишем вертикально иероглифами,
+                латинские буквы стоит написать боком, или тоже вертикально? По одной, или место одно иероглифа может
+                занять число 11, как самое короткое?
+            </li>
+        </ul>
+        <p>Исходя из этого, у нас есть три одномерных системы координат:</p>
+        <h2>От потока документа</h2>
+        <p>Где у блока &quot;верх&quot; и &quot;низ&quot;. В языках с вертикальным написанием поток блоков будет не
+            вертикальный, как у нас, а горизонтальный. То есть перпендикулярный направлению строки.</p>
+        <p>В этой системе за ось берется поток блоков (<strong>block flow</strong>). Направление оси совпадает с
+            потоком.</p>
+        <p>Вводятся координаты:</p>
+        <ul>
+            <li>от начала этого фрагмента потока (или этого блока) <strong>block-start</strong></li>
+            <li>от конца этого фрагмента потока (или этого блока) <strong>block-end</strong></li>
+        </ul>
+        <img srcset="img/css-coordinate-system/block-flow-horizontal_2024.png 2024w,
+                     img/css-coordinate-system/block-flow-horizontal_1012.png 1012w,
+                     img/css-coordinate-system/block-flow-horizontal_506.png 506w,"
+             alt="одномерная система координат внутри потока блоков с английским текстом"
+             loading="lazy"
+             width="500px"
+             height="250px"
+             border="1px"
+        >
+        <img srcset="img/css-coordinate-system/block-flow-vertical_2024.png 2024w,
+                     img/css-coordinate-system/block-flow-vertical_1012.png 1012w,
+                     img/css-coordinate-system/block-flow-vertical_506.png 506w,"
+             alt="одномерная система координат внутри потока блоков с японским вертикальным текстом"
+             loading="lazy"
+             width="500px"
+             height="250px"
+             border="1px"
+        >
+        <h2>От потока текста</h2>
+        <p>Где у строки начало и конец. В арабском, и других языках, которые пишутся справа налево, оно противоположное
+            привычному нам.</p>
+        <p>В этой системе за ось берется направление написания строки.</p>
+        <p>Вводятся координаты:</p>
+        <ul>
+            <li>от начала этой строки <strong>inline-start</strong></li>
+            <li>от конца этого фрагмента потока (или этого блока) <strong>inline-end</strong></li>
+        </ul>
+        <img srcset="img/css-coordinate-system/inline-base_2024.png 2024w,
+                     img/css-coordinate-system/inline-base_1012.png 1012w,
+                     img/css-coordinate-system/inline-base_506.png 506w,"
+             alt="одномерная система координат внутри потока текста"
+             loading="lazy"
+             width="500px"
+             height="250px"
+             border="1px"
+        >
+        <h2>От ориентации глифов в строке</h2>
+        <p>Где у строки верх и низ. Это влияет например на свойство <code>text-decoration-style: underline</code>. В
+            языках с вертикальным написанием подчеркивание будет сбоку.</p>
+        <p>Вводятся координаты:</p>
+        <ul>
+            <li>от верха строки <strong>line-over</strong></li>
+            <li>от низа строки <strong>line-under</strong></li>
+        </ul>
+        <img srcset="img/css-coordinate-system/line-orientation_2024.png 2024w,
+                     img/css-coordinate-system/line-orientation_1012.png 1012w,
+                     img/css-coordinate-system/line-orientation_506.png 506w,"
+             alt="одномерная система координат внутри строки на примере вертикального и горизонтального текста"
+             loading="lazy"
+             width="500px"
+             height="250px"
+             border="1px"
+        >
+        <h2>Источники</h2>
+        <ul>
+            <li><a href="https://drafts.csswg.org/css-writing-modes-4/#abstract-box">Черновик</a> 4-ой версии спецификации writing modes.</li>
+        </ul>
+    </article>
+
+    <aside>
+        <h1 id="citation">Цитирования</h1>
+        <ul>
+        </ul>
+        <p>Если вы видите ссылку на эту статью в источнике, который не упомянут здесь,
+            <a href="https://t.me/ariarzer">сообщите мне</a>, пожалуйста.</p>
+    </aside>
+
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+            href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мой каналы о CSS <a href="https://t.me/css_mind">css_mind</a> в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+</html>
