@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>CSS mind blog</title>
 
-    <meta name="description" content="Variable units. Вариативные юниты. Базовый размер. Будущее CSS">
+    <meta name="description" content="Системы координат в CSS.">
 
     <meta property="og:url" content="https://ru.ariarzer.dev/">
     <meta property="og:type" content="website">
@@ -17,9 +17,9 @@
     <meta name="twitter:creator" content="@ariarzer">
     <meta name="twitter:site" content="@ariarzer">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://ru.ariarzer.dev/img/index_twitter_preview.png">
+    <meta name="twitter:image" content="https://ru.ariarzer.dev/articles/2022/previews/css-coordinate-system.png">
 
-    <meta name="vk:image" content="https://ru.ariarzer.dev/img/index_vk_preview.png">
+    <meta name="vk:image" content="https://ru.ariarzer.dev/articles/2022/previews/css-coordinate-system.png">
 
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -90,7 +90,7 @@ p[dir=rtl] {
         <ul>
             <li><strong>Куда направлена строка</strong>.</li>
             <li><strong>Куда будет переноситься строка</strong>, если в одну строку текст не влезет. Это направление
-                совпадает с потомком блоков.
+                совпадает с потоком блоков.
             </li>
             <li><strong>Куда ориентированы буквы в строке</strong>. Например, если мы пишем вертикально иероглифами,
                 латинские буквы стоит написать боком, или тоже вертикально? По одной, или место одно иероглифа может
@@ -133,7 +133,7 @@ p[dir=rtl] {
         <p>Вводятся координаты:</p>
         <ul>
             <li>от начала этой строки <strong>inline-start</strong></li>
-            <li>от конца этого фрагмента потока (или этого блока) <strong>inline-end</strong></li>
+            <li>от конца строки <strong>inline-end</strong></li>
         </ul>
         <img srcset="img/css-coordinate-system/inline-base_2024.png 2024w,
                      img/css-coordinate-system/inline-base_1012.png 1012w,
