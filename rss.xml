@@ -5,6 +5,16 @@
         <description>Блог о тонкостях спецификации CSS</description>
         <link>https://ru.ariarzer.dev/</link>
         <item>
+            <li><a href="">Координация свойств-списков.</a></li>
+            <title>Координация свойств-списков.</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ru.ariarzer.dev/notes/2022/20221020.html</link>
+            <guid>https://ru.ariarzer.dev/notes/2022/20221020.html</guid>
+            <pubDate>Fri, 19 Aug 2022 17:30:00 +0300</pubDate>
+            <description>Свойства вроде background-* являются свойствами-списками и вот как они генерируются.</description>
+            <source url="https://ru.ariarzer.dev/notes/2022/20221020.html">Источник публикации</source>
+        </item>
+        <item>
             <title>О система координат в CSS</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
             <link>https://ru.ariarzer.dev/articles/2022/css-coordinate-system.html</link>
