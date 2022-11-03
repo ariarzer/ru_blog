@@ -102,3 +102,9 @@ img {
     height: initial;
     border: 1px solid;
 }
+
+blockquote {
+    border-inline-start: 2px solid;
+    margin-inline-start: 0;
+    padding-inline-start: 0.5em;
+}
