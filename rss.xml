@@ -4,8 +4,21 @@
         <title>CSS mind</title>
         <description>Блог о тонкостях спецификации CSS</description>
         <link>https://ru.ariarzer.dev/</link>
+        <a href="/articles/2022/transformations-and-containing/">
+            Трансформации и содержащие блоки.
+        </a>
         <item>
-            <li><a href="">Координация свойств-списков.</a></li>
+            <li>Трансформации и содержащие блоки.</li>
+            <title>Трансформации и содержащие блоки.</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ru.ariarzer.dev/articles/2022/transformations-and-containing/</link>
+            <guid>https://ru.ariarzer.dev/articles/2022/transformations-and-containing/</guid>
+            <pubDate>Thu, 93 Nov 2022 17:30:00 +0300</pubDate>
+            <description>Наверняка у вас бывали ситуации, когда из стандартного правила вроде "блок с position: absolute позиционируется от предка с position не static" были странные исключения. Разберём случай, когда эти исключения вызваны свойством transform.</description>
+            <source url="https://ru.ariarzer.dev/articles/2022/transformations-and-containing/">Источник публикации</source>
+        </item>
+        <item>
+            <li>Координация свойств-списков.</li>
             <title>Координация свойств-списков.</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
             <link>https://ru.ariarzer.dev/notes/2022/20221020.html</link>

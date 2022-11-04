@@ -11,7 +11,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Трансформации и содержащие блоки.">
     <meta property="og:description"
-          content="Когда блок трансформирован, он становится содержащим блоком для всех своих потомков.">
+          content="Когда блок трансформирован, он становится содержащим блоком для своих потомков.">
     <meta property="og:image" content="https://ru.childriarzer.dev/img/index_og_preview.png">
 
     <meta name="twitter:creator" content="@ariarzer">
@@ -132,7 +132,7 @@
     }
 &lt;/style&gt;
 </code></pre>
-        <p>Если бы не трансформации на блоке <code>.parent</code>, ширина блока <code>.child</code> была бы <code>250px</code>,
+        <p>Если бы не трансформации на блоке <code>.parent</code>, ширина блока <code>.child</code> была бы <code>100px</code>,
             как половина от блока <code>.gran</code>. Но мы помним, что трансформированный блок является содержащим для
             всех своих потомков, поэтому содержащим для <code>.child</code> будет блок <code>.parent</code>, а не <code>.gran</code>,
             и его ширина будет <code>50px</code>. Позиционируется <code>.child</code> здесь тоже относительно
@@ -190,7 +190,7 @@
         <h2>Источники</h2>
         <ul>
             <li>
-                Спецификация<a href="https://www.w3.org/TR/css-transforms-1/#transform-rendering">css-transform</a>
+                Спецификация <a href="https://www.w3.org/TR/css-transforms-1/#transform-rendering">css-transform</a>
             </li>
         </ul>
     </article>
