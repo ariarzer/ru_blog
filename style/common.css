@@ -17,7 +17,7 @@ body {
 
 pre {
     overflow: visible;
-    border: 2px solid CanvasText;
+    border: 2px solid;
     position: relative;
 }
 
@@ -31,14 +31,16 @@ pre code {
     display: block;
     max-width: 100%;
 
-    --bg: Canvas;
-    --sh: ButtonFace;
+    --bg: white;
+    --sh: rgb(239, 239, 239);
+
+    --trans: #ffff;
 
     background-image:
-            linear-gradient(to right, var(--bg) 25px, transparent 35px),
-            linear-gradient(to left, var(--bg) 25px, transparent 35px),
-            radial-gradient(farthest-side at 0 50%, var(--sh), transparent),
-            radial-gradient(farthest-side at 100% 50%, var(--sh), transparent);
+            linear-gradient(to right, var(--bg) 25px, var(--trans) 35px),
+            linear-gradient(to left, var(--bg) 25px, var(--trans) 35px),
+            radial-gradient(farthest-side at 0 50%, var(--sh), var(--trans)),
+            radial-gradient(farthest-side at 100% 50%, var(--sh), var(--trans));
     background-size: 100% 100%, 100% 100%, 20px 100%, 20px 100%;
     background-position: 50% 0%, 100% 50%, 0% 0%, 100% 100%;
     background-repeat: no-repeat;
@@ -60,7 +62,7 @@ footer, header {
 }
 
 td, th {
-    border: 2px solid CanvasText;
+    border: 2px solid;
     padding: 5px;
 }
 
@@ -107,4 +109,18 @@ blockquote {
     border-inline-start: 2px solid;
     margin-inline-start: 0;
     padding-inline-start: 0.5em;
+}
+
+@media (prefers-color-scheme: dark) {
+    a {
+        color: rgb(158, 158, 255);
+    }
+    a:visited {
+        color: rgb(208, 173, 240);
+    }
+    pre code {
+        --bg: rgb(18, 18, 18);
+        --sh: rgb(107, 107, 107);
+        --trans: #000f;
+    }
 }
