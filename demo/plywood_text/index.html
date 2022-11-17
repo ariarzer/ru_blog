@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark light">
+    <title>demo</title>
+</head>
+<body>
+    <main>
+        <div>Продаём фанеру</div>
+    </main>
+    <style>
+        @font-face {
+            font-family: Bankir;
+            src: url('Bankir.ttf');
+        }
+        div {
+            font-family: Bankir, sans-sefif, serif;
+            font-weight: 700;
+            font-size: min(20vw, 20vh);
+
+            background-image: url("plywood.jpeg");
+            background-size: cover;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.1em;
+
+            color: #c7ad95;
+            --size: max(0.0055em, 1px);
+            filter:
+                drop-shadow(var(--size) var(--size) 0 #e7cfb7)
+                drop-shadow(var(--size) var(--size) 0 #e7cfb7)
+                drop-shadow(var(--size) var(--size) 0 #e7cfb7)
+
+                drop-shadow(var(--size) var(--size) 0 #c7ad95)
+                drop-shadow(var(--size) var(--size) 0 #c7ad95)
+                drop-shadow(var(--size) var(--size) 0 #c7ad95)
+
+                drop-shadow(var(--size) var(--size) 0 #e7cfb7)
+                drop-shadow(var(--size) var(--size) 0 #e7cfb7)
+                drop-shadow(var(--size) var(--size) 0 #e7cfb7)
+
+                drop-shadow(var(--size) var(--size) 0 #c7ad95)
+                drop-shadow(var(--size) var(--size) 0 #c7ad95)
+                drop-shadow(var(--size) var(--size) 0 #c7ad95)
+
+                drop-shadow(var(--size) var(--size) 0 #e7cfb7)
+                drop-shadow(var(--size) var(--size) 0 #e7cfb7)
+                drop-shadow(var(--size) var(--size) 0 #e7cfb7);
+        }
+        main {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min-content;
+        }
+
+        html {
+            background-color: #793827;
+        }
+    </style>
+</body>
+</html>
