@@ -1,0 +1,150 @@
+:root {
+    --blue: #00e2f0;
+    color: white;
+    font-size: min(25vw, 25vh);
+}
+
+.wrap {
+    height: 1em;
+    width: 1em;
+    border-radius: 50%;
+    transform-style: preserve-3d;
+    perspective: 550px;
+    transform: rotateZ(-10deg) rotateY(30deg) rotateX(20deg);
+}
+
+.wrap > *,
+.circle_wrap > *,
+.circle::after {
+    position: absolute;
+
+    height: 100%;
+    width: 100%;
+}
+
+.circle_wrap {
+    display: contents;
+    transform-style: preserve-3d;
+    perspective: 550px;
+}
+
+.circle,
+.text {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.text {
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: inherit;
+    background-color: black;
+    box-shadow: 0 0 0.1em var(--blue),
+    inset 0 0 0 0.025em black,
+    inset 0 0 0 0.035em var(--blue),
+    inset 0 0 0.1em var(--blue),
+    inset 0 0 0.1em var(--blue);
+
+    border: 0.025em solid var(--blue);
+}
+
+.text img {
+    width: 60%;
+    height: 60%;
+}
+
+.circle {
+    transform: translateZ(calc(var(--n) * -20px));
+
+    --size-add: 30%;
+
+    height: calc(var(--n) * var(--size-add) + 100%);
+    width: calc(var(--n) * var(--size-add) + 100%);
+
+    top: calc(var(--n) * (var(--size-add) / -2));
+    left: calc(var(--n) * (var(--size-add) / -2));
+
+    animation-name: bounceZ;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-delay: calc(var(--n) * 0.3s);
+
+    transform-style: preserve-3d;
+    perspective: 550px;
+
+}
+
+.circle::after {
+    border: max(0.015em, 3px) solid currentColor;
+    border-radius: 50%;
+    padding: 0.1em;
+
+    box-shadow:
+    0 0 10px 1px currentColor,
+    inset 0 0 10px 1px currentColor;
+    content: '';
+    --offset: 0;
+    transform: translateZ(calc(var(--offset) * 0.001em));
+    transform-style: preserve-3d;
+
+    perspective: 0;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+
+    animation-delay: calc(var(--n) * 0.1s);
+
+    animation-name: pong;
+}
+
+@property --offset {
+    syntax: "<integer>";
+    inherits: true;
+    initial-value: 10;
+}
+
+@keyframes bounceZ {
+    50% {
+        transform: translateZ(calc(var(--n) * -0.15em));
+    }
+}
+
+@supports selector(div:has(span)) {
+    .wrap:has(.text:active) .circle::after {
+        animation-name: none;
+    }
+}
+
+.text:active + .circle_wrap .circle::after {
+    animation-name: none;
+}
+
+@keyframes pong {
+    50% {
+        color: var(--blue);
+        border-width: 0.025em;
+        --offset: 30;
+    }
+}
+
+.circle1 { --n: 1; }
+.circle2 { --n: 2; }
+.circle3 { --n: 3; }
+.circle4 { --n: 4; }
+
+
+
+body {
+    background-color: black;
+}
+
+main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min-content;
+}
