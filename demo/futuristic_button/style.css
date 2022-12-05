@@ -75,7 +75,6 @@
 
     transform-style: preserve-3d;
     perspective: 550px;
-
 }
 
 .circle::after {
