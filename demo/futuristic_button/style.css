@@ -38,18 +38,58 @@
     box-sizing: border-box;
 }
 
+.text span {
+    color: var(--blue);
+    font-size: 0.2em;
+    text-transform: uppercase;
+}
+
 .text {
+    padding: 0;
     border-radius: 50%;
     cursor: pointer;
     font-size: inherit;
     background-color: black;
-    box-shadow: 0 0 0.1em var(--blue),
-    inset 0 0 0 0.025em black,
-    inset 0 0 0 0.035em var(--blue),
-    inset 0 0 0.1em var(--blue),
-    inset 0 0 0.1em var(--blue);
+
+    --shadow-base-size: 0.08;
+    --s: calc(var(--shadow-base-size) * 1em);
+    --sh: 1;
+    box-shadow: 0 0 calc(var(--s) * var(--sh) * 1)   var(--blue),
+        inset 0 0 0 calc(var(--s) * 0.5) black,
+        inset 0 0 0 calc(var(--s) * 0.8) var(--blue),
+        inset 0 0   calc(var(--s) * var(--sh) * 0.5 + var(--s) * 2) var(--blue);
 
     border: 0.025em solid var(--blue);
+
+    --n: 0.2;
+
+    animation-name: bounceZ, shadowSize;
+    animation-duration: 0.3s, 0.3s;
+    animation-iteration-count: 1, 1;
+
+    transition: --sh 0.7s;
+}
+
+.text:hover {
+    --sh: 2;
+}
+
+@property --shadow-base-size {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0.01;
+}
+
+@property  --sh {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0.01;
+}
+
+@keyframes shadowSize {
+    50% {
+        --shadow-base-size: 0.06;
+    }
 }
 
 .text img {
@@ -82,8 +122,7 @@
     border-radius: 50%;
     padding: 0.1em;
 
-    box-shadow:
-    0 0 10px 1px currentColor,
+    box-shadow: 0 0 10px 1px currentColor,
     inset 0 0 10px 1px currentColor;
     content: '';
     --offset: 0;
@@ -94,9 +133,8 @@
     animation-duration: 0.3s;
     animation-iteration-count: 1;
 
-    animation-delay: calc(var(--n) * 0.1s);
-
-    animation-name: pong;
+    animation-delay: calc(var(--n) * 0.1s + 0.03s);
+    animation-name: circleBounce;
 }
 
 @property --offset {
@@ -111,17 +149,23 @@
     }
 }
 
-@supports selector(div:has(span)) {
+@supports selector(div:has(span)
+
+) {
     .wrap:has(.text:active) .circle::after {
         animation-name: none;
     }
+}
+
+.text:active {
+    animation-name: none;
 }
 
 .text:active + .circle_wrap .circle::after {
     animation-name: none;
 }
 
-@keyframes pong {
+@keyframes circleBounce {
     50% {
         color: var(--blue);
         border-width: 0.025em;
@@ -129,11 +173,21 @@
     }
 }
 
-.circle1 { --n: 1; }
-.circle2 { --n: 2; }
-.circle3 { --n: 3; }
-.circle4 { --n: 4; }
+.circle1 {
+    --n: 1;
+}
 
+.circle2 {
+    --n: 2;
+}
+
+.circle3 {
+    --n: 3;
+}
+
+.circle4 {
+    --n: 4;
+}
 
 
 body {
