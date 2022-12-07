@@ -1,0 +1,80 @@
+.epassi_bg {
+    --x: 100%;
+    --y: 0%;
+    background-image:
+            repeating-linear-gradient( 45deg,
+                    #2f8ad4 5%,
+                    #5500af 10%,
+                    #a00087 15%,
+                    #ea004a 20%,
+                    #fd4a22 25%,
+                    #a00087 30%,
+                    #ea004a 35%,
+                    #5500af 40%,
+                    #2f8ad4 45%),
+            radial-gradient(circle at var(--x) var(--y), #fff7 3em, #fffd 8em),
+            url("./logo_e.svg");
+    background-blend-mode: soft-light;
+
+    background-size: cover, 100% 100%, 5%;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url('Poppins-Medium.ttf');
+}
+
+:root {
+    font-family: Poppins, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.cover {
+    color: #5800ac;
+
+    padding: 5vh calc((100vw - max(500px, 80vw))) 5ch calc((100vw - max(500px, 80vw)) /2 );
+}
+
+.cover h1 {
+    font-size: 64px;
+}
+
+.cover p {
+    font-size: 30px;
+    line-height: 1.3;
+}
+
+header {
+    height: 110px;
+    padding: calc((110px - 32px)/2) 64px;
+    box-sizing: border-box;
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+header > img {
+    height: 32px;
+}
+
+header img {
+    display: block;
+}
+
+.new-header-main__nav {
+    display: contents;
+}
+
+.new-header-main__nav li {
+    list-style: none;
+}
+
+.new-header-main__nav li a {
+    color: #4d5d7088;
+    text-decoration: none;
+    font-size: 22px;
+}

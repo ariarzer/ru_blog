@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Epassi</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <header>
+        <img src="assets/logo_text.png" alt="">
+            <ul class="new-header-main__nav">
+                <li class="nav__item">
+                    <a href="/"><img src="https://www.epassi.com/hubfs/Images%202021/navi-item-home.png" alt="Home"></a>
+                </li>
+
+                <li class="nav__item">
+                    <a href="https://www.epassi.com/about">About</a>
+                </li>
+
+                <li class="nav__item">
+                    <a href="https://www.epassi.com/team">Team</a>
+                </li>
+
+                <li class="nav__item">
+                    <a href="https://www.epassi.com/contact-us">Contact</a>
+                </li>
+
+                <li class="nav__item">
+                    <a href="https://www.epassi.com/news">News</a>
+                </li>
+
+                <li class="nav__item">
+                    <a href="https://www.epassi.com/career">Career</a>
+                </li>
+
+            </ul>
+    </header>
+    <section class="cover epassi_bg">
+        <h1>The world’s leading mobile payments provider for employment benefits.</h1>
+        <p>Millions of employers and staff use Epassi’s app and mobile payments solution to seamlessly redeem employee benefits across our unrivalled merchant network.</p>
+    </section>
+
+    <script>
+        const bg = document.querySelectorAll('.epassi_bg');
+
+        bg.forEach(elem => {
+            const rect = elem.getBoundingClientRect();
+            elem.addEventListener('mousemove', e => {
+                e.currentTarget.style.setProperty("--x", e.clientX - rect.x + 'px');
+                e.currentTarget.style.setProperty("--y", e.clientY - rect.y + 'px');
+            });
+
+        })
+    </script>
+</body>
+</html>
