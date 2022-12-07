@@ -51,8 +51,7 @@
     font-size: inherit;
     background-color: black;
 
-    --shadow-base-size: 0.08;
-    --s: calc(var(--shadow-base-size) * 1em);
+    --s: 0.08em;
     --sh: 1;
     box-shadow: 0 0 calc(var(--s) * var(--sh) * 1)   var(--blue),
         inset 0 0 0 calc(var(--s) * 0.5) black,
@@ -63,21 +62,17 @@
 
     --n: 0.2;
 
-    animation-name: bounceZ, shadowSize;
-    animation-duration: 0.3s, 0.3s;
-    animation-iteration-count: 1, 1;
+    animation-name: bounceZ;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
 
-    transition: --sh 0.7s;
+    transition: --sh 0.7s, box-shadow 0.3s;
+
+    -webkit-tap-highlight-color: transparent;
 }
 
 .text:hover {
     --sh: 2;
-}
-
-@property --shadow-base-size {
-    syntax: "<number>";
-    inherits: true;
-    initial-value: 0.01;
 }
 
 @property  --sh {
@@ -86,10 +81,18 @@
     initial-value: 0.01;
 }
 
-@keyframes shadowSize {
-    50% {
-        --shadow-base-size: 0.06;
-    }
+.text:hover {
+    box-shadow: 0 0 calc(var(--s) * 2 * 1)   var(--blue),
+      inset 0 0 0 calc(var(--s) * 0.5) black,
+      inset 0 0 0 calc(var(--s) * 0.8) var(--blue),
+      inset 0 0   calc(var(--s) * 2 * 0.5 + var(--s) * 2) var(--blue);
+}
+
+.text:active {
+    box-shadow: 0 0 calc(0.1em * 2 * 1)   var(--blue),
+    inset 0 0 0 calc(0.1em * 0.5) black,
+    inset 0 0 0 calc(0.1em * 0.8) var(--blue),
+    inset 0 0   calc(0.1em * 2 * 0.5 + 0.1em * 2) var(--blue);
 }
 
 .text img {
@@ -118,12 +121,12 @@
 }
 
 .circle::after {
-    border: max(0.015em, 3px) solid currentColor;
+    border: max(0.015em, 2px) solid currentColor;
     border-radius: 50%;
     padding: 0.1em;
 
-    box-shadow: 0 0 10px 1px currentColor,
-    inset 0 0 10px 1px currentColor;
+    box-shadow: 0 0 0.04em 1px currentColor,
+    inset 0 0 0.04em 1px currentColor;
     content: '';
     --offset: 0;
     transform: translateZ(calc(var(--offset) * 0.001em));
@@ -149,9 +152,7 @@
     }
 }
 
-@supports selector(div:has(span)
-
-) {
+@supports selector(div:has(span)) {
     .wrap:has(.text:active) .circle::after {
         animation-name: none;
     }
@@ -170,6 +171,7 @@
         color: var(--blue);
         border-width: 0.025em;
         --offset: 30;
+        transform: translateZ(calc(30 * 0.001em));
     }
 }
 
