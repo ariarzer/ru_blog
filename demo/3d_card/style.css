@@ -1,0 +1,85 @@
+main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min-content;
+    font-size: min(25vw, 25vh);;
+    transform: translate(-50%, -50%);
+}
+
+:root {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+    background-color: #333344;
+}
+
+.container {
+    transform: perspective(600px) rotateY(-30deg);
+    transform-style: preserve-3d;
+    transition: transform 2s;
+}
+
+.card {
+    --count: 10;
+
+    height: 2em;
+    width: 1.5em ;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 0.2em;
+
+    background-color: #ffffff;
+
+    z-index: calc(var(--count) - var(--n));
+    opacity: 0;
+
+    animation-name: a;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes a {
+    100% {
+        transform: translateZ(calc(-1em * (var(--n) - 1))) rotateZ(calc(10deg * var(--n)));
+        height: calc(2em + 0.1em * (var(--n) - 1));
+        width: calc(1.5em + 0.1em  * (var(--n) - 1));
+        opacity: calc(0.5/(var(--count) - 1) * (var(--count) - var(--n)));
+    }
+}
+
+@keyframes b {
+    100% {
+        transform: translateZ(calc(-1em * (var(--n) - 1))) rotateZ(calc(10deg * var(--n)));
+        height: calc(2em + 0.1em * (var(--n) - 1));
+        width: calc(1.5em + 0.1em  * (var(--n) - 1));
+    }
+}
+
+button[type="reset"] {
+    position: absolute;
+}
+
+button[type="reset"]:active + main .card {
+    animation-name: none;
+}
+
+.card:first-child {
+    background-color: #3b8fe7;
+    box-shadow: 0 0 1em 0 #3b8fe7;
+    position: relative;
+    opacity: 1;
+    animation-name: b;
+}
+
+.card:nth-child(10) { --n: 10;}
+.card:nth-child(9) { --n: 9;}
+.card:nth-child(8) { --n: 8;}
+.card:nth-child(7) { --n: 7;}
+.card:nth-child(6) { --n: 6;}
+.card:nth-child(5) { --n: 5;}
+.card:nth-child(4) { --n: 4;}
+.card:nth-child(3) { --n: 3;}
+.card:nth-child(2) { --n: 2;}
+.card:nth-child(1) { --n: 1;}
