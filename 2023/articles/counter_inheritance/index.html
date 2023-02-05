@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS mind blog</title>
+
+    <meta name="description" content="Наследование счётчиков.">
+
+    <meta property="og:url" content="https://ru.ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Наследование счётчиков.">
+    <meta property="og:description"
+          content="На значения счетчиков могут влиять предки и дети предков, а на наличие самих счетчиков только предки. Подробнее в статье.">
+    <meta property="og:image" content="https://ru.ariarzer.dev/img/index_og_preview.png">
+
+    <meta name="twitter:creator" content="@ariarzer">
+    <meta name="twitter:site" content="@ariarzer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://ru.ariarzer.dev/img/index_twitter_preview.png">
+
+    <meta name="vk:image" content="https://ru.ariarzer.dev/img/index_vk_preview.png">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml"/>
+
+    <link rel="stylesheet" id="style_link">
+</head>
+
+<body>
+
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='/style/common.css'">
+                подключить
+            </button>
+            их.
+        </p>
+    </header>
+
+    <article>
+        <p>
+            <time datetime="2023-02-07 13:00">7 февраля 2023 года</time>
+            .
+        </p>
+        <h1>Наследование счётчиков</h1>
+        <p><strong>Дисклеймер</strong>: Счётчики описаны в спецификации <a href="https://www.w3.org/TR/css-lists-3/">css-lists-3</a>.
+            Здесь я расскажу, как они наследуются. Остальные части этой спецификации, касающиеся их, я планирую
+            разобрать
+            в последующих заметках.</p>
+        <h2>Каждый элемент имеет набор счетчиком, в котором есть как наследованные, так и определённые на нем
+            самом.</h2>
+        <p>Этот набор является <a
+            href="https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D1%80%D1%82%D0%B5%D0%B6_(%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0)">кортежем</a>,
+            в котором для каждого счетчика, как элемента кортежа, есть:</p>
+        <ol>
+            <li>строка – имя счетчика</li>
+            <li>элемент – элемент-создатель счетчика</li>
+            <li>целое число – значение счетчика</li>
+        </ol>
+        <h2 id="algorithm">Откуда этот набор берется?</h2>
+        <p><em>Если вы не хотите читать формальные длинные определения, переходите сразу к <a href="#examples">примерам</a>.</em></p>
+        <p>Элемент наследует свой <strong>начальный набор счетчиков</strong> (помимо тех, что объявленных на нём самом)
+            от
+            своего родителя и предыдущего родственного элемента. Затем он обновляет их значения из значений
+            соответствующих по имени счетчиков его предыдущего элементе <a
+                href="https://dom.spec.whatwg.org/#concept-tree-order">в порядке дерева</a>.</p>
+        <p><i>Как и обычно в спецификациях, этот процесс описан с использованием некоторого количества промежуточных
+            терминов. Выделяю их жирным ниже.</i></p>
+        <p>Чтобы наследовать счетчики в элемент:</p>
+        <ol>
+            <li>Если это корневой элемент, то его начальный набор счетчиков пустой, потому что у него нет ни родителя,
+                ни предыдущих элементов.
+            </li>
+            <li>Определяем <strong>счетчики элемента</strong>, представляющие его собственный набор счетчиков, как
+                просто скопированный набор счетчиков родителя.
+            </li>
+            <li>Определяем <strong>одноуровневые счетчики</strong>, как набор счетчиков предыдущего элемента того же
+                уровня вложенности, если таковой есть. Если это первый ребенок своего родителя, то <strong>одноуровневые
+                    счетчики</strong> будут пустые.
+                Для каждого счетчика из <strong>одноуровневых счетчиков</strong>, если в <strong>счетчиках
+                    элемента</strong> еще не содержится счетчика с таким же именем и создателем, добавляем копию этого
+                счетчика к <strong>счетчикам элемента</strong>.
+            </li>
+            <li>Определяем <strong>источник значения</strong> как набор счетчиков элемента, непосредственно
+                предшествующего элементу <a href="https://dom.spec.whatwg.org/#concept-tree-order">в порядке дерева</a>.
+                Для каждого счетчика из <strong>источника значения</strong>, если <strong>счетчики элемента</strong>
+                содержат счетчик с тем же именем и создателем, то устанавливаем значение этого счетчика равным значению
+                из
+                <strong>исходного значения</strong>.
+            </li>
+        </ol>
+        <p>Это был буквальный перевод <a href="https://www.w3.org/TR/css-lists-3/#inheriting-counters">фрагмента
+            спецификации</a>. Более простым языком:</p>
+        <ol>
+            <li>Копируем набор счетчиков родителя.</li>
+            <li>Если есть предшествующие элементы на том же уровне, то берем ближайший и копируем оттуда счетчики,
+                которых у нас еще нет.
+            </li>
+            <li>Берем ближайший предшествующий в порядке дерева элемент, имеем там по имени счетчики, которые у нас уже
+                есть в списке, и забираем свежие значения.
+            </li>
+        </ol>
+        <p><strong>Выводы из этого алгоритма</strong>: на значения счетчиков могут влиять предки и дети предков, а на
+            наличие самих счетчиков на этом элементе только предки.</p>
+        <h2 id="examples">Наглядные примеры</h2>
+        <p>Возьмем вот такую разметку:</p>
+        <pre><code data-lang="html">&lt;ul class='outer'&gt;
+  &lt;li class='outer__elem'&gt;&lt;/li&gt;
+  &lt;li class='outer__elem'&gt;&lt;/li&gt;
+  &lt;li class='outer__elem'&gt;
+    &lt;ul class='inner'&gt;
+      &lt;li class='inner__elem'&gt;&lt;/li&gt;
+      &lt;li class='inner__elem'&gt;&lt;/li&gt;
+      &lt;li class='inner__elem'&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li class='outer__elem'&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+        <p>Здесь есть внешний список и внутренний список, вложенный в один из элементов внешнего списка. Добавим
+            стили:</p>
+        <pre><code data-lang="css">/* задаем счетчик на внешнем списке */
+ul.outer {
+  counter-reset: global;
+}
+
+/* прибавляем его на каждом элементе списка */
+li {
+  counter-increment: global;
+}
+
+/* выведем его на экран */
+li::before {
+  content: counter(global);
+}
+</code></pre>
+        <p>Сейчас счетчик прибавляется на 1 перед каждым отображением и выглядит это так:</p>
+        <iframe src="demo/1.html"></iframe>
+        <p>Отложим пока глобальные счетчик и посмотрим на локальные:</p>
+        <pre><code data-lang="css">/* задаем счетчик на внешнем списке */
+ul.outer {
+  counter-reset: outer;
+}
+
+/* задаем счетчик на внутреннем списке */
+ul.inner {
+  counter-reset: inner;
+}
+
+/* прибавляем внешний счетчик на каждом элементе внешнего списка */
+li.outer__elem {
+  counter-increment: outer;
+}
+
+/* то же для внутреннего */
+li.inner__elem {
+  counter-increment: inner;
+}
+
+/* выведем их на экран */
+li.outer__elem::before {
+  content: counter(outer);
+}
+
+li.inner__elem::before {
+  content: counter(inner);
+}
+</code></pre>
+        <p>Сейчас мы видим такую картину:</p>
+        <iframe src="demo/2.html"></iframe>
+        <p>А что будет, если попробовать вынести внутренний счетчик во внешнем спике?</p>
+        <pre><code data-lang="css">/* выведем оба счетчика на экран */
+li::before {
+  content: counter(outer) ', ' counter(inner);
+}
+</code></pre>
+        <iframe src="demo/3.html"></iframe>
+        <p>Нули отобразились, потому что когда функция <code>counter()</code> не имеет в области видимости счетчика с
+            таким именем, она возвращает <code>0</code> как дефолтное значение. То есть <em>внутренний счетчик
+                недоступен во внешнем списке</em>. Это важный для нас вывод, который сначала был сденал из спецификации,
+            теперь же из практики.</p>
+        <p>Добавим у этому коду глобальный счетчик из первого примера и выведем его на экран:</p>
+        <pre><code data-lang="css">li::before {
+  content: counter(global) ' - ' counter(outer) ', ' counter(inner);
+}
+</code></pre>
+        <iframe src="demo/4.html"></iframe>
+        <p>Обратимся к алгоритму из спецификации из <a href="#algorithm">начала статьи</a> и разберем почему счетчик
+            <code>inner</code> в конце не доступен как это в целом работает изнутри.</p>
+        <p>Наследованный набор счетчиков для первого элемента внешнего списка выглядит как:</p>
+        <table>
+            <thead>
+            <tr>
+                <th>создатель</th>
+                <th>имя</th>
+                <th>значение</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><code>ul.outer</code></td>
+                <td><code>global</code></td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td><code>ul.outer</code></td>
+                <td><code>outer</code></td>
+                <td>0</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>Чтобы вас не смутило значение <code>0</code>, напомню, что это именно наследованный набор, перед отображением
+            элемент делает с ним все указанные операции, в данном случае <code>counter-increment: outer;</code>, то
+            есть прибавляет 1, поэтому на экране мы увидим именно 1.</p>
+        <p>Поэтому наследованный набор для второго элемента внешнего списка будет выглядеть так:</p>
+        <table>
+            <thead>
+            <tr>
+                <th>создатель</th>
+                <th>имя</th>
+                <th>значение</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><code>ul.outer</code></td>
+                <td><code>global</code></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td><code>ul.outer</code></td>
+                <td><code>outer</code></td>
+                <td>1</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>Наследованный набор первого элемента внутреннего списка, в котором уже два счетчика:</p>
+        <table>
+            <thead>
+            <tr>
+                <th>создатель</th>
+                <th>имя</th>
+                <th>значение</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><code>ul.outer</code></td>
+                <td><code>global</code></td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td><code>ul.outer</code></td>
+                <td><code>outer</code></td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td><code>ul.inner</code></td>
+                <td><code>inner</code></td>
+                <td>0</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>Первый элемент внешнего списка, сразу после элемент с внутренним списком:</p>
+        <table>
+            <thead>
+            <tr>
+                <th>создатель</th>
+                <th>имя</th>
+                <th>значение</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><code>ul.outer</code></td>
+                <td><code>global</code></td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td><code>ul.outer</code></td>
+                <td><code>outer</code></td>
+                <td>3</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>Почему здесь нет внутреннего счетчика? Как будто это очевидно, но давайте разберем по алгоритму.</p>
+        <ol>
+            <li>
+                <p>Берем набор родителя и копируем. Это будет <code>ul.outer</code> и его набор выглядит так:</p>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>создатель</th>
+                        <th>имя</th>
+                        <th>значение</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>ul.outer</code></td>
+                        <td><code>global</code></td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><code>ul.outer</code></td>
+                        <td><code>outer</code></td>
+                        <td>0</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </li>
+            <li>
+                <p>Берем предыдущий элемент того же уровня вложенности и копируем оттуда счетчики, имени которых у нас
+                    еще нет. Это будет <code>li.outer__elem:nth-child(3)</code> и его набор выглядит так:</p>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>создатель</th>
+                        <th>имя</th>
+                        <th>значение</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>ul.outer</code></td>
+                        <td><code>global</code></td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td><code>ul.outer</code></td>
+                        <td><code>outer</code></td>
+                        <td>2</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p>Здесь есть счетчики <code>outer</code> и <code>global</code>, которые у нас уже есть, значит ничего
+                    не делаем.</p>
+            </li>
+            <li>
+                <p>Берем предыдущий элемент в порядке дерева и копируем оттуда значения счетчиков, имена которых у нас
+                    уже есть и создатель совпадает. Это будет <code>li.inner__elem:nth-child(3)</code> и его набор
+                    выглядит так:</p>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>создатель</th>
+                        <th>имя</th>
+                        <th>значение</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>ul.outer</code></td>
+                        <td><code>global</code></td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td><code>ul.outer</code></td>
+                        <td><code>outer</code></td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td><code>ul.inner</code></td>
+                        <td><code>inner</code></td>
+                        <td>2</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p>Из счетчиков, что уже есть в наборе элемента после пункта 2, здесь есть только здесь есть счетчики
+                    <code>outer</code> и <code>global</code>, значит копируем их значения.</p>
+            </li>
+        </ol>
+        <p><strong>Итого</strong>: наследованный набор счетчиков для элемента <code>li.outer__elem:nth-child(4)</code>
+            будет выглядеть так:</p>
+        <table>
+            <thead>
+            <tr>
+                <th>создатель</th>
+                <th>имя</th>
+                <th>значение</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><code>ul.outer</code></td>
+                <td><code>global</code></td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td><code>ul.outer</code></td>
+                <td><code>outer</code></td>
+                <td>3</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>Как видите, внутреннему счетчику просто неоткуда просочится сюда.</p>
+        <p><strong>В конце можно еще раз сделать вывод, что на значения счетчиков могут влиять предков и дети
+            предков, то есть всё дерево сверху, а на наличие самих счетчиков на этом элементе только предки этого уровня
+            вложенности и высших.</strong></p>
+        <h2>Источники</h2>
+        <ul>
+            <li><a href="https://www.w3.org/TR/css-lists-3/#inheriting-counters">Спецификация</a> css-lists-3.
+            </li>
+        </ul>
+    </article>
+
+    <aside>
+        <h1 id="citation">Цитирования</h1>
+        <ul>
+        </ul>
+        <p>Если вы видите ссылку на эту статью в источнике, который не упомянут здесь,
+            <a href="https://t.me/ariarzer">сообщите мне</a>, пожалуйста.</p>
+    </aside>
+
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+            href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мой каналы о CSS <a href="https://t.me/css_mind">css_mind</a> в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+</html>

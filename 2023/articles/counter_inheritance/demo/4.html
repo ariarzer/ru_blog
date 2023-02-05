@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark light">
+    <title>demo</title>
+</head>
+<body>
+    <ul class='outer'>
+        <li class='outer__elem'></li>
+        <li class='outer__elem'></li>
+        <li class='outer__elem'>
+            <ul class='inner'>
+                <li class='inner__elem'></li>
+                <li class='inner__elem'></li>
+                <li class='inner__elem'></li>
+            </ul>
+        </li>
+        <li class='outer__elem'></li>
+    </ul>
+    <style>
+        /* задаем глобальный счетчик на внешнем списке */
+        ul.outer {
+            counter-reset: global;
+        }
+
+        /* прибавляем его на каждом элементе списка */
+        li {
+            counter-increment: global;
+        }
+
+        /* задаем внешний счетчик на внешнем списке */
+        ul.outer {
+            counter-reset: outer;
+        }
+
+        /* задаем внутренний счетчик на внутреннем списке */
+        ul.inner {
+            counter-reset: inner;
+        }
+
+        /* прибавляем внешний счетчик на каждом элементе внешнего списка */
+        li.outer__elem {
+            counter-increment: outer;
+        }
+
+        /* то же для внутреннего */
+        li.inner__elem {
+            counter-increment: inner;
+        }
+
+        /* выведем все счетчики на экран */
+        li::before {
+            content: counter(global) ' - ' counter(outer) ', ' counter(inner);
+        }
+    </style>
+</body>
+</html>
