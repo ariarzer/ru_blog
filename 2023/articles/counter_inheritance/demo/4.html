@@ -23,33 +23,22 @@
         <li class='outer__elem'></li>
     </ul>
     <style>
-        /* задаем глобальный счетчик на внешнем списке */
-        /* задаем внешний счетчик на внешнем списке */
         ul.outer {
-            counter-reset: global outer;
+            counter-reset: global 0 outer 0;
         }
 
-        /* прибавляем его на каждом элементе списка */
-        li {
-            counter-increment: global;
-        }
-
-        /* задаем внутренний счетчик на внутреннем списке */
         ul.inner {
             counter-reset: inner;
         }
 
-        /* прибавляем внешний счетчик на каждом элементе внешнего списка */
         li.outer__elem {
-            counter-increment: outer;
+            counter-increment: outer global;
         }
 
-        /* то же для внутреннего */
         li.inner__elem {
-            counter-increment: inner;
+            counter-increment: inner global;
         }
 
-        /* выведем все счетчики на экран */
         li::before {
             content: counter(global) ' - ' counter(outer) ', ' counter(inner);
         }
