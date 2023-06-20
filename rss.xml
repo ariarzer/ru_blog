@@ -4,21 +4,34 @@
         <title>CSS mind</title>
         <description>Блог о тонкостях спецификации CSS</description>
         <link>https://ru.ariarzer.dev/</link>
-        <a href="/articles/2022/transformations-and-containing/">
-            Трансформации и содержащие блоки.
-        </a>
         <item>
-            <li>Трансформации и содержащие блоки.</li>
+            <title>Самонаследуемость CSS-счетчиков и как ее использовать.</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ru.ariarzer.dev/2023/tutorials/counters-self-inheritance</link>
+            <guid>https://ru.ariarzer.dev/2023/tutorials/counters-self-inheritance</guid>
+            <pubDate>Thu, 20 Jun 2022 17:30:00 +0300</pubDate>
+            <description>Рассказываю как сделать нумерацию сколь угодно вложенного списка на всего одном счетчике.</description>
+            <source url="https://ru.ariarzer.dev/2023/tutorials/counters-self-inheritance">Источник публикации</source>
+        </item>
+        <item>
+            <title>Наследование CSS-счетчиков.</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ru.ariarzer.dev/2023/articles/counter_inheritance/index.html</link>
+            <guid>https://ru.ariarzer.dev/2023/articles/counter_inheritance/index.html</guid>
+            <pubDate>Thu, 7 Feb 2023 17:30:00 +0300</pubDate>
+            <description>На значения счетчиков могут влиять предки и дети предков, а на наличие самих счетчиков только предки. Подробнее в статье.</description>
+            <source url="https://ru.ariarzer.dev/2023/articles/counter_inheritance/index.html">Источник публикации</source>
+        </item>
+        <item>
             <title>Трансформации и содержащие блоки.</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
             <link>https://ru.ariarzer.dev/articles/2022/transformations-and-containing/</link>
             <guid>https://ru.ariarzer.dev/articles/2022/transformations-and-containing/</guid>
-            <pubDate>Thu, 93 Nov 2022 17:30:00 +0300</pubDate>
+            <pubDate>Thu, 3 Nov 2022 17:30:00 +0300</pubDate>
             <description>Наверняка у вас бывали ситуации, когда из стандартного правила вроде "блок с position: absolute позиционируется от предка с position не static" были странные исключения. Разберём случай, когда эти исключения вызваны свойством transform.</description>
             <source url="https://ru.ariarzer.dev/articles/2022/transformations-and-containing/">Источник публикации</source>
         </item>
         <item>
-            <li>Координация свойств-списков.</li>
             <title>Координация свойств-списков.</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
             <link>https://ru.ariarzer.dev/notes/2022/20221020.html</link>

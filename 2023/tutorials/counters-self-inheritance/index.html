@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS blog</title>
+
+    <meta name="description" content="Самонаследуемость CSS-счетчиков и как ее использовать.">
+
+    <meta property="og:url" content="https://ru.ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Самонаследуемость CSS-счетчиков и как ее использовать.">
+    <meta property="og:description"
+          content="Рассказываю как сделать нумерацию сколь угодно вложенного списка на всего одном счетчике.">
+    <meta property="og:image" content="https://ru.ariarzer.dev/img/index_og_preview.png">
+
+    <meta name="twitter:creator" content="@ariarzer">
+    <meta name="twitter:site" content="@ariarzer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://ru.ariarzer.dev/img/index_twitter_preview.png">
+
+    <meta name="vk:image" content="https://ru.ariarzer.dev/img/index_vk_preview.png">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml"/>
+
+    <link rel="stylesheet" id="style_link">
+</head>
+
+<body>
+
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='/style/common.css'">
+                подключить
+            </button>
+            их.
+        </p>
+    </header>
+
+    <article>
+        <p>
+            <time datetime="2023-06-20 13:00">20 июня 2023 года</time>
+            .
+        </p>
+
+        <h1>Самонаследуемость счетчиков и как ее использовать</h1>
+        <p><strong>Дисклеймер</strong>: Счётчики описаны в спецификации <a href="https://www.w3.org/TR/css-lists-3/">css-lists-3</a>.
+            Здесь я расскажу об их &quot;самонаcледуемости&quot;. Первую статью с основной теорией про счетчики можно
+            прочитать <a href="https://ru.ariarzer.dev/2023/articles/counter_inheritance/index.html">здесь</a>.</p>
+        <p><strong>Счетчики в css являются &quot;самонаследуемыми&quot;</strong>.</p>
+        <h2>Что это такое?</h2>
+        <p>Как можно узнать из <a href="https://ru.ariarzer.dev/2023/articles/counter_inheritance/index.html">предыдущей
+            статьи про счетчики</a>, каждый элемент наследует от родителя набор счетчиков, который дополняет своими и
+            передает для наследования дальше вниз по дереву.</p>
+        <p><strong>Создание на элементе счетчика с таким же именем, как у одного из наследованных, создаст не
+            самостоятельный новый счетчик, а вложенный в наследованный.</strong></p>
+        <p>Такие вложенные счетчики отличаются от обычных только тем, что могут быть полученные все вместе, одним
+            списком, с помощью функции <code>counters()</code>, которая отдает значения всех счетчики с заданным именем.
+            Тогда как обычная функция <code>counter()</code> извлекает только самый внутренний счетчик с таким именем.
+        </p>
+        <p>Таким образом, область действия счетчика начинается с первого элемента в документе, который создает экземпляр
+            этого счетчика, и включает в себя детей этого элемента.</p>
+        <h2>Как это использовать?</h2>
+        <p>Использую самонаследуемость счетчиком можно сделать нумерацию большого списка со сложной вложенностью,
+            используя всего один счетчик!</p>
+        <pre data-lang="html"><code>&lt;ul&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;style&gt;
+    ul {
+        counter-reset: n;
+    }
+
+    li {
+        counter-increment: n;
+    }
+
+    li::before {
+        content: counters(n, '.');
+    }
+&lt;/style&gt;
+</code></pre>
+        <p>В демо список немного расширен список для наглядности относительно кода сверху и выглядит это так:</p>
+        <iframe src="demo/1.html"></iframe>
+        <h3>Как это работает?</h3>
+        <p>На каждом элементе <code>ul</code> создается счетчик с именем <code>n</code>. Но на внутренних элементах
+            <code>ul</code> он создается не самостоятельный, а вложенный в наследованный от родителя счетчик с таким же
+            именем. Поэтом можно достать их всех разом с помощью функции <code>counters()</code> на элементе списка.
+            Второй необязательный параметр этой функции – строка-разделитель для отображения списка счетчиков. Работает
+            так же, как аргумент функции <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join"><code>Array.prototype.join()</code></a>
+            в JavaScript.</p>
+        <h2>Источники</h2>
+        <ul>
+            <li>Спецификация <a href="https://www.w3.org/TR/css-lists-3/#nested-counters">css-list-3</a></li>
+        </ul>
+    </article>
+
+    <aside>
+        <h1 id="citation">Цитирования</h1>
+        <ul>
+        </ul>
+        <p>Если вы видите ссылку на эту статью в источнике, который не упомянут здесь,
+            <a href="https://t.me/ariarzer">сообщите мне</a>, пожалуйста.</p>
+    </aside>
+
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+            href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мой каналы о CSS <a href="https://t.me/css_mind">css_mind</a> в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+</html>
