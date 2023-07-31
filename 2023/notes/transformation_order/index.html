@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS blog</title>
+
+    <meta name="description" content="О порядке применения трансформаций.">
+
+    <meta property="og:url" content="https://ru.ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="О порядке применения трансформаций.">
+    <meta property="og:description"
+          content="Как недавно появившиеся индивидуальные свойства трансформаций взаимодействуют друг с другом и со свойством transform?">
+
+    <meta property="og:image" content="https://ru.ariarzer.dev/2023/notes/transformation_order/preview/preview.png">
+
+    <meta name="twitter:creator" content="@ariarzer">
+    <meta name="twitter:site" content="@ariarzer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://ru.ariarzer.dev/2023/notes/transformation_order/preview/preview.png">
+
+    <meta name="vk:image" content="https://ru.ariarzer.dev/2023/notes/transformation_order/preview/preview.png">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml"/>
+
+    <link rel="stylesheet" id="style_link">
+</head>
+
+<body>
+
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='/style/common.css'">
+                подключить
+            </button>
+            их.
+        </p>
+    </header>
+
+    <article>
+        <p>
+            <time datetime="2023-08-01 13:00">1 августа 2023 года</time>
+            .
+        </p>
+        <h1>О порядке применения трансформаций</h1>
+        <p>Блок трансформируется по <a href="https://drafts.csswg.org/css-transforms-1/#transformation-matrix">матрице преобразования</a>, которая вычисляется из единичной матрицы применением свойств <code>transform</code>, <code>transform-origin</code>, <code>translate</code>, <code>rotate</code> и <code>scale</code>.</p>
+        <p>Они применяется в следующем порядке:</p>
+        <ol>
+            <li>Меняем центр трансформации блока согласно свойству <code>transform-origin</code>.</li>
+            <li>Перемещаем на расстояния из свойства <code>translate</code> по всем осям.</li>
+            <li>Поворачиваем на углы из свойства <code>rotate</code> по всем осям.</li>
+            <li>Масштабируем на вычисленные значения <code>scale</code> по всем осям.</li>
+            <li>Применяем каждую из функций свойства <code>transform</code> по списку слева направо.</li>
+        </ol>
+        <h2>Что это значит на практике?</h2>
+        <p>Используя индивидуальные свойства трансформаций невозможно контролировать порядок их применения.</p>
+        <img srcset="images/unique_properties_1012.png 2024w,
+                     images/unique_properties_3036.png 3036w,
+                     images/unique_properties_4048.png 4048w,
+                     images/unique_properties_1012.png 1012w,"
+             alt="пример применения индивидуальных свойств трансформации"
+             loading="lazy"
+             width="500px"
+             height="250px"
+             border="1px"
+        >
+        <p>Тогда как функции в свойстве <code>transform</code> применяются в таком порядке, в каком они указаны:</p>
+        <img srcset="images/transform_property_2024.png 2024w,
+                     images/transform_property_1012.png 1012w,
+                     images/transform_property_3036.png 3036w,
+                     images/transform_property_4048.png 4028w,"
+             alt="пример применения свойства transform"
+             loading="lazy"
+             width="500px"
+             height="250px"
+             border="1px"
+        >
+        <p>Так же из <code>transform</code> применяются ВСЕ функции, а индивидуальные свойства трансформации переопределяют друг друга как просто css-свойства.</p>
+        <img srcset="images/many_transformation_1012.png 2024w,
+                     images/many_transformation_3036.png 3036w,
+                     images/many_transformation_4048.png 4048w,
+                     images/many_transformation_1012.png 1012w,"
+             alt="пример применения свойства transform"
+             loading="lazy"
+             width="500px"
+             height="250px"
+             border="1px"
+        >
+        <h2>Источники</h2>
+        <ul>
+            <li><a href="https://drafts.csswg.org/css-transforms-2/#ctm">Спецификация</a> css-transforms-2.
+            </li>
+        </ul>
+    </article>
+
+    <aside>
+        <h1 id="citation">Цитирования</h1>
+        <ul>
+        </ul>
+        <p>Если вы видите ссылку на эту статью в источнике, который не упомянут здесь,
+            <a href="https://t.me/ariarzer">сообщите мне</a>, пожалуйста.</p>
+    </aside>
+
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+            href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мой каналы о CSS <a href="https://t.me/css_mind">css_mind</a> в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+</html>
