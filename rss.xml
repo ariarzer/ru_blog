@@ -5,11 +5,20 @@
         <description>Блог о тонкостях спецификации CSS</description>
         <link>https://ru.ariarzer.dev/</link>
         <item>
+            <title>О порядке применения трансформаций.</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ru.ariarzer.dev/2023/article/transformation_order</link>
+            <guid>https://ru.ariarzer.dev/2023/article/transformation_order</guid>
+            <pubDate>Thu, 1 Aug 2023 17:30:00 +0300</pubDate>
+            <description>Как недавно появившиеся индивидуальные свойства трансформаций взаимодействуют друг с другом и со свойством transform?</description>
+            <source url="https://ru.ariarzer.dev/2023/article/transformation_order">Источник публикации</source>
+        </item>
+        <item>
             <title>Самонаследуемость CSS-счетчиков и как ее использовать.</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
             <link>https://ru.ariarzer.dev/2023/tutorials/counters-self-inheritance</link>
             <guid>https://ru.ariarzer.dev/2023/tutorials/counters-self-inheritance</guid>
-            <pubDate>Thu, 20 Jun 2022 17:30:00 +0300</pubDate>
+            <pubDate>Thu, 20 Jun 2023 17:30:00 +0300</pubDate>
             <description>Рассказываю как сделать нумерацию сколь угодно вложенного списка на всего одном счетчике.</description>
             <source url="https://ru.ariarzer.dev/2023/tutorials/counters-self-inheritance">Источник публикации</source>
         </item>
