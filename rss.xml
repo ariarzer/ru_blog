@@ -5,6 +5,15 @@
         <description>Блог о тонкостях спецификации CSS</description>
         <link>https://ru.ariarzer.dev/</link>
         <item>
+            <title>Радио-кнопки на градиентах.</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ru.ariarzer.dev/2023/tutorials/gradient-radio</link>
+            <guid>https://ru.ariarzer.dev/2023/tutorials/gradient-radio</guid>
+            <pubDate>Teu, 28 Dec 2023 17:30:00 +0300</pubDate>
+            <description>Верстаем классические радио-кнопки с плавными переходами на градиентах.</description>
+            <source url="https://ru.ariarzer.dev/2023/tutorials/gradient-radio/">Источник публикации</source>
+        </item>
+        <item>
             <title>О порядке применения трансформаций.</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
             <link>https://ru.ariarzer.dev/2023/article/transformation_order</link>
