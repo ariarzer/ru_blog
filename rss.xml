@@ -5,11 +5,20 @@
         <description>Блог о тонкостях спецификации CSS</description>
         <link>https://ru.ariarzer.dev/</link>
         <item>
+            <title>О переводчиках и псевдо-элементах.</title>
+            <author>ariarzer@gmail.com (Sofi Valitova)</author>
+            <link>https://ru.ariarzer.dev/2024/notes/pseudo-translation/</link>
+            <guid>https://ru.ariarzer.dev/2024/notes/pseudo-translation/</guid>
+            <pubDate>Teu, 28 Dec 2023 17:30:00 +0300</pubDate>
+            <description>Текст из свойства `content` не видят автоматические переводчики. Не пишите там ничего важного. А лучше вообще ничего не пишите.</description>
+            <source url="https://ru.ariarzer.dev/2024/notes/pseudo-translation/">Источник публикации</source>
+        </item>
+        <item>
             <title>Радио-кнопки на градиентах.</title>
             <author>ariarzer@gmail.com (Sofi Valitova)</author>
             <link>https://ru.ariarzer.dev/2023/tutorials/gradient-radio</link>
             <guid>https://ru.ariarzer.dev/2023/tutorials/gradient-radio</guid>
-            <pubDate>Teu, 28 Dec 2023 17:30:00 +0300</pubDate>
+            <pubDate>Teu, 9 Jan 2024 17:30:00 +0300</pubDate>
             <description>Верстаем классические радио-кнопки с плавными переходами на градиентах.</description>
             <source url="https://ru.ariarzer.dev/2023/tutorials/gradient-radio/">Источник публикации</source>
         </item>

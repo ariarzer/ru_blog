@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS blog</title>
+
+    <meta name="description" content="О переводчиках и псевдо-элементах.">
+
+    <meta property="og:url" content="https://ru.ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="О переводчиках и псевдо-элементах.">
+    <meta property="og:description"
+          content="Текст из свойства `content` не видят автоматические переводчики. Не пишите там ничего важного. А лучше вообще ничего не пишите.">
+
+    <meta property="og:image" content="https://ru.ariarzer.dev/2023/notes/pseudo-translation/preview/preview.png">
+
+    <meta name="twitter:creator" content="@ariarzer">
+    <meta name="twitter:site" content="@ariarzer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://ru.ariarzer.dev/2024/notes/pseudo-translation/preview/preview.png">
+
+    <meta name="vk:image" content="https://ru.ariarzer.dev/2024/notes/pseudo-translation/preview/preview.png">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml"/>
+
+    <link rel="stylesheet" id="style_link">
+</head>
+
+<body>
+
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='/style/common.css'">
+                подключить
+            </button>
+            их.
+        </p>
+    </header>
+
+    <article>
+        <p>
+            <time datetime="2024-01-09 13:00">9 января 2024 года</time>
+            .
+        </p>
+        <h1>О переводчиках и псевдо-элементах.</h1>
+        <p><strong>Не стоит класть в свойство "content" важный текст.</strong> А лучше вообще никакой.</p>
+        <p>Помимо того, что он не озвучивается скрин-ридерами и в целом существует только для людей, которые могут
+            его увидеть, он так же не может быть переведен автоматическими переводчиками, потому что буквально для них
+            не существует (его не существует в DOM).</p>
+        <p>Приведу в пример демо. Страница на финском языке (указывается аттрибутом <code>lang</code> тега
+            <code>html</code> со значением <code>fi</code>), текст с зеленым эмоджи яблока написан внутри тега
+            <code>p</code>, текст с красным эмоджи написан в свойстве <code>content</code>.</p>
+        <iframe src="demo/1.html"></iframe>
+        <pre><code data-lang="html">&lt;html lang="fi">
+&lt;head>
+    &lt;meta charset="UTF-8">
+&lt;/head>
+&lt;body>
+    &lt;p>omena 🍏&lt;/p>
+    &lt;div>&lt;/div>
+    &lt;style>
+        div:after {
+            content: ' omena 🍎';
+        }
+    &lt;/style>
+&lt;/body>
+&lt;/html></code></pre>
+        <p>Можете открыть это <a href="demo/1.html" target="_blank">демо в отдельной вкладке</a> и перевести.
+            Переведется только первый текст.</p>
+        <img src="./img/img.png"
+             alt="переводится только первый текст"
+             loading="lazy"
+             width="300px"
+             border="1px"
+        >
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+            href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мой каналы о CSS <a href="https://t.me/css_mind">css_mind</a> в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+</html>
