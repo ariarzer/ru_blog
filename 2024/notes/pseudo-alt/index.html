@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS blog</title>
+
+    <meta name="description" content="Alt-тексты для псевдо-элементов.">
+
+    <meta property="og:url" content="https://ru.ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Alt-тексты для псевдо-элементов.">
+    <meta property="og:description"
+          content="Общеизвестно, что псевдо-элементы не видны для скринридеров. Однако с недавнего времени это не совсем так.">
+
+    <meta property="og:image" content="https://ru.ariarzer.dev/2023/notes/pseudo-alt/preview/preview.png">
+
+    <meta name="twitter:creator" content="@ariarzer">
+    <meta name="twitter:site" content="@ariarzer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://ru.ariarzer.dev/2024/notes/pseudo-alt/preview/preview.png">
+
+    <meta name="vk:image" content="https://ru.ariarzer.dev/2024/notes/pseudo-alt/preview/preview.png">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml"/>
+
+    <link rel="stylesheet" id="style_link">
+</head>
+
+<body>
+
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='/style/common.css'">
+                подключить
+            </button>
+            их.
+        </p>
+    </header>
+
+    <article>
+        <p>
+            <time datetime="2024-01-11 13:00">11 января 2024 года</time>
+            .
+        </p>
+        <h1>Alt-тексты для псевдо-элементов.</h1>
+        <p>Общеизвестно, что псевдо-элементы не видны для скринридеров. Однако с недавнего времени это не совсем
+            так.</p>
+        <p>Если посмотреть в черновик спецификации <a href="https://www.w3.org/TR/css-content/#content-property">css-content</a>,
+            то <a href="https://ru.ariarzer.dev/articles/2021/value-definition-syntax.html">синтаксис</a> значения
+            свойства <code>content описан так:</code></p>
+        <pre><code data-lang="vds">normal | none
+  | [ &lt;content-replacement> | &lt;content-list> ]
+  <strong>[/ [ &lt;string> | &lt;counter> ]+ ]</strong>?</code></pre>
+        <p>Нас интересует часть, которую я выделила жирным. В спецификации ей посвящен отдельный <a
+            href="https://www.w3.org/TR/css-content/#alt">раздел</a>.</p>
+        <p>Этот синтаксис позволяет записать через слеш строку для отображения и затем строку, которую прочитает
+            скринридер. Разберем на примере демо:</p>
+        <iframe src="demo/1.html"></iframe>
+        <pre><code data-lang="html">&lt;div>&lt;/div>
+&lt;style>
+    div:after {
+        content: '🍎'; /* <a href="#fallback">фолбэк</a> */
+        content: '🍎' / 'эмоджи яблока';
+    }
+&lt;/style></code></pre>
+        <p>На элементе <code>div</code> в <a href="https://developer.chrome.com/blog/full-accessibility-tree">дереве
+            доступности</a> окажется текст после слеша, то есть <code>эмоджи яблока</code>.</p>
+        <img src="./img/tree.png"
+             alt="текст в дереве доступности"
+             loading="lazy"
+             width="300px"
+             border="1px"
+        >
+        <h2 id="fallback"></h2>
+        <p>Будьте внимательны и пишите <a
+            href="https://github.com/web-standards-ru/dictionary/blob/main/dictionary.md#fallback">фолбэк</a>, потому
+            что браузеры, не поддерживающие новый синтаксис, рассматривают в таком случае все значение свойства как
+            невалидное.</p>
+        <img src="./img/img.png"
+             alt="в браузерах, которые не поддерживают новый синтаксис, свойство не валидно"
+             loading="lazy"
+             width="300px"
+             border="1px"
+        >
+        <p>Ответ на справедливый вопрос "а какая поддержка?" выглядит <a
+            href="https://caniuse.com/mdn-css_properties_content_alt_text">вот так</a>:</p>
+        <img src="./img/caniuse.png"
+             alt="поддержка пока только с 77 хрома"
+             loading="lazy"
+             width="300px"
+             border="1px"
+        >
+        <p>Пока что только Chrome.</p>
+        <p><strong>Поэтому будьте внимательны и по возможности пишите альтернативный текст для ваших
+            псевдо-элементов.</strong></p>
+        <footer>
+            <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+                href="https://t.me/ariarzer">telegram</a>.</p>
+            <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+            <p>Мой каналы о CSS <a href="https://t.me/css_mind">css_mind</a> в телеграм.</p>
+
+            <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+        </footer>
+
+</body>
+</html>
