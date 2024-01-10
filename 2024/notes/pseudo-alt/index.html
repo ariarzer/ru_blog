@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <title>CSS blog</title>
 
-    <meta name="description" content="Alt-тексты для псевдо-элементов.">
+    <meta name="description" content="Alt-тексты для псевдоэлементов.">
 
     <meta property="og:url" content="https://ru.ariarzer.dev/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Alt-тексты для псевдо-элементов.">
+    <meta property="og:title" content="Alt-тексты для псевдоэлементов.">
     <meta property="og:description"
-          content="Общеизвестно, что псевдо-элементы не видны для скринридеров. Однако с недавнего времени это не совсем так.">
+          content="Общеизвестно, что псевдоэлементы не видны для скринридеров. Однако с недавнего времени это не совсем так.">
 
     <meta property="og:image" content="https://ru.ariarzer.dev/2023/notes/pseudo-alt/preview/preview.png">
 
@@ -52,8 +52,8 @@
             <time datetime="2024-01-11 13:00">11 января 2024 года</time>
             .
         </p>
-        <h1>Alt-тексты для псевдо-элементов.</h1>
-        <p>Общеизвестно, что псевдо-элементы не видны для скринридеров. Однако с недавнего времени это не совсем
+        <h1>Alt-тексты для псевдоэлементов.</h1>
+        <p>Общеизвестно, что псевдоэлементы не видны для скринридеров. Однако с недавнего времени это не совсем
             так.</p>
         <p>Если посмотреть в черновик спецификации <a href="https://www.w3.org/TR/css-content/#content-property">css-content</a>,
             то <a href="https://ru.ariarzer.dev/articles/2021/value-definition-syntax.html">синтаксис</a> значения
@@ -75,7 +75,22 @@
 &lt;/style></code></pre>
         <p>На элементе <code>div</code> в <a href="https://developer.chrome.com/blog/full-accessibility-tree">дереве
             доступности</a> окажется текст после слеша, то есть <code>эмоджи яблока</code>.</p>
-        <img src="./img/tree.png"
+        <img src="img/tree_emoji.png"
+             alt="текст в дереве доступности"
+             loading="lazy"
+             width="300px"
+             border="1px"
+        >
+        <p>Более полезным новый синтаксис будет, если вы кладете в пседоэлемент не текст, а, например, картинку:</p>
+        <iframe src="demo/2.html"></iframe>
+        <pre><code data-lang="html">&lt;div>&lt;/div>
+&lt;style>
+    div:after {
+        content: url('img/apple.png'); /* <a href="#fallback">фолбэк</a> */
+        content: url('img/apple.png') / 'красное яблоко';
+    }
+&lt;/style></code></pre>
+        <img src="img/tree_apple.png"
              alt="текст в дереве доступности"
              loading="lazy"
              width="300px"
@@ -102,7 +117,7 @@
         >
         <p>Пока что только Chrome.</p>
         <p><strong>Поэтому будьте внимательны и по возможности пишите альтернативный текст для ваших
-            псевдо-элементов.</strong></p>
+            псевдоэлементов.</strong></p>
         <footer>
             <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
                 href="https://t.me/ariarzer">telegram</a>.</p>
