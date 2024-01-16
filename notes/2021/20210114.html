@@ -47,10 +47,10 @@
         <time datetime="2021-01-14 21:26">14 января 2021 года</time>
         .</p>
         <h1>Не тыкать в пользователя ошибками, пока он ничего не сделал</h1>
-        <p>Показать пользвателю ошибку позволяет псевдокласс <a
+        <p>Показать пользователю ошибку позволяет псевдокласс <a
             href="https://www.w3.org/TR/selectors-4/#validity-pseudos"><code>:invalid</code></a>. Он соответствует
-            инпустам, <strong>значение</strong> которых <strong>не валидно</strong>.</p>
-        <p>В этом примере инпут, если он пустой, будет иметь класный фон:</p>
+            инпутам, <strong>значение</strong> которых <strong>не валидно</strong>.</p>
+        <p>В этом примере инпут, если он пустой, будет иметь красный фон:</p>
         <pre><code>&lt;input required type=&quot;text&quot;&gt;
 &lt;style&gt;
 :invalid {
@@ -63,16 +63,16 @@
         <p><strong>Решение</strong>: в новом черновике спецификации селекторов описан класс <a
             href="https://drafts.csswg.org/selectors-4/#user-pseudos"><code>:user-invalid</code></a>. Он
             соответствует тем полям, с которыми пользователь <strong>провзаимодействовал</strong> + срабатывает также
-            после нажатия на <code>button[type=&quot;submin&quot;]</code> или
-            <code>input[type=&quot;submin&quot;]</code>.
+            после нажатия на <code>button[type=&quot;submit&quot;]</code> или
+            <code>input[type=&quot;submit&quot;]</code>.
             В этом примере поле подсветится красным только когда пользователь что-то в него введет, удалит и уберет
-            фокус, или после нажания на кнопку отправки формы:</p>
+            фокус, или после нажатия на кнопку отправки формы:</p>
         <pre><code>&lt;form action=&quot;&quot;&gt;
   &lt;label&gt;
     Text
     &lt;input required type=&quot;text&quot;&gt;     
   &lt;/label&gt;
-  &lt;button type=&quot;submin&quot;&gt;Submit&lt;/button&gt;
+  &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
 &lt;/form&gt;
 &lt;style&gt;
 input:user-invalid {
