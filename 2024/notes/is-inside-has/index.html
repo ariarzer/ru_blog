@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS blog</title>
+
+    <meta name="description" content="Интересный случай с селекторами.">
+
+    <meta property="og:url" content="https://ru.ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Интересный случай с селекторами.">
+    <meta property="og:description"
+          content="Рассказыва о разнице в работе селекторов :has(:is(#arg)) и просто :has(#arg).">
+
+    <meta property="og:image" content="https://ru.ariarzer.dev/2024/notes/is-inside-has/preview/preview.png">
+
+    <meta name="twitter:creator" content="@ariarzer">
+    <meta name="twitter:site" content="@ariarzer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://ru.ariarzer.dev/2024/notes/is-inside-has/preview/preview.png">
+
+    <meta name="vk:image" content="https://ru.ariarzer.dev/2024/notes/is-inside-has/preview/preview.png">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml"/>
+
+    <link rel="stylesheet" id="style_link">
+</head>
+
+<body>
+
+    <header>
+        <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+        <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+            <button onclick="document.getElementById('style_link').href='/style/common.css'">
+                подключить
+            </button>
+            их.
+        </p>
+    </header>
+
+    <article>
+        <p>
+            <time datetime="2024-02-06 13:00">6 февраля 2024 года</time>
+            .
+        </p>
+
+        <h1>Интересный случай с селекторами</h1>
+        <p>Недавно CSSWGG рассматривало <a href="https://github.com/w3c/csswg-drafts/issues/9422">ишью</a> о разнице в
+            поведении селекторов <code>:has(:is())</code> и просто <code>:has()</code>.
+            Обсуджение показалось мне очень интересным и я хочу подсветить и разобрать его.</p>
+        <h2>Про <code>has</code> и <code>is</code></h2>
+        <p>Функциональный псевдокласс <code>is()</code> сопоставляется с любым селектором из переданного ему в качестве
+            аргумента списка. То есть, например, здесь тексты в обоих блоках будут красного цвета:</p>
+        <pre><code data-lang="html">&lt;div class=&quot;a&quot;&gt;A&lt;/div&gt;
+&lt;div class=&quot;b&quot;&gt;B&lt;/div&gt;
+
+&lt;style&gt;
+  div:is(.a, .b) { color: red; }
+&lt;/style&gt;
+</code></pre>
+        <p>Функциональный псевдокласс <code>has()</code> сопоставляется с теми боксами, которые имеют ниже по дереву
+            указанных в аргументе потомков. То есть, например, в этом случае только первый текст будет красным:</p>
+        <pre><code data-lang="html">&lt;div class=&quot;a&quot;&gt;A &lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;b&quot;&gt;B&lt;/div&gt;
+
+&lt;style&gt;
+  div:has(span) { color: red; }
+&lt;/style&gt;
+</code></pre>
+        <h2>Про <code>is</code> внутри <code>has</code></h2>
+        <p>Очевидно, что мы легко может помещать <code>is</code> внутрь <code>has</code>. Например, в этому случае
+            красными будут два нижних текста:</p>
+        <pre><code data-lang="html">&lt;div class=&quot;a&quot;&gt;A&lt;/div&gt;
+&lt;div class=&quot;b&quot;&gt;B &lt;i&gt;&lt;/i&gt;&lt;/div&gt;
+&lt;div class=&quot;c&quot;&gt;C &lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+
+&lt;style&gt;
+  div:has(:is(span, i)) { color: red; }
+&lt;/style&gt;
+</code></pre>
+        <p>Мы даже может без проблем сконструировать такой селектор:</p>
+        <pre><code data-lang="html">&lt;div class=&quot;c&quot;&gt;C &lt;span&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;
+
+&lt;style&gt;
+  div:has(:is(span i)) { color: red; }
+&lt;/style&gt;
+</code></pre>
+        <p>Однако, что будет, если мы напишем первым селектором внутри <code>is</code> что-то, что выходит за область
+            видимости селектора перед <code>has</code>?</p>
+        <h2>Про утечку из <a href="https://github.com/web-standards-ru/dictionary/blob/main/dictionary.md#scope">области
+            видимости</a></h2>
+        <p><em>В этом разделе я буду использовать текст в псевдоэлементах как маркер, потому что <code>color</code>
+            - свойство наследуемое, а в примерах блоки вложены друг в друга.</em></p>
+        <p>Рассмотрим такую конструкцию:</p>
+        <pre><code data-lang="html">&lt;div id=&quot;outer&quot;&gt;outer
+  &lt;div id=&quot;middle&quot;&gt;middle
+    &lt;div id=&quot;inner&quot;&gt;inner&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+  div:has(#outer #inner)::before {
+    content: &quot;1_&quot;
+  }
+&lt;/style&gt;
+</code></pre>
+        <iframe src="demo/1.html"></iframe>
+        <p>Ни к одному из имеющихся элементов этот селектор не применится. Потому что <code>has</code> пытается найти
+            внутри свой области видимости весь селектор-аргумент сразу. Оно ищет внутри себя <code>#outer</code> в
+            который был бы вложен <code>#inner</code>. И не находит, потому что самый внешний блок, к которому
+            применяется часть селектора до <code>has</code> (селектор по тегу <code>div</code>) - это блок
+            <code>#outer</code>. А внутри него нет другого блока <code>#outer</code>. Это все равно, что написать
+            <code>#outer:has(#outer #inner)</code>. Очевидно, что <code>#outer</code> не находится сам внутри себя.</p>
+        <p>Попробуем изменить ситуацию:</p>
+        <pre><code data-lang="html">&lt;div id=&quot;outer&quot;&gt;outer
+  &lt;div id=&quot;middle&quot;&gt;middle
+    &lt;div id=&quot;inner&quot;&gt;inner&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+  div:has(:is(#outer #inner))::before {
+    content: &quot;1_&quot;
+  }
+&lt;/style&gt;
+</code></pre>
+        <iframe src="demo/2.html"></iframe>
+        <p>Теперь <code>has</code> пытается найти внутри себя <code>#inner</code>, который являлся бы потомком
+            <code>#outer</code>. И это работает. Под условие подходят блоки <code>#middle</code> и <code>#outer</code>.
+            Оба имеют внутри себя <code>#inner</code>, одним из предков которого является <code>#outer</code>.</p>
+        <p>Получается, что <code>has</code> в этом случае как бы смотрит дальше свой области видимости.</p>
+        <p>Приведу так же более утрированный пример ради лучше иллюстрации:</p>
+        <pre><code data-lang="html">&lt;div id=&quot;outer&quot;&gt;outer
+  &lt;div&gt;div
+    &lt;div&gt;div
+      &lt;div&gt;div
+        &lt;div id=&quot;middle&quot;&gt;middle
+          &lt;div id=&quot;inner&quot;&gt;inner&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+  #middle:has(:is(#outer #inner))::before {
+    content: &quot;1_&quot;
+  }
+&lt;/style&gt;
+</code></pre>
+        <iframe src="demo/3.html"></iframe>
+        <p>До <code>has</code> стоит прямое указание на блок <code>#middle</code>, поэтому <code>has</code> начинает
+            искать вглубь него. Он ищет там блок <code>#inner</code>, один из предков которого был бы блок
+            <code>#outher</code>. И находит его.</p>
+        <h2>И всё нормально.</h2>
+        <p>В результате обсуждения такое поведение было <a
+            href="https://github.com/w3c/csswg-drafts/issues/9422#issuecomment-1896261226">признано правильным</a>.
+            Пользуйтесь и будьте внимательны.</p>
+        <aside>
+            <h1 id="citation">Цитирования</h1>
+            <ul>
+            </ul>
+            <p>Если вы видите ссылку на эту статью в источнике, который не упомянут здесь,
+                <a href="https://t.me/ariarzer">сообщите мне</a>, пожалуйста.</p>
+        </aside>
+    </article>
+    <footer>
+        <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+            href="https://t.me/ariarzer">telegram</a>.</p>
+        <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+        <p>Мой каналы о CSS <a href="https://t.me/css_mind">css_mind</a> в телеграм.</p>
+
+        <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+    </footer>
+
+</body>
+</html>
