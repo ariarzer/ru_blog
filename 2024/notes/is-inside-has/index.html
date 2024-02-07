@@ -11,7 +11,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Интересный случай с селекторами.">
     <meta property="og:description"
-          content="Рассказыва о разнице в работе селекторов :has(:is(#arg)) и просто :has(#arg).">
+          content="Рассказываю о разнице в работе селекторов :has(:is(#arg)) и просто :has(#arg).">
 
     <meta property="og:image" content="https://ru.ariarzer.dev/2024/notes/is-inside-has/preview/preview.png">
 
@@ -49,14 +49,14 @@
 
     <article>
         <p>
-            <time datetime="2024-02-06 13:00">6 февраля 2024 года</time>
+            <time datetime="2024-02-07 13:00">7 февраля 2024 года</time>
             .
         </p>
 
         <h1>Интересный случай с селекторами</h1>
-        <p>Недавно CSSWGG рассматривало <a href="https://github.com/w3c/csswg-drafts/issues/9422">ишью</a> о разнице в
+        <p>Недавно CSSWG рассматривало <a href="https://github.com/w3c/csswg-drafts/issues/9422">ишью</a> о разнице в
             поведении селекторов <code>:has(:is())</code> и просто <code>:has()</code>.
-            Обсуджение показалось мне очень интересным и я хочу подсветить и разобрать его.</p>
+            Обсуждение показалось мне очень интересным и я хочу подсветить и разобрать его.</p>
         <h2>Про <code>has</code> и <code>is</code></h2>
         <p>Функциональный псевдокласс <code>is()</code> сопоставляется с любым селектором из переданного ему в качестве
             аргумента списка. То есть, например, здесь тексты в обоих блоках будут красного цвета:</p>
