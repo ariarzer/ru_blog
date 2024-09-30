@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS blog</title>
+
+    <meta name="description" content="Calc-size в 2024">
+
+    <meta property="og:url" content="https://ru.ariarzer.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calc-size в 2024">
+    <meta property="og:description"
+          content="Как анимировать значение до auto.">
+
+    <meta property="og:image" content="https://ru.ariarzer.dev/2024/notes/calc-size/preview/preview.png">
+
+    <meta name="twitter:creator" content="@ariarzer">
+    <meta name="twitter:site" content="@ariarzer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://ru.ariarzer.dev/2024/notes/calc-size/preview/preview.png">
+
+    <meta name="vk:image" content="https://ru.ariarzer.dev/2024/notes/calc-size/preview/preview.png">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="alternate" type="application/rss+xml" href="https://ru.ariarzer.dev/rss.xml"/>
+
+    <link rel="stylesheet" id="style_link">
+</head>
+
+<body>
+
+<header>
+    <p>Меня зовут София. Я - CSS инженер. Это мой <a href="/">блог</a>.</p>
+    <p class="NoVisibleWithStyle">Если вам очень больно без стилей, вы можете
+        <button onclick="document.getElementById('style_link').href='/style/common.css'">
+            подключить
+        </button>
+        их.
+    </p>
+</header>
+
+<article>
+    <p>
+        <time datetime="2024-02-07 13:00">30 сентября 2024 года</time>
+        .
+    </p>
+
+    <h1>Calc-size в 2024</h1>
+    <p>Недавно вышел первый рабочий черновик спецификации
+        <a href="https://www.w3.org/TR/css-values-5/#calc-size">css-values-5</a>.
+        Этот пост входит в серию о новых возможностях CSS из этой спецификации.</p>
+    <p>Несмотря на наличие определение собственных размеров в
+        <a href="https://github.com/web-standards-ru/dictionary/blob/main/dictionary.md#intrinsic-dimensions">
+            словаре Веб-стандаров</a>, здесь можно считать, что
+        собственные размеры - это те, что не могут быть установлены без отрисовки документа. Например, нельзя знать,
+        какой размер текста, пока он не будет нарисован заданным шрифтом.</p>
+    <p>В таких случаях мы не можем использовать проценты и другие зависимые от контента значения в свойствах, связанных
+        с размерами элемента.</p>
+    <p>Но функция <code>calc-size()</code> можно позволить это делать некоторым образом.</p>
+    <pre><code data-lang="css">calc-size( &lt;calc-size-basis&gt;, &lt;calc-sum&gt; )</code></pre>
+    <p>Она принимает два аргумента, базис и выражение, которое должно быть рассчитано на основе этого базиса. При этом
+        внутри выражения разрешено ключевое слово <code>size</code>, значения которого будет равно базису. А в качетве
+        базиса можно указать не только численные значения, но и <code>&lt;intrinsic-size-keyword&gt;</code>, то есть
+        ключевые слова вроде <code>auto</code>, <code>min-content</code>, <code>max-content</code> и тому подобное.
+        Значение базиса будет рассчитано на основе контекста свойства, в котором используется выражение.</p>
+    <p>Например, так можно сделать блок равным половине максимально возможной ширины по контенту:</p>
+    <pre><code data-lang="css">width: calc-size(max-content, size / 2);</code></pre>
+    <h2>А зачем?</h2>
+    <p>Например, так можно анимировать значение от <code>0</code> до <code>auto</code>. Потому что размер,
+        рассчитанный с помощью <code>cals-size()</code>, считается
+        <a href="https://www.w3.org/TR/css-sizing-3/#definite">определяемым</a>.</p>
+    <pre><code data-lang="css">.class {
+    width: 0;
+    animation-name: w;
+    animation-duration: 1s;
+}
+
+@keyframes w {
+    to {
+        width: calc-size(auto, size);
+    }
+}</code></pre>
+
+    <aside>
+        <h1 id="sources">Источники</h1>
+        <ul>
+            <li><a href="https://www.w3.org/TR/css-values-5/#calc-size">Спецификация</a>.</li>
+        </ul>
+    </aside>
+
+    <aside>
+        <h1 id="citation">Цитирования</h1>
+        <ul>
+        </ul>
+        <p>Если вы видите ссылку на эту статью в источнике, который не упомянут здесь,
+            <a href="https://t.me/ariarzer">сообщите мне</a>, пожалуйста.</p>
+    </aside>
+</article>
+<footer>
+    <p>Я в <a href="https://twitter.com/ariarzer">twitter</a>, <a href="https://vk.com/ariarzer">VK</a>, <a
+        href="https://t.me/ariarzer">telegram</a>.</p>
+    <p>Мотивировать меня чаще писать о CSS можно на <a href="https://patreon.com/ariarzer">patreon</a>.</p>
+    <p>Мой каналы о CSS <a href="https://t.me/css_mind">css_mind</a> в телеграм.</p>
+
+    <p><br>Нашли опечатку? Сообщите мне о ней.</p>
+</footer>
+
+</body>
+</html>
